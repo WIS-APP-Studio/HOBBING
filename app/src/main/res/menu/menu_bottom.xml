@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/main"
+        android:checked="true"
+        android:enabled="true"
+        android:title="메인페이지 아이콘"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/profile"
+        android:enabled="true"
+        android:title="마이페이지 아이콘"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/setting"
+        android:enabled="true"
+        android:title="설정 아이콘"
+        app:showAsAction="always" />
+</menu>
+
