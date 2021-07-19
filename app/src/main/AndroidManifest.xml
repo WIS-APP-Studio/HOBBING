@@ -9,16 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HOBBING">
-        <activity android:name=".activities.LoadingActivity">
+        <activity android:name="com.wisappstudio.hobbing.activity.LoadingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.IntroActivity" />
-        <activity android:name=".activities.SignInActivity"/>
-        <activity android:name=".activities.SignUpActivity"/>
-        <activity android:name=".activities.MainActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.IntroActivity" />
+        <activity android:name="com.wisappstudio.hobbing.activity.SignInActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.SignUpActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.MainActivity"/>
     </application>
 
 </manifest>

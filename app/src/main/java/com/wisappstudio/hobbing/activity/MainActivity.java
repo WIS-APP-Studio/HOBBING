@@ -1,4 +1,4 @@
-package com.example.hobbing.activities;
+package com.wisappstudio.hobbing.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,6 +11,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.hobbing.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.wisappstudio.hobbing.fragment.MainPageFragment;
+import com.wisappstudio.hobbing.fragment.MyPageFragment;
+import com.wisappstudio.hobbing.fragment.ServicePageFragment;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mBottomNV;
@@ -42,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = fragmentManager.findFragmentByTag(tag);
         if (fragment == null) {
             if (id == R.id.main) {
-                fragment = new MainPageActivity();
+                fragment = new MainPageFragment();
             } else if (id == R.id.profile){
-                fragment = new MyPageActivity();
+                fragment = new MyPageFragment();
             } else {
-                fragment = new ServicePageActivity();
+                fragment = new ServicePageFragment();
             }
             fragmentTransaction.add(R.id.content_layout, fragment, tag);
         } else {

@@ -1,4 +1,4 @@
-package com.example.hobbing.activities;
+package com.wisappstudio.hobbing.activity;
 /*
 
 
