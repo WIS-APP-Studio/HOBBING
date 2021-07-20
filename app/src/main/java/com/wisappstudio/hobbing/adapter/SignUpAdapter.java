@@ -3,14 +3,14 @@ package com.wisappstudio.hobbing.adapter;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
-import com.wisappstudio.hobbing.data.SignUpData;
+import com.wisappstudio.hobbing.data.ServerData;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class SignUpAdapter extends StringRequest {
-    public static String URL = SignUpData.URL;
+    public static String URL = ServerData.SIGN_UP_URL;
 
     private Map<String, String> map;
 
