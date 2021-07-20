@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/sign_in_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="132dp"
@@ -24,7 +24,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_title">
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
             android:textSize="30dp" />
 
         <EditText
-            android:id="@+id/login_et_id"
+            android:id="@+id/sign_in_et_id"
             android:textColor="#143D59"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -64,7 +64,7 @@
             android:textSize="30dp" />
 
         <EditText
-            android:id="@+id/login_et_pw"
+            android:id="@+id/sign_in_et_pw"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/sign_in_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
