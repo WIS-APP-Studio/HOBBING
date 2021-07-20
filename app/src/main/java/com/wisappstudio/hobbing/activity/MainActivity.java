@@ -2,6 +2,7 @@ package com.wisappstudio.hobbing.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.hobbing.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.wisappstudio.hobbing.fragment.MainPageFragment;
 import com.wisappstudio.hobbing.fragment.MyPageFragment;
 import com.wisappstudio.hobbing.fragment.ServicePageFragment;
