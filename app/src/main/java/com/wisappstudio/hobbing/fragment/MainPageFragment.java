@@ -23,10 +23,9 @@ import com.android.volley.toolbox.Volley;
 import com.example.hobbing.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.wisappstudio.hobbing.activity.IntroActivity;
 import com.wisappstudio.hobbing.activity.WritePostActivity;
-import com.wisappstudio.hobbing.adapter.PostAdapter;
-import com.wisappstudio.hobbing.data.PostData;
+import com.wisappstudio.hobbing.adapter.WritePostAdapter;
+import com.wisappstudio.hobbing.data.WritePostData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,12 +34,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import static com.wisappstudio.hobbing.data.ServerData.POST_READ_URL;
-import static com.wisappstudio.hobbing.data.ServerData.URL;
 
 public class MainPageFragment extends Fragment {
     private RequestQueue queue;
     private View view;
-    ArrayList<PostData> postDataList;
+    ArrayList<WritePostData> postDataList;
 
     @Nullable
     @Override
@@ -64,7 +62,7 @@ public class MainPageFragment extends Fragment {
                 InitializePostData(response);
 
                 ListView listView = (ListView) view.findViewById(R.id.main_page_lv_post);
-                final PostAdapter postAdapter = new PostAdapter(view.getContext(), postDataList);
+                final WritePostAdapter postAdapter = new WritePostAdapter(view.getContext(), postDataList);
 
                 listView.setAdapter(postAdapter);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -94,7 +92,7 @@ public class MainPageFragment extends Fragment {
 
     public void InitializePostData(JSONObject jsonObject)
     {
-        postDataList = new ArrayList<PostData>();
+        postDataList = new ArrayList<WritePostData>();
         String TAG_JSON = "게시물_정보";
 //        String NUM = "번호";
         String WRITER = "작성자";
@@ -116,7 +114,7 @@ public class MainPageFragment extends Fragment {
                 String title = item.getString(TITLE);
                 String description = item.getString(DESCRIPTION);
 
-                postDataList.add(new PostData(writer,title,description));
+                postDataList.add(new WritePostData(writer,title,description));
             }
         } catch (JSONException e) {
             Log.d("LoadERR", e.toString());

@@ -1,12 +1,12 @@
 package com.wisappstudio.hobbing.data;
 
-public class PostData {
+public class WritePostData {
     //    private int image;
     private String writer;
     private String title;
     private String description;
 
-    public PostData(/*int image,*/String writer, String title, String description){
+    public WritePostData(/*int image,*/String writer, String title, String description){
 //        this.image = image;
         this.writer = writer;
         this.title = title;
