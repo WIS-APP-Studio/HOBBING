@@ -9,4 +9,5 @@ public class ServerData {
     public static String POST_READ_URL = URL+"post/read.php";
     public static String INNER_POST_READ_URL = URL+"post/inner_read.php";
     public static String IMAGE_DIRECTORY_URL = URL + "image/";
+    public static String MY_PAGE_POST_READ_URL = URL+"post/profile_read.php";
 }

@@ -60,7 +60,7 @@
                     android:layout_height="30dp"
                     android:layout_marginRight="5dp"
                     android:padding="5dp"
-                    android:text="이너 프로필 주인의 게시물 제목입니다."
+                    android:text="마이 페이지 주인의 게시물 제목입니다."
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:textSize="10dp"
-                android:text="이너 프로필 주신의 게시물의 내용입니다."
+                android:text="마이 페이지 주신의 게시물의 내용입니다."
                 android:padding="5dp" />
 
             <LinearLayout

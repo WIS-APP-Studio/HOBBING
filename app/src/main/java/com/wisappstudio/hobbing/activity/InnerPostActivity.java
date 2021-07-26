@@ -104,7 +104,7 @@ public class InnerPostActivity extends AppCompatActivity {
 
             ownerView.setText(writer + "님의 게시물");
             descriptionView.setText(description);
-            titleView.setText(description);
+            titleView.setText(title);
 
         } catch (JSONException e) {
             Log.d("LoadERR-JSONException", e.toString());

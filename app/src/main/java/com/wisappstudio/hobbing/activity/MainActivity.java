@@ -38,13 +38,16 @@ public class MainActivity extends AppCompatActivity {
         mBottomNV.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() { //NavigationItemSelecte
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                BottomNavigate(menuItem.getItemId());
+                Intent intent = getIntent();
+                String userId = intent.getStringExtra("user_id");
+                BottomNavigate(menuItem.getItemId(), userId);
                 return true;
             }
         });
         mBottomNV.setSelectedItemId(R.id.main);
     }
-    private void BottomNavigate(int id) {  //BottomNavigation 페이지 변경
+
+    private void BottomNavigate(int id, String userId) {  //BottomNavigation 페이지 변경
         String tag = String.valueOf(id);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             if (id == R.id.main) {
                 fragment = new MainPageFragment();
             } else if (id == R.id.profile){
-                fragment = new MyPageFragment();
+                fragment = new MyPageFragment(userId);
             } else {
                 fragment = new ServicePageFragment();
             }

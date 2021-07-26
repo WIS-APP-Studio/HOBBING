@@ -41,7 +41,7 @@ public class InnerPostAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = mLayoutInflater.inflate(R.layout.list_inner_post, null);
+        View view = mLayoutInflater.inflate(R.layout.list_my_page_post, null);
         // 내부 뷰 위치
 
         TextView title = view.findViewById(R.id.activity_inner_post_title);

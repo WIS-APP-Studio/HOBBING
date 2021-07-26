@@ -16,7 +16,7 @@
             android:id="@+id/activity_inner_post_owner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="님의 게시물"
+            android:text=""
             android:gravity="center"
             android:textSize="10pt"/>
     </LinearLayout>
@@ -31,7 +31,6 @@
             android:id="@+id/activity_inner_post_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="제목"
             android:textSize="10pt"
             android:layout_margin="10dp"
             android:gravity="center"/>
@@ -80,15 +79,13 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-
-            android:hint="내용"/>
+/>
     </ScrollView>
 
     <TextView
         android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="카테고리와 해시태그"/>
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
