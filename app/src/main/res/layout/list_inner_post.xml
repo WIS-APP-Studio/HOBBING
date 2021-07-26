@@ -16,7 +16,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/list_post_profile"
+                android:id="@+id/list_inner_post_profile"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginTop="5dp"
@@ -25,7 +25,7 @@
                 tools:srcCompat="@drawable/profile_image" />
 
             <TextView
-                android:id="@+id/list_post_writer"
+                android:id="@+id/list_inner_post_writer"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
@@ -33,7 +33,7 @@
                 android:textSize="6pt"
                 android:padding="5dp"
                 android:gravity="center"
-                android:text="위즈앱 스튜디오"
+                android:text="개인 프로필"
                 android:textStyle="bold" />
 
             <TextView
@@ -55,12 +55,12 @@
 
 
                 <TextView
-                    android:id="@+id/list_post_title"
+                    android:id="@+id/list_inner_post_title"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginRight="5dp"
                     android:padding="5dp"
-                    android:text="위즈앱 스튜디오 앱 HOBBING 제목입니다."
+                    android:text="이너 프로필 주인의 게시물 제목입니다."
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -75,11 +75,11 @@
                 android:src="@drawable/image"/>
 
             <TextView
-                android:id="@+id/list_post_tv_description"
+                android:id="@+id/list_inner_post_tv_description"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:textSize="10dp"
-                android:text="위즈앱 스튜디오 HOBBING 내용입니다. 내용은 이렇게 보여질 겁니다. 내용이 길면 다음..."
+                android:text="이너 프로필 주신의 게시물의 내용입니다."
                 android:padding="5dp" />
 
             <LinearLayout
@@ -95,7 +95,7 @@
                     android:src="@drawable/like"/>
 
                 <TextView
-                    android:id="@+id/list_post_likes"
+                    android:id="@+id/list_inner_post_likes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -112,7 +112,7 @@
                     android:src="@drawable/download"/>
 
                 <TextView
-                    android:id="@+id/list_post_shares"
+                    android:id="@+id/list_inner_post_shares"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -130,7 +130,7 @@
                     android:src="@drawable/view"/>
 
                 <TextView
-                    android:id="@+id/list_post_views"
+                    android:id="@+id/list_inner_post_views"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
