@@ -75,9 +75,9 @@ public class MainPageFragment extends Fragment {
                     @Override
                     public void onItemClick(AdapterView parent, View v, int position, long id){
                         Intent intent = new Intent(v.getContext(), InnerPostActivity.class);
+                        intent.putExtra("number", postAdapter.getItem(position).getNumber());
+                        intent.putExtra("owner", postAdapter.getItem(position).getWriter());
                         startActivity(intent);
-
-                        Toast.makeText(v.getContext(), postAdapter.getItem(position).getTitle(), Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -101,7 +101,7 @@ public class MainPageFragment extends Fragment {
     {
         postDataList = new ArrayList<PostData>();
         String TAG_JSON = "게시물_정보";
-//        String NUM = "번호";
+        String NUMBER = "번호";
         String WRITER = "작성자";
 //        String CATEGORY = "카테고리";
         String TITLE = "제목";
@@ -118,6 +118,7 @@ public class MainPageFragment extends Fragment {
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
             for(int i = 0; i < jsonArray.length(); i++) {
                 JSONObject item = jsonArray.getJSONObject(i);
+                String number = item.getString(NUMBER);
                 String writer = item.getString(WRITER);
                 String title = item.getString(TITLE);
                 String description = item.getString(DESCRIPTION);
@@ -125,7 +126,7 @@ public class MainPageFragment extends Fragment {
                 String views = item.getString(VIEWS);
                 String shares = item.getString(SHARES);
 
-                postDataList.add(new PostData(writer,title,description,likes, views, shares));
+                postDataList.add(new PostData(number, writer,title,description,likes, views, shares));
             }
         } catch (JSONException e) {
             Log.d("LoadERR", e.toString());

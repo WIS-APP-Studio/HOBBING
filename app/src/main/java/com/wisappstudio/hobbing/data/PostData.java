@@ -7,20 +7,17 @@ public class PostData {
     private String likes;
     private String views;
     private String shares;
+    private String number;
 
-    public PostData(/*int image,*/String writer, String title, String description, String likes, String views, String shares){
+    public PostData(String number, String writer, String title, String description, String likes, String views, String shares){
         this.writer = writer;
         this.title = title;
         this.description = description;
         this.likes = likes;
         this.views = views;
         this.shares = shares;
+        this.number = number;
     }
-
-//    public int getImage()
-//    {
-//        return this.image;
-//    }
 
     public String getWriter()
     {
@@ -42,4 +39,6 @@ public class PostData {
     public String getViews() { return this.views; }
 
     public String getShares() { return this.views; }
+
+    public String getNumber() { return this.number; }
 }
