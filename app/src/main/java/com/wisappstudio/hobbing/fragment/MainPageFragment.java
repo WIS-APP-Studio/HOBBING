@@ -23,7 +23,10 @@ import com.android.volley.toolbox.Volley;
 import com.example.hobbing.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.wisappstudio.hobbing.activity.InnerPostActivity;
+import com.wisappstudio.hobbing.activity.IntroActivity;
 import com.wisappstudio.hobbing.activity.PostActivity;
+import com.wisappstudio.hobbing.activity.SignInActivity;
 import com.wisappstudio.hobbing.adapter.PostAdapter;
 import com.wisappstudio.hobbing.data.PostData;
 
@@ -71,9 +74,10 @@ public class MainPageFragment extends Fragment {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                     @Override
                     public void onItemClick(AdapterView parent, View v, int position, long id){
-                        Toast.makeText(v.getContext(),
-                                postAdapter.getItem(position).getTitle(),
-                                Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(v.getContext(), InnerPostActivity.class);
+                        startActivity(intent);
+
+                        Toast.makeText(v.getContext(), postAdapter.getItem(position).getTitle(), Toast.LENGTH_LONG).show();
                     }
                 });
             }
