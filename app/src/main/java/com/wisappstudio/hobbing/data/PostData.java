@@ -1,16 +1,20 @@
 package com.wisappstudio.hobbing.data;
 
-public class WritePostData {
-    //    private int image;
+public class PostData {
     private String writer;
     private String title;
     private String description;
+    private String likes;
+    private String views;
+    private String shares;
 
-    public WritePostData(/*int image,*/String writer, String title, String description){
-//        this.image = image;
+    public PostData(/*int image,*/String writer, String title, String description, String likes, String views, String shares){
         this.writer = writer;
         this.title = title;
         this.description = description;
+        this.likes = likes;
+        this.views = views;
+        this.shares = shares;
     }
 
 //    public int getImage()
@@ -32,4 +36,10 @@ public class WritePostData {
     {
         return this.description;
     }
+
+    public String getLikes() { return this.likes; }
+
+    public String getViews() { return this.views; }
+
+    public String getShares() { return this.views; }
 }

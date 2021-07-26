@@ -23,9 +23,9 @@ import com.android.volley.toolbox.Volley;
 import com.example.hobbing.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.wisappstudio.hobbing.activity.WritePostActivity;
-import com.wisappstudio.hobbing.adapter.WritePostAdapter;
-import com.wisappstudio.hobbing.data.WritePostData;
+import com.wisappstudio.hobbing.activity.PostActivity;
+import com.wisappstudio.hobbing.adapter.PostAdapter;
+import com.wisappstudio.hobbing.data.PostData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,7 +38,7 @@ import static com.wisappstudio.hobbing.data.ServerData.POST_READ_URL;
 public class MainPageFragment extends Fragment {
     private RequestQueue queue;
     private View view;
-    ArrayList<WritePostData> postDataList;
+    ArrayList<PostData> postDataList;
 
     @Nullable
     @Override
@@ -53,7 +53,7 @@ public class MainPageFragment extends Fragment {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
-                Intent intent = new Intent(view.getContext(), WritePostActivity.class);
+                Intent intent = new Intent(view.getContext(), PostActivity.class);
                 startActivity(intent);
             }
         });
@@ -65,7 +65,7 @@ public class MainPageFragment extends Fragment {
                 InitializePostData(response);
 
                 ListView listView = (ListView) view.findViewById(R.id.main_page_lv_post);
-                final WritePostAdapter postAdapter = new WritePostAdapter(view.getContext(), postDataList);
+                final PostAdapter postAdapter = new PostAdapter(view.getContext(), postDataList);
 
                 listView.setAdapter(postAdapter);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -95,15 +95,16 @@ public class MainPageFragment extends Fragment {
 
     public void InitializePostData(JSONObject jsonObject)
     {
-        postDataList = new ArrayList<WritePostData>();
+        postDataList = new ArrayList<PostData>();
         String TAG_JSON = "게시물_정보";
 //        String NUM = "번호";
         String WRITER = "작성자";
 //        String CATEGORY = "카테고리";
         String TITLE = "제목";
         String DESCRIPTION = "내용";
-//        String COUNT_OF_VIEW = "뷰_수";
-//        String LIKE = "좋아요";
+        String VIEWS = "뷰_수";
+        String LIKES = "좋아요_수";
+        String SHARES = "공유_수";
 //        String PERMISSION_TO_COMMENT = "댓글_허용";
 //        String PERMISSION_TO_SHARE = "공유_허용";
 //        String DATE = "게시일자";
@@ -116,8 +117,11 @@ public class MainPageFragment extends Fragment {
                 String writer = item.getString(WRITER);
                 String title = item.getString(TITLE);
                 String description = item.getString(DESCRIPTION);
+                String likes = item.getString(LIKES);
+                String views = item.getString(VIEWS);
+                String shares = item.getString(SHARES);
 
-                postDataList.add(new WritePostData(writer,title,description));
+                postDataList.add(new PostData(writer,title,description,likes, views, shares));
             }
         } catch (JSONException e) {
             Log.d("LoadERR", e.toString());

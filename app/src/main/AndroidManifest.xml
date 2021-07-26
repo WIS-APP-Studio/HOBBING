@@ -23,7 +23,7 @@
         <activity android:name="com.wisappstudio.hobbing.activity.SignInActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.SignUpActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.MainActivity"/>
-        <activity android:name="com.wisappstudio.hobbing.activity.WritePostActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.PostActivity"/>
     </application>
 
 </manifest>
