@@ -24,7 +24,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.hobbing.R;
 import com.wisappstudio.hobbing.activity.InnerPostActivity;
+import com.wisappstudio.hobbing.adapter.MyPagePostAdapter;
 import com.wisappstudio.hobbing.adapter.PostAdapter;
+import com.wisappstudio.hobbing.data.MyPagePostData;
 import com.wisappstudio.hobbing.data.PostData;
 
 import org.json.JSONArray;
@@ -41,7 +43,7 @@ import static com.wisappstudio.hobbing.data.ServerData.POST_READ_URL;
 public class MyPageFragment extends Fragment {
     private String userId;
     private View view;
-    ArrayList<PostData> postDataList;
+    ArrayList<MyPagePostData> postDataList;
     private RequestQueue queue;
 
     public MyPageFragment(String userId) {
@@ -66,53 +68,68 @@ public class MyPageFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 try {
+                    Log.d("MY_PAGE_RUN_ERR", response);
                     JSONObject jsonObject = new JSONObject(response);
                     InitializePostData(jsonObject);
+
+                    ListView listView = (ListView) view.findViewById(R.id.my_page_lv_post);
+                    final MyPagePostAdapter postAdapter = new MyPagePostAdapter(view.getContext(), postDataList);
+
+                    listView.setAdapter(postAdapter);
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                        @Override
+                        public void onItemClick(AdapterView parent, View v, int position, long id){
+                            Intent intent = new Intent(v.getContext(), InnerPostActivity.class);
+                            intent.putExtra("number", postAdapter.getItem(position).getNumber());
+                            intent.putExtra("owner", postAdapter.getItem(position).getWriter());
+                            startActivity(intent);
+                        }
+                    });
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) { }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String ,String>();
-                params.put("writer", userId);
-                return super.getParams();
-            }
-        };
-
-
-        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, POST_READ_URL, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                InitializePostData(response);
-
-                ListView listView = (ListView) view.findViewById(R.id.main_page_lv_post);
-                final PostAdapter postAdapter = new PostAdapter(view.getContext(), postDataList);
-
-                listView.setAdapter(postAdapter);
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-                    @Override
-                    public void onItemClick(AdapterView parent, View v, int position, long id){
-                        Intent intent = new Intent(v.getContext(), InnerPostActivity.class);
-                        intent.putExtra("number", postAdapter.getItem(position).getNumber());
-                        intent.putExtra("owner", postAdapter.getItem(position).getWriter());
-                        startActivity(intent);
-                    }
-                });
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("LoadERR", error.getMessage());
+                Log.d("MY_PAGE_REQUEST_ERR", error.getMessage());
             }
-        });
-        jsonRequest.setTag("LoadERR");
-        queue.add(jsonRequest);
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String ,String>();
+                params.put("writer", userId);
+                return params;
+            }
+        };
+
+//        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, MY_PAGE_POST_READ_URL, null, new Response.Listener<JSONObject>() {
+//            @Override
+//            public void onResponse(JSONObject response) {
+//                InitializePostData(response);
+//
+//                ListView listView = (ListView) view.findViewById(R.id.main_page_lv_post);
+//                final PostAdapter postAdapter = new PostAdapter(view.getContext(), postDataList);
+//
+//                listView.setAdapter(postAdapter);
+//                listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+//                    @Override
+//                    public void onItemClick(AdapterView parent, View v, int position, long id){
+//                        Intent intent = new Intent(v.getContext(), InnerPostActivity.class);
+//                        intent.putExtra("number", postAdapter.getItem(position).getNumber());
+//                        intent.putExtra("owner", postAdapter.getItem(position).getWriter());
+//                        startActivity(intent);
+//                    }
+//                });
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.d("LoadERR", error.getMessage());
+//            }
+//        });
+//        jsonRequest.setTag("LoadERR");
+        queue.add(strRequest);
         return view;
     }
     @Override
@@ -122,7 +139,7 @@ public class MyPageFragment extends Fragment {
 
     public void InitializePostData(JSONObject jsonObject)
     {
-        postDataList = new ArrayList<PostData>();
+        postDataList = new ArrayList<MyPagePostData>();
         String TAG_JSON = "게시물_정보";
         String NUMBER = "번호";
         String WRITER = "작성자";
@@ -149,7 +166,7 @@ public class MyPageFragment extends Fragment {
                 String views = item.getString(VIEWS);
                 String shares = item.getString(SHARES);
 
-                postDataList.add(new PostData(number, writer,title,description,likes, views, shares));
+                postDataList.add(new MyPagePostData(number, writer,title,description,likes, views, shares));
             }
         } catch (JSONException e) {
             Log.d("LoadERR", e.toString());
