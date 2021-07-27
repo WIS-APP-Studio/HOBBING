@@ -19,7 +19,7 @@ import com.wisappstudio.hobbing.data.PostData;
 
 import java.util.ArrayList;
 
-import static com.wisappstudio.hobbing.data.ServerData.IMAGE_DIRECTORY_URL;
+import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
 
 public class PostAdapter extends BaseAdapter {
     Context mContext = null;
@@ -67,7 +67,7 @@ public class PostAdapter extends BaseAdapter {
         shares.setText(sample.get(position).getShares());
 
         Glide.with(mContext)
-                .load(IMAGE_DIRECTORY_URL+sample.get(position).getWriter()+".png") // 임시로 로드
+                .load(PROFILE_IMAGE_DIRECTORY +sample.get(position).getWriter()+".png") // 임시로 로드
                 .apply(new RequestOptions()
                     .signature(new ObjectKey("signature string"))
                     .skipMemoryCache(true)
