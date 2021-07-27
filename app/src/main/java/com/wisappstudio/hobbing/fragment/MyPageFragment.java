@@ -14,20 +14,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.hobbing.R;
 import com.wisappstudio.hobbing.activity.InnerPostActivity;
 import com.wisappstudio.hobbing.adapter.MyPagePostAdapter;
-import com.wisappstudio.hobbing.adapter.PostAdapter;
 import com.wisappstudio.hobbing.data.MyPagePostData;
-import com.wisappstudio.hobbing.data.PostData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,7 +34,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.wisappstudio.hobbing.data.ServerData.MY_PAGE_POST_READ_URL;
-import static com.wisappstudio.hobbing.data.ServerData.POST_READ_URL;
 
 public class MyPageFragment extends Fragment {
     private String userId;
@@ -102,33 +97,6 @@ public class MyPageFragment extends Fragment {
                 return params;
             }
         };
-
-//        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, MY_PAGE_POST_READ_URL, null, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-//                InitializePostData(response);
-//
-//                ListView listView = (ListView) view.findViewById(R.id.main_page_lv_post);
-//                final PostAdapter postAdapter = new PostAdapter(view.getContext(), postDataList);
-//
-//                listView.setAdapter(postAdapter);
-//                listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-//                    @Override
-//                    public void onItemClick(AdapterView parent, View v, int position, long id){
-//                        Intent intent = new Intent(v.getContext(), InnerPostActivity.class);
-//                        intent.putExtra("number", postAdapter.getItem(position).getNumber());
-//                        intent.putExtra("owner", postAdapter.getItem(position).getWriter());
-//                        startActivity(intent);
-//                    }
-//                });
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.d("LoadERR", error.getMessage());
-//            }
-//        });
-//        jsonRequest.setTag("LoadERR");
         queue.add(strRequest);
         return view;
     }
