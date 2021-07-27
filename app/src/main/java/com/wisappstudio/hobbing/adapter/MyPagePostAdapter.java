@@ -3,6 +3,7 @@ package com.wisappstudio.hobbing.adapter;
 import android.content.Context;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +17,10 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.hobbing.R;
 import com.wisappstudio.hobbing.data.MyPagePostData;
-import com.wisappstudio.hobbing.data.PostData;
 
 import java.util.ArrayList;
 
-import static com.wisappstudio.hobbing.data.ServerData.IMAGE_DIRECTORY_URL;
+import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
 
 public class MyPagePostAdapter extends BaseAdapter {
     Context mContext = null;
@@ -67,8 +67,9 @@ public class MyPagePostAdapter extends BaseAdapter {
         views.setText(sample.get(position).getViews());
         shares.setText(sample.get(position).getShares());
 
+        Log.d("MyPagePostImage", PROFILE_IMAGE_DIRECTORY +sample.get(position).getWriter()+".png");
         Glide.with(mContext)
-                .load(IMAGE_DIRECTORY_URL+sample.get(position).getWriter()+".png") // 임시로 로드
+                .load(PROFILE_IMAGE_DIRECTORY +sample.get(position).getWriter()+".png") // 임시로 로드
                 .apply(new RequestOptions()
                         .signature(new ObjectKey("signature string"))
                         .skipMemoryCache(true)
