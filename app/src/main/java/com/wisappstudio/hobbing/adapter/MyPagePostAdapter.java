@@ -59,6 +59,8 @@ public class MyPagePostAdapter extends BaseAdapter {
         TextView likes = (TextView)view.findViewById(R.id.list_my_page_likes);
         TextView views = (TextView)view.findViewById(R.id.list_my_page_views);
         TextView shares = (TextView)view.findViewById(R.id.list_my_page_shares);
+        TextView category = (TextView)view.findViewById(R.id.list_my_page_post_category);
+        TextView date = (TextView)view.findViewById(R.id.list_my_page_post_date);
 
         writer.setText(sample.get(position).getWriter());
         title.setText(sample.get(position).getTitle());
@@ -66,6 +68,10 @@ public class MyPagePostAdapter extends BaseAdapter {
         likes.setText(sample.get(position).getLikes());
         views.setText(sample.get(position).getViews());
         shares.setText(sample.get(position).getShares());
+        category.setText("@"+sample.get(position).getCategory());
+        date.setText(sample.get(position).getDate());
+
+        /* 댓글 허용 및 공유 허용, 공개 대상에 따라 아이콘으로 표시되게끔 작업 */
 
         Glide.with(mContext)
                 .load(IMAGE_DIRECTORY_URL+sample.get(position).getWriter()+".png") // 임시로 로드
@@ -76,7 +82,11 @@ public class MyPagePostAdapter extends BaseAdapter {
                 )
                 .into(profile_image);
 
-        profile_image.setBackground(new ShapeDrawable(new OvalShape()));
+        ShapeDrawable shapeDrawable = new ShapeDrawable();
+        shapeDrawable.getPaint().setColor(mContext.getColor(R.color.signature));
+        shapeDrawable.setShape(new OvalShape());
+
+        profile_image.setBackground(shapeDrawable);
         profile_image.setClipToOutline(true);
 
         return view;

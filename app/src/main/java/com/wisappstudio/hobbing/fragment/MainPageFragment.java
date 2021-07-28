@@ -100,15 +100,15 @@ public class MainPageFragment extends Fragment {
         String TAG_JSON = "게시물_정보";
         String NUMBER = "번호";
         String WRITER = "작성자";
-//        String CATEGORY = "카테고리";
+        String CATEGORY = "카테고리";
         String TITLE = "제목";
         String DESCRIPTION = "내용";
         String VIEWS = "뷰_수";
         String LIKES = "좋아요_수";
         String SHARES = "공유_수";
+        String DATE = "게시일자";
 //        String PERMISSION_TO_COMMENT = "댓글_허용";
 //        String PERMISSION_TO_SHARE = "공유_허용";
-//        String DATE = "게시일자";
 //        String TARGET = "공개_대상";
 
         try {
@@ -122,8 +122,10 @@ public class MainPageFragment extends Fragment {
                 String likes = item.getString(LIKES);
                 String views = item.getString(VIEWS);
                 String shares = item.getString(SHARES);
+                String category = item.getString(CATEGORY);
+                String date = item.getString(DATE);
 
-                postDataList.add(new PostData(number, writer,title,description,likes, views, shares));
+                postDataList.add(new PostData(number, writer,title,description,likes, views, shares,category, date));
             }
         } catch (JSONException e) {
             Log.d("LoadERR", e.toString());
