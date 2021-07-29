@@ -38,6 +38,11 @@ public class MainPageFragment extends Fragment {
     private RequestQueue queue;
     private View view;
     ArrayList<PostData> postDataList;
+    private String userId;
+
+    public MainPageFragment(String userId) {
+        this.userId = userId;
+    }
 
     @Nullable
     @Override
@@ -50,6 +55,7 @@ public class MainPageFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), WritePostActivity.class);
+                intent.putExtra("user_id", userId);
                 startActivity(intent);
             }
         });

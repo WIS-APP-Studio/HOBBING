@@ -46,6 +46,7 @@
         android:layout_margin="10dp">
 
         <EditText
+            android:id="@+id/activity_write_post_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="취미활동을 표현할 제목을 입력해주세요!"
@@ -94,6 +95,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <EditText
+                android:id="@+id/activity_write_post_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="left|top"
@@ -103,6 +105,7 @@
                 android:layout_marginTop="10dp"
                 android:hint="오늘은 어떤 취미를 즐기셨나요?\n오늘 있었던 일을 기록해,\n취미활동에 생기를 불어 넣어봅시다.\n\n시간이 지나도 남는 건 사진,\n내 생각을 풀어놓은 기록.\n부담없이 작성해보세요!\n\n자. 그럼, 여기를 클릭해\n오늘 있었던 일을 남겨봅시다.😊 "/>
             <EditText
+                android:id="@+id/activity_write_post_category"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -112,6 +115,7 @@
                 android:hint="카테고리를 입력해 주세요."/>
 
             <EditText
+                android:id="@+id/activity_write_post_hashtag"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -120,29 +124,29 @@
                 android:layout_height="wrap_content"
                 android:hint="해시태그를 설정해 보세요.\nex. [카테고리:동물] @고양이 @젤리발바닥 ..."/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:gravity="center">-->
 
-                <CheckBox
-                    android:id="@+id/checkBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="댓글 허용" />
+<!--                <CheckBox-->
+<!--                    android:id="@+id/checkBox"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="댓글 허용" />-->
 
-                <CheckBox
-                    android:id="@+id/checkBox2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="공유 허용" />
-                <CheckBox
-                    android:id="@+id/checkBox3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="뷰 수 공개" />
-            </LinearLayout>
+<!--                <CheckBox-->
+<!--                    android:id="@+id/checkBox2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="공유 허용" />-->
+<!--                <CheckBox-->
+<!--                    android:id="@+id/checkBox3"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="뷰 수 공개" />-->
+<!--            </LinearLayout>-->
         </LinearLayout>
     </ScrollView>
 
