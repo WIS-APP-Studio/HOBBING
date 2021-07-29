@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,11 +21,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.hobbing.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.wisappstudio.hobbing.activity.InnerPostActivity;
-import com.wisappstudio.hobbing.activity.IntroActivity;
-import com.wisappstudio.hobbing.activity.PostActivity;
-import com.wisappstudio.hobbing.activity.SignInActivity;
+import com.wisappstudio.hobbing.activity.WritePostActivity;
 import com.wisappstudio.hobbing.adapter.PostAdapter;
 import com.wisappstudio.hobbing.data.PostData;
 
@@ -53,7 +49,7 @@ public class MainPageFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), PostActivity.class);
+                Intent intent = new Intent(view.getContext(), WritePostActivity.class);
                 startActivity(intent);
             }
         });

@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -67,6 +68,15 @@ public class MyPageFragment extends Fragment {
         TextView nickname = (TextView) view.findViewById(R.id.activity_my_page_nickname);
         TextView id = (TextView) view.findViewById(R.id.activity_my_page_id);
         ImageView profile_image = (ImageView) view.findViewById(R.id.activity_my_page_image);
+        ImageView profile_setting = (ImageView) view.findViewById(R.id.activity_my_page_setting_profile);
+
+        profile_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /* 해당 공간에 프로필 설정 게시물이 뜨도록 순번: 07-02  를 연결한다. */
+                Toast.makeText(view.getContext(), "순번: 07-02 개발중입니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // 상단 마이 프로필 사진
         Glide.with(view.getContext())
@@ -151,7 +161,6 @@ public class MyPageFragment extends Fragment {
         String SHARES = "공유_수";
 //        String PERMISSION_TO_COMMENT = "댓글_허용";
 //        String PERMISSION_TO_SHARE = "공유_허용";
-
 //        String TARGET = "공개_대상";
 
         try {
