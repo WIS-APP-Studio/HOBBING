@@ -70,11 +70,9 @@ public class InnerPostActivity extends AppCompatActivity {
         };
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, INNER_POST_IMAGE_READ_URL, new Response.Listener<String>() {
-
             @Override
             public void onResponse(String response) {
                 try {
-                    Log.d("0727-TAG" , response);
                     JSONObject jsonObject = new JSONObject(response);
 
                     RecyclerView recyclerView = findViewById(R.id.activity_inner_post_image);
@@ -84,7 +82,6 @@ public class InnerPostActivity extends AppCompatActivity {
 
                     recyclerView.setAdapter(postAdapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
