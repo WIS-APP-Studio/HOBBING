@@ -1,14 +1,18 @@
 package com.wisappstudio.hobbing.fragment;
 
 import android.content.Intent;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +24,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.example.hobbing.R;
 import com.wisappstudio.hobbing.activity.InnerPostActivity;
 import com.wisappstudio.hobbing.adapter.MyPagePostAdapter;
@@ -33,6 +41,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.wisappstudio.hobbing.data.ServerData.IMAGE_DIRECTORY_URL;
 import static com.wisappstudio.hobbing.data.ServerData.MY_PAGE_POST_READ_URL;
 
 public class MyPageFragment extends Fragment {
@@ -53,7 +62,35 @@ public class MyPageFragment extends Fragment {
 
         TextView nickname = (TextView) view.findViewById(R.id.activity_my_page_nickname);
         TextView id = (TextView) view.findViewById(R.id.activity_my_page_id);
+        ImageView profile_image = (ImageView) view.findViewById(R.id.activity_my_page_image);
+        ImageView profile_setting = (ImageView) view.findViewById(R.id.activity_my_page_setting_profile);
 
+        profile_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /* 해당 공간에 프로필 설정 게시물이 뜨도록 순번: 07-02  를 연결한다. */
+                Toast.makeText(view.getContext(), "순번: 07-02 개발중입니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // 상단 마이 프로필 사진
+        Glide.with(view.getContext())
+                .load(IMAGE_DIRECTORY_URL+userId+".png") // 임시로 로드
+                .apply(new RequestOptions()
+                        .signature(new ObjectKey("signature string"))
+                        .skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                )
+                .into(profile_image);
+        ShapeDrawable shapeDrawable = new ShapeDrawable();
+        shapeDrawable.getPaint().setColor(view.getContext().getColor(R.color.signature));
+        OvalShape ovalShape = new OvalShape();
+        shapeDrawable.setShape(new OvalShape());
+
+        profile_image.setBackground(shapeDrawable);
+        profile_image.setClipToOutline(true);
+
+        // 상단 아이디 및 닉네임 (닉네임은 추후 작업)
         nickname.setText(userId);
         id.setText("@"+userId);
 
@@ -63,7 +100,6 @@ public class MyPageFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 try {
-                    Log.d("MY_PAGE_RUN_ERR", response);
                     JSONObject jsonObject = new JSONObject(response);
                     InitializePostData(jsonObject);
 
@@ -87,7 +123,6 @@ public class MyPageFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("MY_PAGE_REQUEST_ERR", error.getMessage());
             }
         }) {
             @Override
@@ -111,7 +146,8 @@ public class MyPageFragment extends Fragment {
         String TAG_JSON = "게시물_정보";
         String NUMBER = "번호";
         String WRITER = "작성자";
-//        String CATEGORY = "카테고리";
+        String DATE = "게시일자";
+        String CATEGORY = "카테고리";
         String TITLE = "제목";
         String DESCRIPTION = "내용";
         String VIEWS = "뷰_수";
@@ -119,7 +155,6 @@ public class MyPageFragment extends Fragment {
         String SHARES = "공유_수";
 //        String PERMISSION_TO_COMMENT = "댓글_허용";
 //        String PERMISSION_TO_SHARE = "공유_허용";
-//        String DATE = "게시일자";
 //        String TARGET = "공개_대상";
 
         try {
@@ -133,8 +168,10 @@ public class MyPageFragment extends Fragment {
                 String likes = item.getString(LIKES);
                 String views = item.getString(VIEWS);
                 String shares = item.getString(SHARES);
+                String category = item.getString(CATEGORY);
+                String date = item.getString(DATE);
 
-                postDataList.add(new MyPagePostData(number, writer,title,description,likes, views, shares));
+                postDataList.add(new MyPagePostData(number, writer,title,description,likes, views, shares, category, date));
             }
         } catch (JSONException e) {
             Log.d("LoadERR", e.toString());

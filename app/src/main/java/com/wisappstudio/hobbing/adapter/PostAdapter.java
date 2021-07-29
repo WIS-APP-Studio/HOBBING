@@ -58,6 +58,8 @@ public class PostAdapter extends BaseAdapter {
         TextView likes = (TextView)view.findViewById(R.id.list_post_likes);
         TextView views = (TextView)view.findViewById(R.id.list_post_views);
         TextView shares = (TextView)view.findViewById(R.id.list_post_shares);
+        TextView category = (TextView)view.findViewById(R.id.list_post_category);
+        TextView date = (TextView)view.findViewById(R.id.list_post_tv_date);
 
         writer.setText(sample.get(position).getWriter());
         title.setText(sample.get(position).getTitle());
@@ -65,6 +67,8 @@ public class PostAdapter extends BaseAdapter {
         likes.setText(sample.get(position).getLikes());
         views.setText(sample.get(position).getViews());
         shares.setText(sample.get(position).getShares());
+        category.setText("@"+sample.get(position).getCategory());
+        date.setText(sample.get(position).getDate());
 
         Glide.with(mContext)
                 .load(PROFILE_IMAGE_DIRECTORY +sample.get(position).getWriter()+".png") // 임시로 로드
@@ -75,7 +79,11 @@ public class PostAdapter extends BaseAdapter {
                 )
                 .into(profile_image);
 
-        profile_image.setBackground(new ShapeDrawable(new OvalShape()));
+        ShapeDrawable shapeDrawable = new ShapeDrawable();
+        shapeDrawable.getPaint().setColor(mContext.getColor(R.color.signature));
+        shapeDrawable.setShape(new OvalShape());
+
+        profile_image.setBackground(shapeDrawable);
         profile_image.setClipToOutline(true);
 
         return view;
