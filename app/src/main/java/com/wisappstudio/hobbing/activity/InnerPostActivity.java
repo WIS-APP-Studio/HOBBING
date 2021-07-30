@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,6 +35,7 @@ import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_READ_URL;
 
 public class InnerPostActivity extends AppCompatActivity {
     ArrayList<InnerPostData> innerPostDataList;
+    String postNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,23 +44,20 @@ public class InnerPostActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        StringRequest strRequest = new StringRequest(Request.Method.POST, INNER_POST_READ_URL, new Response.Listener<String>() {
+        // 게시물 Read
+        StringRequest postRequest = new StringRequest(Request.Method.POST, INNER_POST_READ_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     InitializeInnerPostData(jsonObject);
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-            }
+            public void onErrorResponse(VolleyError error) { }
         }) {
             @Override
             protected Map<String, String> getParams() {
@@ -69,7 +68,8 @@ public class InnerPostActivity extends AppCompatActivity {
             }
         };
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, INNER_POST_IMAGE_READ_URL, new Response.Listener<String>() {
+        // 이미지 Read
+        StringRequest postImageRequest = new StringRequest(Request.Method.POST, INNER_POST_IMAGE_READ_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -89,9 +89,7 @@ public class InnerPostActivity extends AppCompatActivity {
             }
         }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("0727-TAG" , error.getMessage());
-            }
+            public void onErrorResponse(VolleyError error) { }
         }) {
             @Override
             protected Map<String, String> getParams() {
@@ -102,14 +100,37 @@ public class InnerPostActivity extends AppCompatActivity {
             }
         };
 
+        // 댓글 Read
+        StringRequest postCommentRequest = new StringRequest(Request.Method.POST, null, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    InitializeCommentData(jsonObject);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
-        queue.add(strRequest);
-        queue.add(stringRequest);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                return params;
+            }
+        };
+        queue.add(postRequest);
+        queue.add(postImageRequest);
     }
 
     public void InitializeInnerPostData(JSONObject jsonObject) {
         String TAG_JSON = "내부_게시물_정보";
-//        String NUM = "번호";
+        String NUM = "번호";
         String WRITER = "작성자";
 //        String CATEGORY = "카테고리";
         String TITLE = "제목";
@@ -121,7 +142,6 @@ public class InnerPostActivity extends AppCompatActivity {
 //        String PERMISSION_TO_SHARE = "공유_허용";
 //        String DATE = "게시일자";
 //        String TARGET = "공개_대상";
-
         try {
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
 
@@ -132,6 +152,8 @@ public class InnerPostActivity extends AppCompatActivity {
             String likes = item.getString(LIKES);
             String views = item.getString(VIEWS);
             String shares = item.getString(SHARES);
+            String num = item.getString(NUM);
+            postNumber = num;
 
             RecyclerView recyclerView = (RecyclerView) findViewById(R.id.activity_inner_post_image);
             LinearLayoutManager layoutManager = new LinearLayoutManager(this.getApplicationContext());
@@ -151,18 +173,17 @@ public class InnerPostActivity extends AppCompatActivity {
         }
     }
 
-    public void InitializePostImage(JSONObject jsonObject)
-    {
+    public void InitializePostImage(JSONObject jsonObject) {
         innerPostDataList = new ArrayList<InnerPostData>();
         String TAG_JSON = "내부_게시물_사진";
-        String NUMBER = "번호";
+        String NUM = "번호";
         String IMAGE = "사진";
 
         try {
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
             for(int i = 0; i < jsonArray.length(); i++) {
                 JSONObject item = jsonArray.getJSONObject(i);
-                String number = item.getString(NUMBER);
+                String number = item.getString(NUM);
                 String image = item.getString(IMAGE);
 
                 innerPostDataList.add(new InnerPostData(number, image));
@@ -170,5 +191,9 @@ public class InnerPostActivity extends AppCompatActivity {
         } catch (JSONException e) {
             Log.d("LoadERR", e.toString());
         };
+    }
+
+    public void InitializeCommentData(JSONObject jsonObject) {
+
     }
 }
