@@ -114,7 +114,6 @@
                     android:src="@drawable/profile_image"/>
 
                 <EditText
-                    android:id="@+id/activity_inner_post_write_comment"
                     android:layout_width="280dp"
                     android:layout_marginLeft="8dp"
                     android:layout_height="match_parent"
