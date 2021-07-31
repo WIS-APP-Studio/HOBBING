@@ -1,17 +1,17 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\wis\\HOBBING\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "C:\\wis\\HOBBING-feature-My_Info\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\wis\\HOBBING\\app\\src\\main\\res\\values-night\\themes.xml",
+                    "source": "C:\\wis\\HOBBING-feature-My_Info\\app\\src\\main\\res\\values-night\\themes.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
-                        "startOffsets": "102",
+                        "startOffsets": "100",
                         "endLines": "14",
                         "endColumns": "12",
-                        "endOffsets": "830"
+                        "endOffsets": "816"
                     },
                     "to": {
                         "startLines": "9",

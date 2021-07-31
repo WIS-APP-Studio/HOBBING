@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:2:1-31:12
+ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:2:1-31:12
 MERGED from [com.android.volley:volley:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4dfabde9f9cf43eab198a0f0ea4b259c\jetified-volley-1.1.0\AndroidManifest.xml:2:1-11:12
 MERGED from [com.github.bumptech.glide:glide:4.12.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\acdb25422962c481d6097055442e048f\jetified-glide-4.12.0\AndroidManifest.xml:2:1-12:12
 MERGED from [com.google.android.material:material:1.4.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\dfeb88c0c927e009433677929c093176\material-1.4.0\AndroidManifest.xml:17:1-24:12
@@ -52,33 +52,33 @@ MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\User
 MERGED from [androidx.print:print:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\634f2f03e50a0eb4514a8d791ceb2f13\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\054d779a91766207571d826869795163\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3fd5b4b866d23b43b0e15439a0ee99e7\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:2:1-31:12
 	package
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:3:5-34
-		INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml
-		INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:3:5-34
+		INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml
+		INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:2:1-31:12
-		INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml
+		INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:2:1-31:12
+		INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:2:1-31:12
-		INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml
+		INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:2:1-31:12
+		INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:5:5-66
+ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:5:5-66
 	android:name
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:5:22-64
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:5:22-64
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:6:5-79
+ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:6:5-79
 	android:name
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:6:22-77
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:6:22-77
 application
-ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:7:5-29:19
+ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:7:5-29:19
 MERGED from [com.android.volley:volley:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4dfabde9f9cf43eab198a0f0ea4b259c\jetified-volley-1.1.0\AndroidManifest.xml:9:5-20
 MERGED from [com.android.volley:volley:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4dfabde9f9cf43eab198a0f0ea4b259c\jetified-volley-1.1.0\AndroidManifest.xml:9:5-20
 MERGED from [com.github.bumptech.glide:glide:4.12.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\acdb25422962c481d6097055442e048f\jetified-glide-4.12.0\AndroidManifest.xml:10:5-20
@@ -96,65 +96,65 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\PC
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.5.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\5c4786bccfbaefa0f187e0e56044e26d\core-1.5.0\AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:14:9-35
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:14:9-35
 	android:label
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:12:9-41
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:12:9-41
 	android:roundIcon
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:13:9-54
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:13:9-54
 	android:icon
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:11:9-43
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:11:9-43
 	android:allowBackup
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:10:9-35
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:10:9-35
 	android:theme
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:15:9-45
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:15:9-45
 	android:usesCleartextTraffic
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:8:9-44
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:8:9-44
 activity#com.wisappstudio.hobbing.activity.LoadingActivity
-ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:16:9-21:20
+ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:16:9-21:20
 	android:name
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:16:19-83
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:16:19-83
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:17:13-20:29
+ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:17:13-20:29
 action#android.intent.action.MAIN
-ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:18:17-69
+ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:18:17-69
 	android:name
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:18:25-66
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:18:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:19:17-77
+ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:19:17-77
 	android:name
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:19:27-74
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:19:27-74
 activity#com.wisappstudio.hobbing.activity.IntroActivity
-ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:22:9-84
+ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:22:9-84
 	android:name
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:22:19-81
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:22:19-81
 activity#com.wisappstudio.hobbing.activity.SignInActivity
-ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:23:9-84
+ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:23:9-84
 	android:name
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:23:19-82
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:23:19-82
 activity#com.wisappstudio.hobbing.activity.SignUpActivity
-ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:24:9-84
+ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:24:9-84
 	android:name
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:24:19-82
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:24:19-82
 activity#com.wisappstudio.hobbing.activity.MainActivity
-ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:25:9-82
+ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:25:9-82
 	android:name
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:25:19-80
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:25:19-80
 activity#com.wisappstudio.hobbing.activity.WritePostActivity
-ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:26:9-87
+ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:26:9-87
 	android:name
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:26:19-85
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:26:19-85
 activity#com.wisappstudio.hobbing.activity.InnerPostActivity
-ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:27:9-87
+ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:27:9-87
 	android:name
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:27:19-85
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:27:19-85
 activity#com.wisappstudio.hobbing.activity.ProfileSettingActivity
-ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:28:9-92
+ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:28:9-92
 	android:name
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml:28:19-90
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml:28:19-90
 uses-sdk
-INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml
-INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml
+INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml
+INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml
 MERGED from [com.android.volley:volley:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4dfabde9f9cf43eab198a0f0ea4b259c\jetified-volley-1.1.0\AndroidManifest.xml:7:5-43
 MERGED from [com.android.volley:volley:1.1.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\4dfabde9f9cf43eab198a0f0ea4b259c\jetified-volley-1.1.0\AndroidManifest.xml:7:5-43
 MERGED from [com.github.bumptech.glide:glide:4.12.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\acdb25422962c481d6097055442e048f\jetified-glide-4.12.0\AndroidManifest.xml:6:5-8:41
@@ -251,13 +251,13 @@ MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\PC\.gradle\cache
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\054d779a91766207571d826869795163\interpolator-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3fd5b4b866d23b43b0e15439a0ee99e7\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\3fd5b4b866d23b43b0e15439a0ee99e7\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
-INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml
-INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml
+INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml
+INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml
-		INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml
+		INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml
+		INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml
-		ADDED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml
-		INJECTED from C:\wis\HOBBING\app\src\main\AndroidManifest.xml
+		INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml
+		ADDED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml
+		INJECTED from C:\wis\HOBBING-feature-My_Info\app\src\main\AndroidManifest.xml

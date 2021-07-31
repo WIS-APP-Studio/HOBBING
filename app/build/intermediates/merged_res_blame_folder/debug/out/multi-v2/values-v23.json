@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\wis\\HOBBING\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v23\\values-v23.xml",
+            "outputFile": "C:\\wis\\HOBBING-feature-My_Info\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v23\\values-v23.xml",
             "map": [
                 {
                     "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-2\\files-2.1\\dfeb88c0c927e009433677929c093176\\material-1.4.0\\res\\values-v23\\values-v23.xml",

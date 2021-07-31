@@ -2326,6 +2326,7 @@ layout activity_intro
 layout activity_loading
 layout activity_main
 layout activity_main_page
+layout activity_my_info
 layout activity_my_page
 layout activity_profile_setting
 layout activity_sign_in

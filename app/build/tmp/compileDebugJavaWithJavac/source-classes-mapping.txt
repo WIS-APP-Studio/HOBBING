@@ -68,6 +68,8 @@ com/wisappstudio/hobbing/data/InnerPostData.java
  com.wisappstudio.hobbing.data.InnerPostData
 com/wisappstudio/hobbing/data/ServerData.java
  com.wisappstudio.hobbing.data.ServerData
+com/wisappstudio/hobbing/activity/MyInfoActivity.java
+ com.wisappstudio.hobbing.activity.MyInfoActivity
 com/wisappstudio/hobbing/activity/ProfileSettingActivity.java
  com.wisappstudio.hobbing.activity.ProfileSettingActivity
 com/wisappstudio/hobbing/fragment/MyPageFragment.java
