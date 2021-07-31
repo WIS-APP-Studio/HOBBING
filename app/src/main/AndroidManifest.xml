@@ -3,7 +3,7 @@
     package="com.example.hobbing" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:usesCleartextTraffic="true"
 
@@ -23,8 +23,9 @@
         <activity android:name="com.wisappstudio.hobbing.activity.SignInActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.SignUpActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.MainActivity"/>
-        <activity android:name="com.wisappstudio.hobbing.activity.PostActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.WritePostActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.InnerPostActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.ProfileSettingActivity"/>
     </application>
 
 </manifest>

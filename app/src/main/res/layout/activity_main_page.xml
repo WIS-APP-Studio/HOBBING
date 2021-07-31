@@ -47,6 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
+        android:layout_margin="10dp"
         android:backgroundTint="#bcdbef"
         app:srcCompat="@drawable/upload" />
 

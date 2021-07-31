@@ -66,11 +66,6 @@ public class InnerPostAdapter extends RecyclerView.Adapter<InnerPostAdapter.View
                 .load(POST_IMAGE_DIRECTORY
                         + sample.get(position).getNumber()+"/"
                         + sample.get(position).getImage())
-                .apply(new RequestOptions()
-                        .signature(new ObjectKey("signature string"))
-                        .skipMemoryCache(true)
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                )
                 .into(holder.imageView);
     }
 }

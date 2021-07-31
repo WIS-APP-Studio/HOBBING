@@ -20,6 +20,8 @@ import com.wisappstudio.hobbing.adapter.SignUpAdapter;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.regex.Pattern;
+
 public class SignUpActivity extends AppCompatActivity {
     private EditText sign_up_et_id, sign_up_et_pw, sign_up_et_email;
     private Button btn_sign_up;
@@ -38,7 +40,19 @@ public class SignUpActivity extends AppCompatActivity {
         btn_sign_up.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                signUp();
+                String idRegex = "^[a-z0-9_]{5,20}$";
+                String pwRegex = "^[a-zA-Z0-9_]{8,16}$";
+                String emailRegex = "\\w+@\\w+\\.\\w+(\\.\\w+)?";
+
+                boolean checkIdRegex = Pattern.matches(idRegex, sign_up_et_id.getText().toString());
+                boolean checkPwRegex = Pattern.matches(pwRegex, sign_up_et_pw.getText().toString());
+                boolean checkEmailRegex = Pattern.matches(emailRegex, sign_up_et_email.getText().toString());
+                if(checkIdRegex&&checkPwRegex&&checkEmailRegex) {
+                    signUp();
+                }
+                else {
+                    Toast.makeText(SignUpActivity.this, "아이디 및 비밀번호를 다시 입력하세요.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

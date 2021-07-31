@@ -20,6 +20,13 @@ import com.wisappstudio.hobbing.adapter.SignInAdapter;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.regex.Pattern;
+
+/*
+    아이디 조건- 5~20자의 영문 소문자, 숫자 이용. (한글 및 특수문자 제외)
+    비밀번호 조건-8~16자 영문 대 소문자, 숫자 이용. (한글 및 특수문자 제외)
+ */
+
 public class SignInActivity extends AppCompatActivity {
     private EditText sign_in_et_id, sign_in_et_pw;
     private Button btn_login;
@@ -37,7 +44,26 @@ public class SignInActivity extends AppCompatActivity {
         btn_login = findViewById(R.id.sign_in_btn);
         btn_login.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) { signIn(); }
+            public void onClick(View v) {
+                /*
+                    아이디 및 비밀번호 규약 알고리즘
+                    아이디 조건- 5~20자의 영문 소문자, 숫자 이용. (한글 및 특수문자 제외)
+                    비밀번호 조건-8~16자 영문 대 소문자, 숫자 이용. (한글 및 특수문자 제외)
+                 */
+                String idRegex = "^[a-z0-9_]{5,20}$";
+                String pwRegex = "^[a-zA-Z0-9_]{8,16}$";
+
+                boolean checkIdRegex = Pattern.matches(idRegex, sign_in_et_id.getText().toString());
+                boolean checkPwRegex = Pattern.matches(pwRegex, sign_in_et_pw.getText().toString());
+
+                if(checkIdRegex&&checkPwRegex) {
+                    signIn();
+                }
+                else {
+                    Toast.makeText(SignInActivity.this, "아이디 및 비밀번호를 다시 입력하세요.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
         });
     }
 

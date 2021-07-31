@@ -1,0 +1,78 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.hobbing"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+8-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:5:5-66
+11-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+12-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:6:5-79
+12-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:6:22-77
+13
+14    <application
+14-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:7:5-29:19
+15        android:allowBackup="true"
+15-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:10:9-35
+16        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+16-->[androidx.core:core:1.5.0] C:\Users\PC\.gradle\caches\transforms-2\files-2.1\5c4786bccfbaefa0f187e0e56044e26d\core-1.5.0\AndroidManifest.xml:24:18-86
+17        android:debuggable="true"
+18        android:extractNativeLibs="false"
+19        android:icon="@mipmap/ic_launcher"
+19-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:11:9-43
+20        android:label="@string/app_name"
+20-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:12:9-41
+21        android:roundIcon="@mipmap/ic_launcher_round"
+21-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:13:9-54
+22        android:supportsRtl="true"
+22-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:14:9-35
+23        android:testOnly="true"
+24        android:theme="@style/Theme.HOBBING"
+24-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:15:9-45
+25        android:usesCleartextTraffic="true" >
+25-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:8:9-44
+26        <activity android:name="com.wisappstudio.hobbing.activity.LoadingActivity" >
+26-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:16:9-21:20
+26-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:16:19-83
+27            <intent-filter>
+27-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:17:13-20:29
+28                <action android:name="android.intent.action.MAIN" />
+28-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:18:17-69
+28-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:18:25-66
+29
+30                <category android:name="android.intent.category.LAUNCHER" />
+30-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:19:17-77
+30-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:19:27-74
+31            </intent-filter>
+32        </activity>
+33        <activity android:name="com.wisappstudio.hobbing.activity.IntroActivity" />
+33-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:22:9-84
+33-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:22:19-81
+34        <activity android:name="com.wisappstudio.hobbing.activity.SignInActivity" />
+34-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:23:9-84
+34-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:23:19-82
+35        <activity android:name="com.wisappstudio.hobbing.activity.SignUpActivity" />
+35-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:24:9-84
+35-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:24:19-82
+36        <activity android:name="com.wisappstudio.hobbing.activity.MainActivity" />
+36-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:25:9-82
+36-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:25:19-80
+37        <activity android:name="com.wisappstudio.hobbing.activity.WritePostActivity" />
+37-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:26:9-87
+37-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:26:19-85
+38        <activity android:name="com.wisappstudio.hobbing.activity.InnerPostActivity" />
+38-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:27:9-87
+38-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:27:19-85
+39        <activity android:name="com.wisappstudio.hobbing.activity.ProfileSettingActivity" />
+39-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:28:9-92
+39-->C:\wis\HOBBING\app\src\main\AndroidManifest.xml:28:19-90
+40    </application>
+41
+42</manifest>
