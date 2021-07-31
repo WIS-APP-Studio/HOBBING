@@ -1,5 +1,8 @@
-# feature/My_Info
+# feature/My_Info_setting
 
-1차 업로드, 2차 수정 업로드 - 2021년 7월 31일
+## 내 정보
+1차 업로드 - 2021년 7월 31일
 
-다른 레이아웃과의 연결 부분은 인태님께서 봐주신다고 합니다. 연결이 아직 완벽하지 않은 점 양해부탁드립니다...
+xml 파일과 activity 코드는 activity_my_info.xml, MyInfoActivity.java 에 작성해두었습니다!
+
+인태님 레이아웃 간 연결 잘 부탁드립니다!!!
