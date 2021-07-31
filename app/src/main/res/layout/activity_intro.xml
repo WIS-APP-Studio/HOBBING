@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wisappstudio.hobbing.activity.IntroActivity">
+    tools:context="com.wisappstudio.hobbing.activity.IntroActivity"
+    android:background="#bcdbef">
 
     <Button
         android:id="@+id/btn_sign_up"
