@@ -3,82 +3,122 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/signature">
 
     <TextView
-        android:id="@+id/sign_in_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
+        android:id="@+id/textView2"
+        android:layout_width="409dp"
+        android:layout_height="62dp"
         android:gravity="center"
         android:text="로그인"
         android:textSize="40dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="121dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+        android:layout_width="371dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:background="@drawable/radius"
+        android:backgroundTint="@color/sub_gray"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_title">
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="295dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
             android:text="아이디 : "
+            android:textColor="@color/white"
             android:textSize="30dp" />
 
         <EditText
-            android:id="@+id/sign_in_et_id"
-            android:textColor="#143D59"
+            android:id="@+id/login_et_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="20dp" />
+            android:layout_marginRight="0dp"
+            android:background="@drawable/radius"
+            android:backgroundTint="@color/white"
+            android:textColor="#143D59" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
+        android:layout_width="371dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:background="@drawable/radius"
+        android:backgroundTint="@color/sub_gray"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="367dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
             android:text="비밀번호 : "
+            android:textColor="@color/white"
             android:textSize="30dp" />
 
         <EditText
-            android:id="@+id/sign_in_et_pw"
-            android:inputType="textPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp" />
+            android:id="@+id/login_et_pw"
+            android:layout_width="233dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="0dp"
+            android:background="@drawable/radius"
+            android:backgroundTint="@color/white"
+            android:textColor="#143D59" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/sign_in_btn"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_height="5dp"
+        android:background="@color/sub_yellow"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="513dp" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="254dp"
+        android:layout_height="62dp"
+        android:backgroundTint="@color/purple_200"
         android:text="Log in"
         android:textSize="28dp"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="78dp"
+        tools:layout_editor_absoluteY="584dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아이디/비밀번호 변경"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="529dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="165dp"
+        android:layout_height="34dp"
+        android:text="자동 로그인"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="461dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원 가입"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="269dp"
+        tools:layout_editor_absoluteY="529dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

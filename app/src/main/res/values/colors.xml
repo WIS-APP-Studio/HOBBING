@@ -8,4 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="signature">#bcdbef</color>
+    <color name="sub_blue">#7A7FA3</color>
+    <color name="sub_yellow">#FDE8A5</color>
+    <color name="sub_gray">#B0AFB3</color>
 </resources>
