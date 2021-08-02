@@ -5,6 +5,8 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.view.View;
+import android.app.Activity;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -12,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -22,7 +23,7 @@ import com.example.hobbing.R;
 
 import static com.wisappstudio.hobbing.data.ServerData.IMAGE_DIRECTORY_URL;
 
-public class ProfileSettingActivity extends AppCompatActivity {
+public class ProfileSettingActivity extends Activity implements AdapterView.OnItemClickListener {
 
     static final String[] LIST_MENU = {"내 정보", "알림 설정", "활동 기록", "로그아웃", "탈퇴"} ;
 
@@ -82,5 +83,16 @@ public class ProfileSettingActivity extends AppCompatActivity {
         ListView listview = (ListView) findViewById(R.id.listview1) ;
         // 리스트 뷰 OnItemClickListener 관련 자료 : https://newgenerationkorea.wordpress.com/2015/07/12/listview-%EA%B5%AC%EC%84%B1%ED%95%98%EA%B8%B0-1-arrayadapter-%EC%9D%B4%EC%9A%A9%ED%95%98%EA%B8%B0/
         listview.setAdapter(Adapter) ;
+        listview.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0 : {
+                Intent intent = new Intent(this, MyInfoActivity.class);
+                startActivity(intent);
+            }
+        }
     }
 }
