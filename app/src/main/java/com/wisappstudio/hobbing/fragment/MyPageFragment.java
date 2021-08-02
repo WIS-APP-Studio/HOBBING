@@ -71,9 +71,8 @@ public class MyPageFragment extends Fragment {
         profile_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /* 해당 공간에 프로필 설정 게시물이 뜨도록 순번: 07-02  를 연결한다. */
-                Toast.makeText(view.getContext(), "순번: 07-02 개발중입니다.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(view.getContext(), ProfileSettingActivity.class);
+                intent.putExtra("user_id", userId);
                 startActivity(intent);
             }
         });
@@ -89,7 +88,6 @@ public class MyPageFragment extends Fragment {
                 .into(profile_image);
         ShapeDrawable shapeDrawable = new ShapeDrawable();
         shapeDrawable.getPaint().setColor(view.getContext().getColor(R.color.signature));
-        OvalShape ovalShape = new OvalShape();
         shapeDrawable.setShape(new OvalShape());
 
         profile_image.setBackground(shapeDrawable);
