@@ -3,6 +3,7 @@ package com.wisappstudio.hobbing.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,10 +27,8 @@ import com.bumptech.glide.signature.ObjectKey;
 import com.example.hobbing.R;
 import com.wisappstudio.hobbing.adapter.CommentAdapter;
 import com.wisappstudio.hobbing.adapter.InnerPostAdapter;
-import com.wisappstudio.hobbing.adapter.PostAdapter;
 import com.wisappstudio.hobbing.data.CommentData;
 import com.wisappstudio.hobbing.data.InnerPostData;
-import com.wisappstudio.hobbing.data.PostData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,6 +46,7 @@ import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
 public class InnerPostActivity extends AppCompatActivity {
     ArrayList<InnerPostData> innerPostDataList;
     ArrayList<CommentData> commentDataList;
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +55,8 @@ public class InnerPostActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String userId = intent.getStringExtra("user_id");
+
+        this.userId = userId;
 
         ImageView userProfile = (ImageView) findViewById(R.id.list_inner_post_user_profile);
 
@@ -196,6 +198,27 @@ public class InnerPostActivity extends AppCompatActivity {
             TextView ownerView = findViewById(R.id.activity_inner_post_owner);
             TextView descriptionView = findViewById(R.id.activity_inner_post_description);
             TextView titleView = findViewById(R.id.activity_inner_post_title);
+            ImageView select = (ImageView) findViewById(R.id.activity_inner_post_select);
+
+            if(writer.equals(userId)) {
+                select.setImageResource(R.drawable.select);
+
+                select.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(InnerPostActivity.this, "게시물 삭제 및 수정 버튼입니다.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                select.setImageResource(R.drawable.alert);
+
+                select.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(InnerPostActivity.this, "게시물 신고 버튼입니다.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
 
             ownerView.setText(writer + "님의 게시물");
             descriptionView.setText(description);

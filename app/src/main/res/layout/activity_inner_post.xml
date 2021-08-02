@@ -9,16 +9,36 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="#bcdbef"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/activity_inner_post_owner"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="님의 게시물"
-            android:gravity="center"
-            android:textSize="10pt"/>
+            android:layout_gravity="center_vertical|center_horizontal">
+
+            <TextView
+                android:id="@+id/activity_inner_post_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="님의 게시물"
+                android:textSize="10pt" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right|center_vertical">
+                <ImageView
+                    android:id="@+id/activity_inner_post_select"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_margin="5dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <ScrollView
