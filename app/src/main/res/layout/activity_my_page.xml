@@ -15,8 +15,9 @@
             android:layout_height="wrap_content"
             android:text="내 게시판"
             android:layout_marginTop="5dp"
-            android:layout_gravity="center"
-            android:textSize="10pt"/>
+            android:layout_marginLeft="50dp"
+            android:textSize="10pt"
+            android:textStyle="bold"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,18 +42,19 @@
                     android:id="@+id/activity_my_page_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="닉네임은 이렇게 길 수 있다."
+                    android:layout_marginTop="3dp"
+                    android:text="User name"
                     android:textColor="#ffffff"
-                    android:textSize="10pt"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/activity_my_page_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textSize="7pt"
-                    android:text="\@아이디라고 짧을 거 없지"/>
+                    android:layout_marginTop="7dp"
+                    android:text="User id"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
