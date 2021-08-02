@@ -1,8 +1,10 @@
 package com.wisappstudio.hobbing.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +19,15 @@ public class MyInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_info) ;
+
+        TextView back = (TextView) findViewById(R.id.activity_my_info_cancel);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         ArrayAdapter Adapter = new ArrayAdapter(MyInfoActivity.this, android.R.layout.simple_list_item_1, LIST_MENU) ;
 
