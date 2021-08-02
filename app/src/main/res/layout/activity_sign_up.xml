@@ -9,24 +9,33 @@
 
     <TextView
         android:id="@+id/sign_up_tv_title"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_marginBottom="87dp"
         android:gravity="center"
         android:text="회원가입"
         android:textSize="40dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="55dp" />
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="391dp"
-        android:layout_height="41dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="11dp"
         android:background="@drawable/radius"
         android:backgroundTint="@color/sub_gray"
         android:gravity="center"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="195dp">
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_tv_title">
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,11 +48,11 @@
 
         <EditText
             android:id="@+id/sign_up_et_id"
-            android:layout_width="296dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/radius"
             android:backgroundTint="@color/white"
-            android:hint="아이디"
+            android:hint="5~20글자의 영문 및 숫자"
             app:layout_constraintTop_toBottomOf="@+id/sign_up_tv_title"
             tools:layout_editor_absoluteX="0dp" />
     </LinearLayout>
@@ -51,14 +60,19 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="391dp"
-        android:layout_height="41dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="9dp"
         android:background="@drawable/radius"
         android:backgroundTint="@color/sub_gray"
         android:gravity="center"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="247dp">
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <TextView
             android:layout_width="wrap_content"
@@ -71,25 +85,31 @@
 
         <EditText
             android:id="@+id/sign_up_et_pw"
-            android:layout_width="277dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:background="@drawable/radius"
             android:backgroundTint="@color/white"
-            android:hint="비밀번호"
+            android:hint="8~16글자의 영문 및 숫자"
+            android:inputType="textPassword"
             tools:layout_editor_absoluteX="0dp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="391dp"
-        android:layout_height="41dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="393dp"
         android:background="@drawable/radius"
         android:backgroundTint="@color/sub_gray"
         android:gravity="center"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="297dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <TextView
             android:layout_width="wrap_content"
@@ -102,12 +122,12 @@
 
         <EditText
             android:id="@+id/sign_up_et_email"
-            android:layout_width="299dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:background="@drawable/radius"
             android:backgroundTint="@color/white"
-            android:hint="이메일"
+            android:hint="example@example.com"
             tools:layout_editor_absoluteX="0dp" />
     </LinearLayout>
 
@@ -115,19 +135,30 @@
         android:id="@+id/sign_up_btn"
         android:layout_width="240dp"
         android:layout_height="67dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="520dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginBottom="144dp"
+        android:backgroundTint="@color/purple_200"
         android:text="Register"
         android:textSize="30dp"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="520dp"
-        android:backgroundTint="@color/purple_200"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <LinearLayout
+        android:id="@+id/linearLayout7"
         android:layout_width="match_parent"
         android:layout_height="3dp"
+        android:layout_marginTop="126dp"
+        android:layout_marginBottom="602dp"
         android:background="@color/sub_brown"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="-10dp"
-        tools:layout_editor_absoluteY="126dp"></LinearLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

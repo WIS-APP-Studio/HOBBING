@@ -38,6 +38,17 @@ public class SignInActivity extends AppCompatActivity {
 
         this.adminBackDoor();
 
+        TextView gotoSignUp = (TextView) findViewById(R.id.activity_sign_in_to_sign_up);
+
+        gotoSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                finish();
+                startActivity(intent);
+            }
+        });
+
         sign_in_et_id = findViewById(R.id.sign_in_et_id);
         sign_in_et_pw = findViewById(R.id.sign_in_et_pw);
 
