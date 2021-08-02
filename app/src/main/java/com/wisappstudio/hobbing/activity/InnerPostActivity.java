@@ -1,7 +1,10 @@
 package com.wisappstudio.hobbing.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -9,15 +12,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.example.hobbing.R;
+import com.wisappstudio.hobbing.adapter.CommentAdapter;
 import com.wisappstudio.hobbing.adapter.InnerPostAdapter;
 import com.wisappstudio.hobbing.adapter.PostAdapter;
+import com.wisappstudio.hobbing.data.CommentData;
 import com.wisappstudio.hobbing.data.InnerPostData;
 import com.wisappstudio.hobbing.data.PostData;
 
@@ -29,19 +39,36 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_COMMENT_READ_URL;
 import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_IMAGE_READ_URL;
 import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_READ_URL;
+import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
 
 public class InnerPostActivity extends AppCompatActivity {
     ArrayList<InnerPostData> innerPostDataList;
+    ArrayList<CommentData> commentDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inner_post);
 
-        RequestQueue queue = Volley.newRequestQueue(this);
+        Intent intent = getIntent();
+        String userId = intent.getStringExtra("user_id");
 
+        ImageView userProfile = (ImageView) findViewById(R.id.list_inner_post_user_profile);
+
+        Glide.with(getApplicationContext())
+                .load(PROFILE_IMAGE_DIRECTORY +userId+".png") // 임시로 로드
+                .apply(new RequestOptions()
+                        .signature(new ObjectKey("signature string"))
+                        .skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                )
+                .into(userProfile);
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        // 게시물 내부 내용 로드
         StringRequest strRequest = new StringRequest(Request.Method.POST, INNER_POST_READ_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -56,9 +83,7 @@ public class InnerPostActivity extends AppCompatActivity {
             }
         }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-            }
+            public void onErrorResponse(VolleyError error) { }
         }) {
             @Override
             protected Map<String, String> getParams() {
@@ -68,7 +93,7 @@ public class InnerPostActivity extends AppCompatActivity {
                 return params;
             }
         };
-
+        // 게시물 내부 사진 로드
         StringRequest stringRequest = new StringRequest(Request.Method.POST, INNER_POST_IMAGE_READ_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -90,7 +115,6 @@ public class InnerPostActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("0727-TAG" , error.getMessage());
             }
         }) {
             @Override
@@ -101,10 +125,41 @@ public class InnerPostActivity extends AppCompatActivity {
                 return params;
             }
         };
+        // 게시물 댓글 로드
+        StringRequest commentRequest = new StringRequest(Request.Method.POST, INNER_POST_COMMENT_READ_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    InitializeCommentData(jsonObject);
 
+                    ListView commentListView = (ListView) findViewById(R.id.activity_inner_post_comment);
+                    final CommentAdapter adapter = new CommentAdapter(getApplicationContext(), commentDataList);
+
+                    commentListView.setAdapter(adapter);
+                    //
+                } catch (JSONException e) {
+                    Log.d("COMMENTERR", e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                String number = getIntent().getStringExtra("number");
+                params.put("number", number);
+                return params;
+            }
+        };
 
         queue.add(strRequest);
         queue.add(stringRequest);
+        queue.add(commentRequest);
     }
 
     public void InitializeInnerPostData(JSONObject jsonObject) {
@@ -151,8 +206,7 @@ public class InnerPostActivity extends AppCompatActivity {
         }
     }
 
-    public void InitializePostImage(JSONObject jsonObject)
-    {
+    public void InitializePostImage(JSONObject jsonObject) {
         innerPostDataList = new ArrayList<InnerPostData>();
         String TAG_JSON = "내부_게시물_사진";
         String NUMBER = "번호";
@@ -160,15 +214,38 @@ public class InnerPostActivity extends AppCompatActivity {
 
         try {
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
-            for(int i = 0; i < jsonArray.length(); i++) {
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject item = jsonArray.getJSONObject(i);
                 String number = item.getString(NUMBER);
                 String image = item.getString(IMAGE);
 
                 innerPostDataList.add(new InnerPostData(number, image));
             }
-        } catch (JSONException e) {
-            Log.d("LoadERR", e.toString());
-        };
+        } catch (JSONException e) { e.printStackTrace(); }
+    }
+
+    public void InitializeCommentData(JSONObject jsonObject) {
+        commentDataList = new ArrayList<CommentData>();
+        String TAG_JSON = "내부_게시물_댓글";
+        String POST_NUMBER = "번호";
+        String COMMENT_NUMBER = "댓글_번호";
+        String WRITER = "작성자";
+        String DESCRIPTION = "내용";
+        String DATE ="작성일자";
+
+        try {
+            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject item = jsonArray.getJSONObject(i);
+                String postNumber = item.getString(POST_NUMBER);
+                String commentNumber = item.getString(COMMENT_NUMBER);
+                String writer = item.getString(WRITER);
+                String description = item.getString(DESCRIPTION);
+                String date = item.getString(DATE);
+
+                commentDataList.add(new CommentData(postNumber, commentNumber, writer, description, date));
+            }
+
+        } catch (JSONException e) { e.printStackTrace(); }
     }
 }

@@ -77,6 +77,7 @@ public class MainPageFragment extends Fragment {
                         Intent intent = new Intent(v.getContext(), InnerPostActivity.class);
                         intent.putExtra("number", postAdapter.getItem(position).getNumber());
                         intent.putExtra("owner", postAdapter.getItem(position).getWriter());
+                        intent.putExtra("user_id", userId);
                         startActivity(intent);
                     }
                 });
