@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/list_inner_image_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:layout_margin="5dp"
         android:textSize="6pt"
         android:layout_marginLeft="5dp"
