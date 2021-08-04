@@ -1,6 +1,8 @@
 package com.wisappstudio.hobbing.activity;
 
 import android.content.Intent;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -249,6 +251,21 @@ public class InnerPostActivity extends AppCompatActivity {
             TextView ownerView = findViewById(R.id.activity_inner_post_owner);
             TextView descriptionView = findViewById(R.id.activity_inner_post_description);
             TextView titleView = findViewById(R.id.activity_inner_post_title);
+
+
+            ImageView ownerProfile = (ImageView) findViewById(R.id.activity_inner_post_owner_profile);
+            Glide.with(getApplicationContext())
+                    .load(PROFILE_IMAGE_DIRECTORY +writer+".png") // 임시로 로드
+                    .apply(new RequestOptions()
+                            .signature(new ObjectKey("signature string"))
+                            .skipMemoryCache(true)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    )
+                    .into(ownerProfile);
+
+            ownerProfile.setBackground(new ShapeDrawable(new OvalShape()));
+            ownerProfile.setClipToOutline(true);
+
             ImageView select = (ImageView) findViewById(R.id.activity_inner_post_select);
             if(writer.equals(userId)) {
                 select.setImageResource(R.drawable.select);

@@ -71,7 +71,9 @@ public class SignUpActivity extends AppCompatActivity {
                     if (success != null && success.equals("1")) {  // 회원가입 완료
                         Toast.makeText(getApplicationContext(), "회원가입 성공!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                        IntroActivity introActivity = (IntroActivity) IntroActivity.activity;
                         startActivity(intent);
+                        introActivity.finish();
                         finish();
                     } else {
                         Toast.makeText(getApplicationContext(), "회원가입 실패!", Toast.LENGTH_SHORT).show();

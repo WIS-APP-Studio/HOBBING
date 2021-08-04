@@ -106,7 +106,9 @@ public class SignInActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"로그인 성공!",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                         intent.putExtra("user_id",user_id);
+                        IntroActivity introActivity = (IntroActivity) IntroActivity.activity;
                         startActivity(intent);
+                        introActivity.finish();
                         finish();
                     } else {
                         Toast.makeText(getApplicationContext(),"로그인 실패!",Toast.LENGTH_SHORT).show();

@@ -27,6 +27,9 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
 
     static final String[] LIST_MENU = {"내 정보", "알림 설정", "활동 기록", "로그아웃", "탈퇴"} ;
 
+    Activity myInfoActivity;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +95,20 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
             case 0 : {
                 Intent intent = new Intent(this, MyInfoActivity.class);
                 startActivity(intent);
+                break;
+            }
+            case 2 : {
+                Intent intent = new Intent(this, UserLogActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case 3 : {
+                MainActivity mainActivity = (MainActivity) MainActivity.activity;
+                Intent intent = new Intent(this, IntroActivity.class);
+                startActivity(intent);
+                finish();
+                mainActivity.finish();
+                break;
             }
         }
     }

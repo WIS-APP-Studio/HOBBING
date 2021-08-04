@@ -1,5 +1,6 @@
 package com.wisappstudio.hobbing.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -50,6 +51,7 @@ public class MyPageFragment extends Fragment {
     ArrayList<MyPagePostData> postDataList;
     private RequestQueue queue;
 
+
     public MyPageFragment(String userId) {
         this.userId = userId;
     }
@@ -92,7 +94,7 @@ public class MyPageFragment extends Fragment {
 
         // 상단 아이디 및 닉네임 (닉네임은 추후 작업)
         nickname.setText(userId);
-        id.setText("@"+userId);
+        id.setText(userId);
 
         queue = Volley.newRequestQueue(view.getContext());
 
@@ -174,9 +176,6 @@ public class MyPageFragment extends Fragment {
 
                 postDataList.add(new MyPagePostData(number, writer,title,description,likes, views, shares, category, date));
             }
-        } catch (JSONException e) {
-            Log.d("LoadERR", e.toString());
-        };
+        } catch (JSONException e) { }
     }
-
 }

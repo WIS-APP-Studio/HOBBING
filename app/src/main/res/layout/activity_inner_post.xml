@@ -16,11 +16,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal">
 
+            <ImageView
+                android:id="@+id/activity_inner_post_owner_profile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp" />
             <TextView
                 android:id="@+id/activity_inner_post_owner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_gravity="center"
                 android:gravity="center"
                 android:text="님의 게시물"
                 android:textSize="10pt" />
@@ -28,6 +34,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:gravity="right|center_vertical">
                 <ImageView
                     android:id="@+id/activity_inner_post_select"
