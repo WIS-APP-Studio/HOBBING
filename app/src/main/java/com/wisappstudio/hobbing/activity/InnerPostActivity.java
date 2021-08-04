@@ -141,7 +141,6 @@ public class InnerPostActivity extends AppCompatActivity {
                     commentListView.setAdapter(adapter);
                     //
                 } catch (JSONException e) {
-                    Log.d("COMMENTERR", e.getMessage());
                     e.printStackTrace();
                 }
             }
@@ -202,6 +201,7 @@ public class InnerPostActivity extends AppCompatActivity {
 
             if(writer.equals(userId)) {
                 select.setImageResource(R.drawable.select);
+                select.setPadding(5, 5,5, 5);
 
                 select.setOnClickListener(new View.OnClickListener() {
                     @Override
