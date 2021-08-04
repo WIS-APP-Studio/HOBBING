@@ -19,6 +19,7 @@ import com.wisappstudio.hobbing.data.PostData;
 
 import java.util.ArrayList;
 
+import static com.wisappstudio.hobbing.data.ServerData.POST_IMAGE_DIRECTORY;
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
 
 public class PostAdapter extends BaseAdapter {
@@ -54,10 +55,14 @@ public class PostAdapter extends BaseAdapter {
         TextView writer = (TextView)view.findViewById(R.id.list_post_writer);
         TextView title = (TextView)view.findViewById(R.id.list_post_title);
         TextView description = (TextView)view.findViewById(R.id.list_post_tv_description);
-        ImageView profile_image = (ImageView)view.findViewById(R.id.list_post_profile);
         TextView likes = (TextView)view.findViewById(R.id.list_post_likes);
         TextView views = (TextView)view.findViewById(R.id.list_post_views);
         TextView shares = (TextView)view.findViewById(R.id.list_post_shares);
+
+        ImageView profile_image = (ImageView)view.findViewById(R.id.list_post_profile);
+        ImageView image1 = (ImageView) view.findViewById(R.id.list_post_image1);
+        ImageView image2 = (ImageView) view.findViewById(R.id.list_post_image2);
+        ImageView image3 = (ImageView) view.findViewById(R.id.list_post_image3);
 
         writer.setText(sample.get(position).getWriter());
         title.setText(sample.get(position).getTitle());
@@ -74,6 +79,33 @@ public class PostAdapter extends BaseAdapter {
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                 )
                 .into(profile_image);
+
+        Glide.with(mContext)
+                .load(POST_IMAGE_DIRECTORY+sample.get(position).getNumber()+"/1.jpeg")
+                .into(image1);
+
+        Glide.with(mContext)
+                .load(POST_IMAGE_DIRECTORY+sample.get(position).getNumber()+"/2.jpeg")
+                .into(image2);
+
+        Glide.with(mContext)
+                .load(POST_IMAGE_DIRECTORY+sample.get(position).getNumber()+"/3.jpeg")
+                .into(image3);
+
+        if(image1.getDrawable() == null) {
+            image1.getLayoutParams().width = 0;
+            image1.getLayoutParams().height = 0;
+        }
+
+        if(image2.getDrawable() == null) {
+            image2.getLayoutParams().width = 0;
+            image2.getLayoutParams().height = 0;
+        }
+
+        if(image3.getDrawable() == null) {
+            image3.getLayoutParams().width = 0;
+            image3.getLayoutParams().height = 0;
+        }
 
         profile_image.setBackground(new ShapeDrawable(new OvalShape()));
         profile_image.setClipToOutline(true);
