@@ -16,4 +16,5 @@ public class ServerData {
     public static String POST_IMAGE_DIRECTORY = URL + "image/post/";
     public static String IMAGE_DIRECTORY_URL = URL + "image/profile/";
     public static String WRITE_POST_IMAGE_UPLOAD_URL = URL + "post/write.php";
+    public static String INNER_POST_SEND_COMMENT_URL = URL + "post/inner_comment_insert.php";
 }

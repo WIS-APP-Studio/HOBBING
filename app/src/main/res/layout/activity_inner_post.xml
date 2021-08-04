@@ -135,12 +135,14 @@
                     android:src="@drawable/profile_image"/>
 
                 <EditText
+                    android:id="@+id/activity_inner_post_comment_description"
                     android:layout_width="280dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="여기에 댓글 추가"/>
 
                 <ImageView
+                    android:id="@+id/activity_inner_post_send_comment"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
@@ -152,10 +154,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="@color/signature"/>
+
             <ListView
                 android:id="@+id/activity_inner_post_comment"
                 android:layout_width="match_parent"
-                android:layout_height="300dp" />
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
     </ScrollView>
