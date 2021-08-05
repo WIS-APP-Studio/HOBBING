@@ -20,6 +20,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.hobbing.R;
+import com.wisappstudio.hobbing.dialog.ChangeProfileDialog;
+import com.wisappstudio.hobbing.dialog.InfoCustomDialog;
 
 import static com.wisappstudio.hobbing.data.ServerData.IMAGE_DIRECTORY_URL;
 
@@ -45,7 +47,8 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
         TextView userName = (TextView) findViewById(R.id.activity_profile_setting_username);
         ImageView userImage = (ImageView) findViewById(R.id.activity_profile_setting_image);
         TextView back = (TextView) findViewById(R.id.activity_profile_setting_cancel);
-        ImageView changeNickName = (ImageView) findViewById(R.id.activity_profile_setting_change_nickname);
+        ImageView changeNickName = (ImageView) findViewById(R.id.activity_profile_setting_change_profile);
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +60,9 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
         changeNickName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ProfileSettingActivity.this, "개발중입니다.", Toast.LENGTH_SHORT).show();
+
+                ChangeProfileDialog customDialog = new ChangeProfileDialog(ProfileSettingActivity.this);
+                customDialog.callFunction(userName);
             }
         });
 
