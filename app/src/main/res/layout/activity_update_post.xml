@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#bcdbef"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/activity_update_post_cancel"
+            android:layout_marginLeft="50dp"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:text="←"
+            android:textSize="13pt"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="게시물 수정"
+            android:gravity="center"
+            android:textSize="10pt"/>
+
+        <TextView
+            android:id="@+id/activity_update_post_upload"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="50dp"
+            android:gravity="center"
+            android:text="게시"
+            android:textSize="10pt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <EditText
+            android:id="@+id/activity_update_post_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="취미활동을 표현할 제목을 입력해주세요!"
+            android:layout_margin="10dp"
+            android:gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/activity_update_post_image1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp" />
+
+            <ImageView
+                android:id="@+id/activity_update_post_image2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp" />
+
+            <ImageView
+                android:id="@+id/activity_update_post_image3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/activity_update_post_description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|top"
+                android:background="@android:color/transparent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:hint="오늘은 어떤 취미를 즐기셨나요?\n오늘 있었던 일을 기록해,\n취미활동에 생기를 불어 넣어봅시다.\n\n시간이 지나도 남는 건 사진,\n내 생각을 풀어놓은 기록.\n부담없이 작성해보세요!\n\n자. 그럼, 여기를 클릭해\n오늘 있었던 일을 남겨봅시다.😊 "/>
+            <EditText
+                android:id="@+id/activity_update_post_category"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="카테고리를 입력해 주세요."/>
+            <EditText
+                android:id="@+id/activity_update_post_hashtag"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="해시태그를 설정해 보세요.\nex. [카테고리:동물] @고양이 @젤리발바닥 ..."/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

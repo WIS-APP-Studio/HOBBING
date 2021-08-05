@@ -15,7 +15,7 @@ import com.example.hobbing.R;
 import com.wisappstudio.hobbing.activity.ProfileSettingActivity;
 
 public class ServicePageFragment extends Fragment {
-    static final String[] LIST_MENU = {"내 정보", "알림 설정", "활동 기록", "로그아웃", "탈퇴"} ;
+    static final String[] LIST_MENU = {"계정 정보 수정", "알림 설정", "활동 기록", "로그아웃", "탈퇴"} ;
 
     @Nullable
     @Override
