@@ -28,6 +28,7 @@
         <activity android:name="com.wisappstudio.hobbing.activity.ProfileSettingActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.MyInfoActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.UserLogActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.InfoChangeActivity"/>
     </application>
 
 </manifest>

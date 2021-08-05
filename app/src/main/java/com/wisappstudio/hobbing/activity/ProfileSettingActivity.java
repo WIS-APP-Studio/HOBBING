@@ -25,7 +25,7 @@ import static com.wisappstudio.hobbing.data.ServerData.IMAGE_DIRECTORY_URL;
 
 public class ProfileSettingActivity extends Activity implements AdapterView.OnItemClickListener {
 
-    static final String[] LIST_MENU = {"내 정보", "알림 설정", "활동 기록", "로그아웃", "탈퇴"} ;
+    static final String[] LIST_MENU = {"계정 정보 수정", "알림 설정", "활동 기록", "로그아웃", "탈퇴"} ;
 
     Activity myInfoActivity;
 
@@ -93,7 +93,7 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0 : {
-                Intent intent = new Intent(this, MyInfoActivity.class);
+                Intent intent = new Intent(this, InfoChangeActivity.class);
                 startActivity(intent);
                 break;
             }
