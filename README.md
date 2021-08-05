@@ -1,6 +1,4 @@
 <<<<<<< HEAD
-# feature/My_Info_setting
-
 ## 화면명: 회원가입
 
 회원가입 기능 구현했습니다. - 2021/07/19 김인태
@@ -48,6 +46,12 @@
 내부 게시물의 사진이 보이도록 서버 DB와 연결했습니다. - 2020/07/30 김인태
 - MainPageFragment, MyPageFragment.java, activity_my_page.xml
 
+내부 게시물 삭제 기능 구현했습니다. - 2021/08/06 김인태
+- MyPageFragment.java, list_my_page_post.xml
+
+내부 게시물 수정 기능 구현했습니다. - 2021/08/06 김인태
+- activity_update_post.xml, UpdatePostActivity.java
+
 ## 화면명: 설정
 
 마이 프로필 설정 레이아웃 구현했습니다 - 2021/07/31 최민석
@@ -55,7 +59,13 @@
 
 설정 화면에 내 프로필 사진, 아이디, 닉네임 연동과 설정 - 내 정보 연결했습니다. - 2021/08/02 김인태
 - ProfileSettingActivity.java, activity_my_info.xml
-=======
+
+계정 정보 수정기능 구현했습니다 - 2021/08/05 최민석
+- activity_my_info_change.xml, InfoChangeActivity.java, activity_info_custom_dialog.xml, InfoCustomDialogActivity.java
+
+다이얼로그는 따로 패키지를 분류했습니다. - 2021/08/06 김인태
+- com.wisappstudio.hobbing.dialog
+
 # feature/My_Info_change & confirm
 
 ## 화면명: 내 정보 변경 & 내 정보 변경 확인
@@ -72,4 +82,3 @@
 연결이 완벽하지 않은 점 양해부탁드립니다... 혹시나 또 다른 에러 발생하면 연락해주세요
 
 인태님 화이팅입니다!!!
->>>>>>> feature/My_Info_change_confirm

@@ -1,6 +1,5 @@
 package com.wisappstudio.hobbing.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,13 +8,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.hobbing.R;
-import com.wisappstudio.hobbing.adapter.SignInAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,7 +47,7 @@ public class InfoChangeActivity extends AppCompatActivity {
                     // 1차 비밀번호와 2차 비밀번호가 일치한치 확인.
                     if (pwRegex.equals(pwRegex2)) {
                         // 커스텀 다이얼로그를 생성. 사용자가 만든 클래스이다.
-                        InfoCustomDialogActivity customDialog = new InfoCustomDialogActivity(InfoChangeActivity.this);
+                        InfoCustomDialog customDialog = new InfoCustomDialog(InfoChangeActivity.this);
                         InfoChange();
                     }
                     else {
