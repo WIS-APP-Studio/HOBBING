@@ -2,12 +2,16 @@ package com.wisappstudio.hobbing.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,6 +30,7 @@ import java.util.Map;
 
 import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_READ_URL;
 import static com.wisappstudio.hobbing.data.ServerData.POST_IMAGE_DIRECTORY;
+import static com.wisappstudio.hobbing.data.ServerData.POST_UPDATE_URL;
 
 public class UpdatePostActivity extends AppCompatActivity {
 
@@ -33,6 +38,7 @@ public class UpdatePostActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_post);
+        RequestQueue queue = Volley.newRequestQueue(this);
 
         Intent intent = getIntent();
         String postNumber = intent.getStringExtra("post_number");
@@ -53,7 +59,49 @@ public class UpdatePostActivity extends AppCompatActivity {
                 .load(POST_IMAGE_DIRECTORY+postNumber+"/3.jpeg")
                 .into(image3);
 
-        // 게시물 내부 내용 로드
+        TextView tv_update = (TextView) findViewById(R.id.activity_update_post_update);
+
+        tv_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 게시물 수정하기
+                StringRequest updatePostRequest = new StringRequest(Request.Method.POST, POST_UPDATE_URL, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(UpdatePostActivity.this, "게시물을 수정했습니다.", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(UpdatePostActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<String, String>();
+                        String number = getIntent().getStringExtra("post_number");
+
+                        EditText et_title = (EditText) findViewById(R.id.activity_update_post_title);
+                        EditText et_description = (EditText) findViewById(R.id.activity_update_post_description);
+                        EditText et_category = (EditText) findViewById(R.id.activity_update_post_category);
+                        EditText et_hashtag = (EditText) findViewById(R.id.activity_update_post_hashtag);
+
+                        params.put("number", number);
+                        params.put("title", et_title.getText().toString());
+                        params.put("description", et_description.getText().toString());
+                        params.put("category", et_category.getText().toString());
+                        params.put("hashtag", et_hashtag.getText().toString());
+
+                        return params;
+                    }
+                };
+                queue.add(updatePostRequest);
+            }
+        });
+
+
+        // 게시물 내용 불러오기
         StringRequest postRequest = new StringRequest(Request.Method.POST, INNER_POST_READ_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -79,7 +127,6 @@ public class UpdatePostActivity extends AppCompatActivity {
             }
         };
 
-        RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(postRequest);
     }
 

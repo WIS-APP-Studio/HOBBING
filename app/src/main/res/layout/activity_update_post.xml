@@ -30,12 +30,12 @@
             android:textSize="10pt"/>
 
         <TextView
-            android:id="@+id/activity_update_post_upload"
+            android:id="@+id/activity_update_post_update"
             android:layout_width="50dp"
             android:layout_height="40dp"
             android:layout_marginRight="50dp"
             android:gravity="center"
-            android:text="게시"
+            android:text="완료"
             android:textSize="10pt" />
     </LinearLayout>
 
