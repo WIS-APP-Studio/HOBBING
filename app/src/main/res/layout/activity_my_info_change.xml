@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#BCDBEF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="100dp"
+            android:text="아이디 변경"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="100dp"
+            android:text="비밀번호 변경"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="190dp"
+            android:text="이메일 변경"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/Linear1"
+            android:layout_width="310dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="-350dp"
+            android:background="#8F9A92"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="3dp"
+                tools:srcCompat="?attr/actionModePasteDrawable" />
+
+            <EditText
+                android:id="@+id/change_in_id"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="-50dp"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text=" 아 이 디" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Linear2"
+            android:layout_width="310dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="85dp"
+            android:background="#8F9A92"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="3dp"
+                tools:srcCompat="?android:attr/fingerprintAuthDrawable" />
+
+            <EditText
+                android:id="@+id/change_in_pw"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="-50dp"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text=" 새 비밀번호" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Linear3"
+            android:layout_width="310dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:background="#8F9A92"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="3dp"
+                tools:srcCompat="?android:attr/fingerprintAuthDrawable" />
+
+            <EditText
+                android:id="@+id/change_in_pw_2"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="-50dp"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text=" 비밀번호 확인" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Linear4"
+            android:layout_width="310dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="100dp"
+            android:background="#8F9A92"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="3dp"
+                app:srcCompat="@android:drawable/ic_dialog_email" />
+
+            <EditText
+                android:id="@+id/change_in_mail"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="-50dp"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:text=" e-mail" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="270dp"
+            android:layout_marginTop="30dp"
+            android:text="완 료" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

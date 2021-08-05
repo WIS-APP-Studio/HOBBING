@@ -2,23 +2,32 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hobbing" >
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
+        android:usesCleartextTraffic="true"
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HOBBING">
-        <activity android:name=".activities.LoadingActivity">
+        <activity android:name="com.wisappstudio.hobbing.activity.LoadingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.IntroActivity" />
-        <activity android:name=".activities.SignInActivity"/>
-        <activity android:name=".activities.SignUpActivity"/>
-        <activity android:name=".activities.MainActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.IntroActivity" />
+        <activity android:name="com.wisappstudio.hobbing.activity.SignInActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.SignUpActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.MainActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.WritePostActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.InnerPostActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.ProfileSettingActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.MyInfoActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.UserLogActivity"/>
     </application>
 
 </manifest>
