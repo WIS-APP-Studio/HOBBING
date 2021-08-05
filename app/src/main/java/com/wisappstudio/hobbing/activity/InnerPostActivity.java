@@ -252,7 +252,6 @@ public class InnerPostActivity extends AppCompatActivity {
             TextView descriptionView = findViewById(R.id.activity_inner_post_description);
             TextView titleView = findViewById(R.id.activity_inner_post_title);
 
-
             ImageView ownerProfile = (ImageView) findViewById(R.id.activity_inner_post_owner_profile);
             Glide.with(getApplicationContext())
                     .load(PROFILE_IMAGE_DIRECTORY +writer+".png") // 임시로 로드
@@ -268,13 +267,15 @@ public class InnerPostActivity extends AppCompatActivity {
 
             ImageView select = (ImageView) findViewById(R.id.activity_inner_post_select);
             if(writer.equals(userId)) {
-                select.setImageResource(R.drawable.select);
+                select.setImageResource(R.drawable.edit);
                 select.setPadding(5, 5,5, 5);
 
                 select.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(InnerPostActivity.this, "게시물 삭제 및 수정 버튼입니다.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(InnerPostActivity.this, UpdatePostActivity.class);
+                        intent.putExtra("post_number",postNumber);
+                        startActivity(intent);
                     }
                 });
             } else {
