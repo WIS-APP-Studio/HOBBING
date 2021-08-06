@@ -29,6 +29,10 @@ import com.example.hobbing.R;
 import com.wisappstudio.hobbing.data.MyPagePostData;
 
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +40,7 @@ import java.util.Map;
 import static com.wisappstudio.hobbing.data.ServerData.POST_DELETE_URL;
 import static com.wisappstudio.hobbing.data.ServerData.POST_IMAGE_DIRECTORY;
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
+import static com.wisappstudio.hobbing.data.ServerData.PROFILE_READ_NICKNAME_URL;
 
 public class MyPagePostAdapter extends BaseAdapter {
     Context mContext = null;
@@ -78,6 +83,7 @@ public class MyPagePostAdapter extends BaseAdapter {
         TextView date = (TextView)view.findViewById(R.id.list_my_page_post_date);
 
         ImageView delete = view.findViewById(R.id.list_my_page_post_delete);
+
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,7 +126,6 @@ public class MyPagePostAdapter extends BaseAdapter {
             }
         });
 
-        writer.setText(sample.get(position).getWriter());
         title.setText(sample.get(position).getTitle());
         description.setText(sample.get(position).getDescription());
         likes.setText(sample.get(position).getLikes());
@@ -128,6 +133,40 @@ public class MyPagePostAdapter extends BaseAdapter {
         shares.setText(sample.get(position).getShares());
         category.setText("@"+sample.get(position).getCategory());
         date.setText(sample.get(position).getDate());
+
+        RequestQueue queue = Volley.newRequestQueue(view.getContext());
+        StringRequest nicknameRequest = new StringRequest(Request.Method.POST, PROFILE_READ_NICKNAME_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String TAG_JSON = "프로필";
+                    String NICKNAME = "닉네임";
+                    try {
+                        JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                        JSONObject item = jsonArray.getJSONObject(0);
+                        String nickname = item.getString(NICKNAME);
+                        writer.setText(nickname);
+
+                    } catch (JSONException e) { }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String ,String>();
+                params.put("id", sample.get(position).getWriter());
+                return params;
+            }
+        };
+        queue.add(nicknameRequest);
+
 
         ImageView image1 = (ImageView) view.findViewById(R.id.list_my_page_post_image1);
         ImageView image2 = (ImageView) view.findViewById(R.id.list_my_page_post_image2);

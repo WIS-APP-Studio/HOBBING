@@ -14,7 +14,7 @@ public class ServerData {
     public static String INNER_POST_COMMENT_READ_URL = URL + "post/inner_comment_read.php";
 
     public static String PROFILE_UPDATE_NICKNAME_URL = URL + "profile/updateNickname.php";
-
+    public static String PROFILE_READ_NICKNAME_URL = URL + "profile/readNickname.php";
 
     public static String PROFILE_IMAGE_DIRECTORY = URL + "image/profile/";
     public static String POST_IMAGE_DIRECTORY = URL + "image/post/";

@@ -47,6 +47,7 @@ import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_IMAGE_READ_URL
 import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_READ_URL;
 import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_SEND_COMMENT_URL;
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
+import static com.wisappstudio.hobbing.data.ServerData.PROFILE_READ_NICKNAME_URL;
 
 public class InnerPostActivity extends AppCompatActivity {
     ArrayList<InnerPostData> innerPostDataList;
@@ -288,7 +289,40 @@ public class InnerPostActivity extends AppCompatActivity {
                 });
             }
 
-            ownerView.setText(writer + "님의 게시물");
+
+            RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+            StringRequest nicknameRequest = new StringRequest(Request.Method.POST, PROFILE_READ_NICKNAME_URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        String TAG_JSON = "프로필";
+                        String NICKNAME = "닉네임";
+                        try {
+                            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                            JSONObject item = jsonArray.getJSONObject(0);
+                            String nickname = item.getString(NICKNAME);
+                            ownerView.setText(nickname+"님의 게시물");
+
+                        } catch (JSONException e) { }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String ,String>();
+                    params.put("id", writer);
+                    return params;
+                }
+            };
+            queue.add(nicknameRequest);
+
             descriptionView.setText(description);
             titleView.setText(title);
 

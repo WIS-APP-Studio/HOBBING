@@ -15,6 +15,12 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
@@ -23,7 +29,15 @@ import com.example.hobbing.R;
 import com.wisappstudio.hobbing.dialog.ChangeProfileDialog;
 import com.wisappstudio.hobbing.dialog.InfoCustomDialog;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.wisappstudio.hobbing.data.ServerData.IMAGE_DIRECTORY_URL;
+import static com.wisappstudio.hobbing.data.ServerData.PROFILE_READ_NICKNAME_URL;
 
 public class ProfileSettingActivity extends Activity implements AdapterView.OnItemClickListener {
 
@@ -67,7 +81,42 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
         });
 
         userId.setText(USER_ID);
+
+
         userName.setText(USER_NAME);
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest nicknameRequest = new StringRequest(Request.Method.POST, PROFILE_READ_NICKNAME_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String TAG_JSON = "프로필";
+                    String NICKNAME = "닉네임";
+                    try {
+                        JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                        JSONObject item = jsonArray.getJSONObject(0);
+                        String nickname = item.getString(NICKNAME);
+
+                        userName.setText(nickname);
+                    } catch (JSONException e) { }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String ,String>();
+                params.put("id", USER_ID);
+                return params;
+            }
+        };
+
+        queue.add(nicknameRequest);
 
         // 상단 마이 프로필 사진
         Glide.with(getApplicationContext())
