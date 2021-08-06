@@ -38,6 +38,17 @@ public class SignInActivity extends AppCompatActivity {
 
         this.adminBackDoor();
 
+        TextView gotoSignUp = (TextView) findViewById(R.id.activity_sign_in_to_sign_up);
+
+        gotoSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                finish();
+                startActivity(intent);
+            }
+        });
+
         sign_in_et_id = findViewById(R.id.sign_in_et_id);
         sign_in_et_pw = findViewById(R.id.sign_in_et_pw);
 
@@ -95,7 +106,9 @@ public class SignInActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"로그인 성공!",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                         intent.putExtra("user_id",user_id);
+                        IntroActivity introActivity = (IntroActivity) IntroActivity.activity;
                         startActivity(intent);
+                        introActivity.finish();
                         finish();
                     } else {
                         Toast.makeText(getApplicationContext(),"로그인 실패!",Toast.LENGTH_SHORT).show();

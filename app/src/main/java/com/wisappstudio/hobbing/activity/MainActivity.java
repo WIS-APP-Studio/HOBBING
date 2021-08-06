@@ -1,5 +1,6 @@
 package com.wisappstudio.hobbing.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -24,10 +25,14 @@ import com.wisappstudio.hobbing.fragment.ServicePageFragment;
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mBottomNV;
     private String userId;
+    public static Activity activity;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        activity = MainActivity.this;
 
         Intent intent = getIntent();
         userId = intent.getStringExtra("user_id");

@@ -9,28 +9,55 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="#bcdbef"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/activity_inner_post_owner"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="님의 게시물"
-            android:gravity="center"
-            android:textSize="10pt"/>
+            android:layout_gravity="center_vertical|center_horizontal">
+
+            <ImageView
+                android:id="@+id/activity_inner_post_owner_profile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp" />
+            <TextView
+                android:id="@+id/activity_inner_post_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="님의 게시물"
+                android:textSize="10pt" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="right|center_vertical">
+                <ImageView
+                    android:id="@+id/activity_inner_post_select"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_margin="5dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -51,7 +78,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/activity_inner_post_image"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="350dp"
                     android:layout_marginTop="9dp"
                     android:scrollbars="none"/>
 
@@ -108,18 +135,21 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/list_inner_post_user_profile"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="5dp"
                     android:src="@drawable/profile_image"/>
 
                 <EditText
+                    android:id="@+id/activity_inner_post_comment_description"
                     android:layout_width="280dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="여기에 댓글 추가"/>
 
                 <ImageView
+                    android:id="@+id/activity_inner_post_send_comment"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
@@ -127,11 +157,18 @@
                     android:src="@drawable/upload"/>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/signature"/>
+
             <ListView
                 android:id="@+id/activity_inner_post_comment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
+
     </ScrollView>
+
 </LinearLayout>
