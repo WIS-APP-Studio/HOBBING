@@ -39,7 +39,7 @@ import static com.wisappstudio.hobbing.data.ServerData.PROFILE_READ_NICKNAME_URL
 
 public class ProfileSettingActivity extends Activity implements AdapterView.OnItemClickListener {
 
-    static final String[] LIST_MENU = {"계정 정보 수정", "알림 설정", "활동 기록", "로그아웃", "탈퇴"} ;
+    static final String[] LIST_MENU = {"계정 정보 수정", "카테고리 설정", "활동 기록", "로그아웃", "탈퇴"} ;
 
     Activity myInfoActivity;
 
@@ -136,7 +136,6 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
         ArrayAdapter Adapter = new ArrayAdapter(ProfileSettingActivity.this, android.R.layout.simple_list_item_1, LIST_MENU) ;
 
         ListView listview = (ListView) findViewById(R.id.listview1) ;
-        // 리스트 뷰 OnItemClickListener 관련 자료 : https://newgenerationkorea.wordpress.com/2015/07/12/listview-%EA%B5%AC%EC%84%B1%ED%95%98%EA%B8%B0-1-arrayadapter-%EC%9D%B4%EC%9A%A9%ED%95%98%EA%B8%B0/
         listview.setAdapter(Adapter) ;
         listview.setOnItemClickListener(this);
     }
@@ -146,6 +145,11 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
         switch (position) {
             case 0 : {
                 Intent intent = new Intent(this, InfoChangeActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case 1 : {
+                Intent intent = new Intent(this, SelectCategoryActivity.class);
                 startActivity(intent);
                 break;
             }
