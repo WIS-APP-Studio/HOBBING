@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,6 +45,7 @@ import java.util.Map;
 
 import static com.wisappstudio.hobbing.data.ServerData.IMAGE_DIRECTORY_URL;
 import static com.wisappstudio.hobbing.data.ServerData.MY_PAGE_POST_READ_URL;
+import static com.wisappstudio.hobbing.data.ServerData.PROFILE_READ_NICKNAME_URL;
 
 public class MyPageFragment extends Fragment {
     private String userId;
@@ -62,7 +64,7 @@ public class MyPageFragment extends Fragment {
         setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.activity_my_page, container, false);
 
-        TextView nickname = (TextView) view.findViewById(R.id.activity_my_page_nickname);
+        TextView tv_nickname = (TextView) view.findViewById(R.id.activity_my_page_nickname);
         TextView id = (TextView) view.findViewById(R.id.activity_my_page_id);
         ImageView profile_image = (ImageView) view.findViewById(R.id.activity_my_page_image);
         ImageView profile_setting = (ImageView) view.findViewById(R.id.activity_my_page_setting_profile);
@@ -93,10 +95,46 @@ public class MyPageFragment extends Fragment {
         profile_image.setClipToOutline(true);
 
         // 상단 아이디 및 닉네임 (닉네임은 추후 작업)
-        nickname.setText(userId);
+
+
         id.setText(userId);
 
         queue = Volley.newRequestQueue(view.getContext());
+        StringRequest nicknameRequest = new StringRequest(Request.Method.POST, PROFILE_READ_NICKNAME_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String TAG_JSON = "프로필";
+                    String NICKNAME = "닉네임";
+                    String WRITER = "자기소개";
+                    String FOLLOWER = "팔로워";
+                    try {
+                        JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                            JSONObject item = jsonArray.getJSONObject(0);
+                            String nickname = item.getString(NICKNAME);
+                            String writer = item.getString(WRITER);
+                            String follower = item.getString(FOLLOWER);
+
+                            tv_nickname.setText(nickname);
+                    } catch (JSONException e) { }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String ,String>();
+                params.put("id", userId);
+                return params;
+            }
+        };
+
 
         StringRequest strRequest = new StringRequest(Request.Method.POST, MY_PAGE_POST_READ_URL, new Response.Listener<String>() {
             @Override
@@ -135,6 +173,7 @@ public class MyPageFragment extends Fragment {
                 return params;
             }
         };
+        queue.add(nicknameRequest);
         queue.add(strRequest);
         return view;
     }

@@ -1,4 +1,4 @@
-package com.wisappstudio.hobbing.activity;
+package com.wisappstudio.hobbing.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -11,7 +11,6 @@ import android.widget.Toast;
 import com.example.hobbing.R;
 
 public class InfoCustomDialog {
-
     private Context context;
 
     public InfoCustomDialog(Context context) {

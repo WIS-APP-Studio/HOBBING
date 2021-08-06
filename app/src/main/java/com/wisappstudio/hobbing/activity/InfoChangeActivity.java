@@ -17,6 +17,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.regex.Pattern;
+import com.wisappstudio.hobbing.dialog.InfoCustomDialog;
+
 
 public class InfoChangeActivity extends AppCompatActivity {
     private EditText change_in_pw, change_in_pw_2, change_in_mail;

@@ -70,7 +70,7 @@
                             android:textStyle="bold" />
 
                         <ImageView
-                            android:id="@+id/activity_profile_setting_change_nickname"
+                            android:id="@+id/activity_profile_setting_change_profile"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="bottom"
