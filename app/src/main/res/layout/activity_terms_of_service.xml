@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/signature">
+
+    <TextView
+        android:id="@+id/sign_up_tv_title4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="이용 약관"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="126dp"
+        android:layout_marginBottom="602dp"
+        android:background="@color/sub_brown"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        tools:layout_editor_absoluteY="126dp">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/large_text" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/agree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="동의"
+        tools:layout_editor_absoluteX="80dp"
+        tools:layout_editor_absoluteY="665dp" />
+
+    <Button
+        android:id="@+id/disagree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비동의"
+        tools:layout_editor_absoluteX="250dp"
+        tools:layout_editor_absoluteY="665dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
