@@ -15,21 +15,20 @@ import com.example.hobbing.R;
 import com.wisappstudio.hobbing.activity.ProfileSettingActivity;
 
 public class ServicePageFragment extends Fragment {
-    static final String[] LIST_MENU = {"계정 정보 수정", "알림 설정", "활동 기록", "로그아웃", "탈퇴"} ;
+    static final String[] LIST_MENU = {"도움말", "공지사항", "이용약관", "개인정보처리방침", "버전 정보", "문의"};
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
-        View rootView = inflater.inflate(R.layout.activity_profile_setting, null);
+        View view = inflater.inflate(R.layout.activity_service_page, container, false);
 
         ArrayAdapter Adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, LIST_MENU) ;
 
-        ListView listview = (ListView) rootView.findViewById(R.id.listview1) ;
+        ListView listview = (ListView) view.findViewById(R.id.activity_service_page_list);
         listview.setAdapter(Adapter) ;
-
-        return inflater.inflate(R.layout.activity_profile_setting, container, false);
+        return view;
     }
 
     @Override
