@@ -12,6 +12,7 @@
         android:orientation="vertical"
         android:background="@color/signature">
         <ImageView
+            android:id="@+id/dialog_profile_image"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"

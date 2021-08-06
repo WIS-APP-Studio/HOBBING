@@ -61,7 +61,7 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
             @Override
             public void onClick(View v) {
 
-                ChangeProfileDialog customDialog = new ChangeProfileDialog(ProfileSettingActivity.this);
+                ChangeProfileDialog customDialog = new ChangeProfileDialog(ProfileSettingActivity.this, USER_ID);
                 customDialog.callFunction(userName);
             }
         });
