@@ -27,7 +27,7 @@
         <activity android:name="com.wisappstudio.hobbing.activity.InnerPostActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.ProfileSettingActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.MyInfoActivity"/>
-        <activity android:name="com.wisappstudio.hobbing.activity.UserLogActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.UserHistoryActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.InfoChangeActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.UpdatePostActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.TermsOfServiceActivity"/>

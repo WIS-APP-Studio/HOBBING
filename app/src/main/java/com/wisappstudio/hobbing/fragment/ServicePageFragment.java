@@ -14,12 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.hobbing.R;
-import com.wisappstudio.hobbing.activity.InfoChangeActivity;
-import com.wisappstudio.hobbing.activity.IntroActivity;
-import com.wisappstudio.hobbing.activity.MainActivity;
-import com.wisappstudio.hobbing.activity.ProfileSettingActivity;
 import com.wisappstudio.hobbing.activity.TermsOfServiceActivity;
-import com.wisappstudio.hobbing.activity.UserLogActivity;
 
 public class ServicePageFragment extends Fragment implements AdapterView.OnItemClickListener {
     static final String[] LIST_MENU = {"도움말", "공지사항", "이용약관", "개인정보처리방침", "버전 정보", "문의"};

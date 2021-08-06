@@ -136,7 +136,6 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
         ArrayAdapter Adapter = new ArrayAdapter(ProfileSettingActivity.this, android.R.layout.simple_list_item_1, LIST_MENU) ;
 
         ListView listview = (ListView) findViewById(R.id.listview1) ;
-        // 리스트 뷰 OnItemClickListener 관련 자료 : https://newgenerationkorea.wordpress.com/2015/07/12/listview-%EA%B5%AC%EC%84%B1%ED%95%98%EA%B8%B0-1-arrayadapter-%EC%9D%B4%EC%9A%A9%ED%95%98%EA%B8%B0/
         listview.setAdapter(Adapter) ;
         listview.setOnItemClickListener(this);
     }
@@ -150,7 +149,7 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
                 break;
             }
             case 2 : {
-                Intent intent = new Intent(this, UserLogActivity.class);
+                Intent intent = new Intent(this, UserHistoryActivity.class);
                 startActivity(intent);
                 break;
             }

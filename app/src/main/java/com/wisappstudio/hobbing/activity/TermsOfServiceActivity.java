@@ -38,7 +38,6 @@ public class TermsOfServiceActivity extends AppCompatActivity {
             }
         }
 
-
         agree = findViewById(R.id.agree);
         disagree = findViewById(R.id.disagree);
 
@@ -55,7 +54,6 @@ public class TermsOfServiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(TermsOfServiceActivity.this, "이용약관을 동의하지 않으면 이용하실 수 없습니다.", Toast.LENGTH_SHORT).show();
-
                 return;
             }
         });
