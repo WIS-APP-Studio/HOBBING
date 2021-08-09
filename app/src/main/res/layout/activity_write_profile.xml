@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#BCDBEF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:text="닉네임 입력(필수)"
+            android:textColor="#7c82a6"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="310dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"
+            android:background="#ededed"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/activity_write_profile_nickname"
+                android:layout_width="310dp"
+                android:layout_height="50dp"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:hint=" 사용할 닉네임을 입력해 주세요."
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="80dp"
+            android:textColor="#7c82a6"
+            android:text="자기소개 입력"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/Linear4"
+            android:layout_width="310dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"
+            android:background="#ededed"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/activity_write_profile_introduce"
+                android:layout_width="310dp"
+                android:layout_height="50dp"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:hint=" 자기소개를 입력해주세요."
+                android:inputType="textEmailAddress" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/activity_write_profile_confirm"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="270dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#ededed"
+            android:textColor="#000000"
+            android:text="완 료" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
