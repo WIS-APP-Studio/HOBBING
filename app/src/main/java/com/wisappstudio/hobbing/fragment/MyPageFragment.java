@@ -50,6 +50,7 @@ import static com.wisappstudio.hobbing.data.ServerData.PROFILE_READ_NICKNAME_URL
 public class MyPageFragment extends Fragment {
     private String userId;
     private View view;
+    private String introduce;
     ArrayList<MyPagePostData> postDataList;
     private RequestQueue queue;
 
@@ -65,6 +66,7 @@ public class MyPageFragment extends Fragment {
         view = inflater.inflate(R.layout.activity_my_page, container, false);
 
         TextView tv_nickname = (TextView) view.findViewById(R.id.activity_my_page_nickname);
+        TextView tv_introduce = (TextView) view.findViewById(R.id.activity_my_page_introduce);
         TextView id = (TextView) view.findViewById(R.id.activity_my_page_id);
         ImageView profile_image = (ImageView) view.findViewById(R.id.activity_my_page_image);
         ImageView profile_setting = (ImageView) view.findViewById(R.id.activity_my_page_setting_profile);
@@ -74,6 +76,7 @@ public class MyPageFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(view.getContext(), ProfileSettingActivity.class);
                 intent.putExtra("user_id", userId);
+                intent.putExtra("introduce", introduce);
                 startActivity(intent);
             }
         });
@@ -94,9 +97,6 @@ public class MyPageFragment extends Fragment {
         profile_image.setBackground(shapeDrawable);
         profile_image.setClipToOutline(true);
 
-        // 상단 아이디 및 닉네임 (닉네임은 추후 작업)
-
-
         id.setText(userId);
 
         queue = Volley.newRequestQueue(view.getContext());
@@ -107,16 +107,17 @@ public class MyPageFragment extends Fragment {
                     JSONObject jsonObject = new JSONObject(response);
                     String TAG_JSON = "프로필";
                     String NICKNAME = "닉네임";
-                    String WRITER = "자기소개";
+                    String INTRODUCE = "자기소개";
                     String FOLLOWER = "팔로워";
                     try {
                         JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
                             JSONObject item = jsonArray.getJSONObject(0);
                             String nickname = item.getString(NICKNAME);
-                            String writer = item.getString(WRITER);
+                            introduce = item.getString(INTRODUCE);
                             String follower = item.getString(FOLLOWER);
 
                             tv_nickname.setText(nickname);
+                            tv_introduce.setText(introduce);
                     } catch (JSONException e) { }
                 } catch (JSONException e) {
                     e.printStackTrace();
