@@ -37,6 +37,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.hobbing.R;
 import com.wisappstudio.hobbing.dialog.ChangeProfileDialog;
+import com.wisappstudio.hobbing.dialog.ChangeProfileIntroduceDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,6 +79,7 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
         ImageView uploadImage = (ImageView) findViewById(R.id.activity_profile_setting_change_image);
         TextView back = (TextView) findViewById(R.id.activity_profile_setting_cancel);
         ImageView changeNickName = (ImageView) findViewById(R.id.activity_profile_setting_change_profile);
+        ImageView changeIntroduce = (ImageView) findViewById(R.id.activity_profile_setting_change_introduce);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,9 +91,16 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
         changeNickName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 ChangeProfileDialog customDialog = new ChangeProfileDialog(ProfileSettingActivity.this, USER_ID);
                 customDialog.callFunction(userName);
+            }
+        });
+
+        changeIntroduce.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangeProfileIntroduceDialog customDialog = new ChangeProfileIntroduceDialog(ProfileSettingActivity.this, USER_ID);
+                customDialog.callFunction(introduce);
             }
         });
 
