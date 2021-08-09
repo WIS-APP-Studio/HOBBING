@@ -141,10 +141,10 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/auto_login_check"></LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/auto_login_check"
         android:layout_width="50dp"
         android:layout_height="44dp"
         android:layout_marginStart="30dp"

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
@@ -199,6 +200,13 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
                 MainActivity mainActivity = (MainActivity) MainActivity.activity;
                 Intent intent = new Intent(this, IntroActivity.class);
                 startActivity(intent);
+                
+                // 자동 로그인 초기화
+                SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor editor = auto.edit();
+                editor.clear();
+                editor.commit();
+
                 finish();
                 mainActivity.finish();
                 break;
