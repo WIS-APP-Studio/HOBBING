@@ -32,6 +32,6 @@
         <activity android:name="com.wisappstudio.hobbing.activity.UpdatePostActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.TermsOfServiceActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.WriteProfileActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.DeleteAccountActivity"/>
     </application>
-
 </manifest>

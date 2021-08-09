@@ -49,6 +49,7 @@ public class TermsOfServiceActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(TermsOfServiceActivity.this, SignUpActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         disagree.setOnClickListener(new View.OnClickListener() {

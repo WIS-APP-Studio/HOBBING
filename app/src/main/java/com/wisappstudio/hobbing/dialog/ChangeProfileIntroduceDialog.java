@@ -93,7 +93,7 @@ public class ChangeProfileIntroduceDialog extends AppCompatActivity {
 
                     queue.add(changeNickname);
                 } else {
-                    Toast.makeText(context, "닉네임을 다시 입력해 주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "자기소개를 다시 입력해 주세요.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

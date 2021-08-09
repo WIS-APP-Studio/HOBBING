@@ -211,6 +211,13 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
                 mainActivity.finish();
                 break;
             }
+            case 4 : {
+                Intent intent = new Intent(this, DeleteAccountActivity.class);
+                String USER_ID = getIntent().getStringExtra("user_id");
+                intent.putExtra("user_id", USER_ID);
+                startActivity(intent);
+                finish();
+            }
         }
     }
 
