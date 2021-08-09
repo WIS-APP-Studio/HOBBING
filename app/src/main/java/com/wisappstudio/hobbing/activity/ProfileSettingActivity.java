@@ -191,6 +191,11 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
                 startActivity(intent);
                 break;
             }
+            case 1 : {
+                Intent intent = new Intent(this, SelectCategoryActivity.class);
+                startActivity(intent);
+                break;
+            }
             case 2 : {
                 Intent intent = new Intent(this, UserLogActivity.class);
                 startActivity(intent);
