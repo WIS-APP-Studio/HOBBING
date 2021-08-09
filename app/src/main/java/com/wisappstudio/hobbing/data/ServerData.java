@@ -6,6 +6,7 @@ public class ServerData {
     public static String URL = "http://"+LOCALHOST+"/hobbing/";
     public static String SIGN_UP_URL = URL+"login/sign_up.php";
     public static String SIGN_IN_URL = URL+"login/sign_in.php";
+    public static String DELETE_ACCOUNT_URL = URL + "login/delete.php";
     public static String POST_READ_URL = URL+"post/read.php";
     public static String POST_DELETE_URL = URL+"post/delete.php";
     public static String POST_UPDATE_URL = URL+"post/update.php";

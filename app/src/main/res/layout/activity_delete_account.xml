@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#BCDBEF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#7c82a6"
+            android:text="정말로 탈퇴하시겠습니까?"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#7c82a6"
+            android:background="#ffffff"
+            android:layout_marginTop="20dp"
+            android:text="회원님이 작성한 게시물은 모두 소멸하며, 게시물 처리 도중, 일부 불건전한 게시물이 적발될 시,\n영구정지 처분을 받을 수 있습니다. \n개인의 익명성을 유지하기 위해 탈퇴하시기 전,\n게시물을 모두 삭제하시길 권장합니다."
+            android:textSize="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/activity_delete_account_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#ededed"
+                android:layout_marginRight="50dp"
+                android:textColor="#000000"
+                android:text="탈퇴" />
+
+            <Button
+                android:id="@+id/activity_delete_account_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#ededed"
+                android:layout_marginLeft="50dp"
+                android:textColor="#000000"
+                android:text="취소" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
