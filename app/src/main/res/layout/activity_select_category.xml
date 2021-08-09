@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.wisappstudio.hobbing.activity.SelectCategoryActivity"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="monospace"
-        android:gravity="center"
-        android:text="카테고리를 선택해 주세요."
-        android:textSize="20dp" />
+        android:layout_height="140dp"
+        android:background="#bcdbef"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:text="카테고리를 선택해 주세요."
+            android:textSize="25dp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
