@@ -1,13 +1,19 @@
-# feature/Terms_of_Service
+# feature/Notification_setting
 
-## 화면명: 이용 약관
+## 화면명: 알림 설정, 게시글 알림 설정, 팔로우 알림, 활동 기록 설정
 
-- 1차 업로드 - 2021년 8월 06일
+- 1차 업로드 - 2021년 8월 11일
 
-- xml 파일과 activity 코드는 activity_terms_of_service.xml, TermsOfServiceActivity.java 에 작성해두었습니다!
+- 알림 설정 : activity_notification_setting.xml & NotificationSettingActivity.java
 
-이용 약관 내용은 주로 에브리타임 이용 약관 등을 참고하면서 필요한 부분만 수정했으며,
+- 게시글 알림 설정 : activity_post_notification_setting.xml & PostNotificationSettingActivity.java
 
-어떤 레이아웃과 연결해야할지 정해지지 않은 것 같아서 기존 레이아웃과의 연결은 남겨두었습니다.
+- 팔로우 알림 : activity_follower_notification_setting.xml & FollowerNotificationSettingActivity.java
+
+- 활동기록 설정 : activity_action_log_setting.xml & ActionLogSettingActivity.java
+
+'알림 설정'에서 다른 레이아웃('게시글 알림 설정', '팔로우 알림', '활동 기록 설정')으로 이동가능하게 연결시켜놓았고,
+
+'알림 설정' 레이아웃 부분만 기존의 레이아웃과 연결시키면 될 것 같습니다.
 
 혹시나 에러 발생하면 연락해주세요.
