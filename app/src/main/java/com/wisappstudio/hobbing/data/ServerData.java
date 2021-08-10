@@ -15,6 +15,11 @@ public class ServerData {
     public static String INNER_POST_IMAGE_READ_URL = URL + "post/inner_image_read.php";
     public static String INNER_POST_COMMENT_READ_URL = URL + "post/inner_comment_read.php";
 
+    public static String INNER_POST_IS_LIKE_URL = URL + "post/is_like.php";
+    public static String INNER_POST_NOT_LIKE_URL = URL + "post/not_like.php";
+    public static String INNER_POST_LIKE_URL = URL + "post/like.php";
+    public static String INNER_POST_LIKES_URL = URL + "post/inner_likes.php";
+
     public static String PROFILE_UPLOAD_IMAGE_URL = URL + "profile/uploadImage.php";
     public static String PROFILE_SELECT_CATEGORY_URL = URL + "profile/select_category.php";
     public static String PROFILE_UPDATE_NICKNAME_URL = URL + "profile/updateNickname.php";

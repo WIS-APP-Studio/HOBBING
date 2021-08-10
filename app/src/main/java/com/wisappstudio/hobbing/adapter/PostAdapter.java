@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_LIKES_URL;
 import static com.wisappstudio.hobbing.data.ServerData.POST_IMAGE_DIRECTORY;
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_READ_NICKNAME_URL;
@@ -114,7 +115,6 @@ public class PostAdapter extends BaseAdapter {
 
         title.setText(sample.get(position).getTitle());
         description.setText(sample.get(position).getDescription());
-        likes.setText(sample.get(position).getLikes());
         views.setText(sample.get(position).getViews());
         shares.setText(sample.get(position).getShares());
         category.setText("@"+sample.get(position).getCategory());
@@ -160,6 +160,39 @@ public class PostAdapter extends BaseAdapter {
             image3.getLayoutParams().width = 0;
             image3.getLayoutParams().height = 0;
         }
+
+        StringRequest postLikesRequest = new StringRequest(Request.Method.POST, INNER_POST_LIKES_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    InitializePostLikes(jsonObject);
+                } catch (JSONException e) { }
+            }
+            private void InitializePostLikes(JSONObject jsonObject) {
+                String TAG_JSON = "좋아요_수";
+
+                try {
+                    JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                    likes.setText(String.valueOf(jsonArray.length()));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                String number = sample.get(position).getNumber();
+                params.put("number", number);
+                return params;
+            }
+        };
+        queue.add(postLikesRequest);
 
         profile_image.setBackground(new ShapeDrawable(new OvalShape()));
         profile_image.setClipToOutline(true);

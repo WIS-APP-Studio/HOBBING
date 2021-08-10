@@ -151,7 +151,7 @@
                             android:layout_gravity="bottom"
                             android:layout_marginLeft="2dp"
                             android:layout_marginRight="5dp"
-                            android:text="100"/>
+                            android:text=""/>
 
                         <ImageView
                             android:id="@+id/imageView_shared"
