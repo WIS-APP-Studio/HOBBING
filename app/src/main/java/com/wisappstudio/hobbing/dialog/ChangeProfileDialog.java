@@ -1,24 +1,15 @@
 package com.wisappstudio.hobbing.dialog;
 
-import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -32,16 +23,10 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.hobbing.R;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.wisappstudio.hobbing.data.ServerData.IMAGE_DIRECTORY_URL;
-import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_READ_URL;
+import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_UPDATE_NICKNAME_URL;
 
 public class ChangeProfileDialog extends AppCompatActivity {
@@ -68,7 +53,7 @@ public class ChangeProfileDialog extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(dlg.getContext());
 
         Glide.with(dlg.getContext())
-                .load(IMAGE_DIRECTORY_URL+userID+".png") // 임시로 로드
+                .load(PROFILE_IMAGE_DIRECTORY+userID+".png") // 임시로 로드
                 .apply(new RequestOptions()
                         .signature(new ObjectKey("signature string"))
                         .skipMemoryCache(true)

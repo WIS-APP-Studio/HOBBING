@@ -26,9 +26,8 @@ import com.example.hobbing.R;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.wisappstudio.hobbing.data.ServerData.IMAGE_DIRECTORY_URL;
+import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_UPDATE_INTRODUCE_URL;
-import static com.wisappstudio.hobbing.data.ServerData.PROFILE_UPDATE_NICKNAME_URL;
 
 public class ChangeProfileIntroduceDialog extends AppCompatActivity {
     private Context context;
@@ -52,7 +51,7 @@ public class ChangeProfileIntroduceDialog extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(dlg.getContext());
 
         Glide.with(dlg.getContext())
-                .load(IMAGE_DIRECTORY_URL+userID+".png") // 임시로 로드
+                .load(PROFILE_IMAGE_DIRECTORY+userID+".png") // 임시로 로드
                 .apply(new RequestOptions()
                         .signature(new ObjectKey("signature string"))
                         .skipMemoryCache(true)

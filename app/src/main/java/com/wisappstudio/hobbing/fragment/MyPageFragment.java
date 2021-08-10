@@ -43,8 +43,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.wisappstudio.hobbing.data.ServerData.IMAGE_DIRECTORY_URL;
 import static com.wisappstudio.hobbing.data.ServerData.MY_PAGE_POST_READ_URL;
+import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_READ_NICKNAME_URL;
 
 public class MyPageFragment extends Fragment {
@@ -83,7 +83,7 @@ public class MyPageFragment extends Fragment {
 
         // 상단 마이 프로필 사진
         Glide.with(view.getContext())
-                .load(IMAGE_DIRECTORY_URL+userId+".png") // 임시로 로드
+                .load(PROFILE_IMAGE_DIRECTORY+userId+".png") // 임시로 로드
                 .apply(new RequestOptions()
                         .signature(new ObjectKey("signature string"))
                         .skipMemoryCache(true)

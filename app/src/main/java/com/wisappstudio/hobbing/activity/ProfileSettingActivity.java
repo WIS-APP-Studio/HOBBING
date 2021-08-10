@@ -50,7 +50,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.wisappstudio.hobbing.data.ServerData.IMAGE_DIRECTORY_URL;
+import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_READ_NICKNAME_URL;
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_UPLOAD_IMAGE_URL;
 
@@ -59,7 +59,7 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
     static final String[] LIST_MENU = {"계정 정보 수정", "알림 설정", "활동 기록", "로그아웃", "탈퇴"} ;
     final int CODE_GALLERY_REQUEST = 999;
     ImageView image;
-
+    String USER_ID;
     Bitmap bitmapImage;
 
     @Override
@@ -69,7 +69,7 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
 
         // 받을 내용
         Intent intent = getIntent();
-        String USER_ID = intent.getStringExtra("user_id");
+        USER_ID = intent.getStringExtra("user_id");
         String INTRODUCE = intent.getStringExtra("introduce");
         // 받을 내용
 
@@ -143,7 +143,7 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
 
         // 상단 마이 프로필 사진
         Glide.with(getApplicationContext())
-                .load(IMAGE_DIRECTORY_URL+USER_ID+".png") // 임시로 로드
+                .load(PROFILE_IMAGE_DIRECTORY+USER_ID+".png") // 임시로 로드
                 .apply(new RequestOptions()
                         .signature(new ObjectKey("signature string"))
                         .skipMemoryCache(true)
@@ -188,6 +188,7 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
         switch (position) {
             case 0 : {
                 Intent intent = new Intent(this, InfoChangeActivity.class);
+                intent.putExtra("user_id", USER_ID);
                 startActivity(intent);
                 break;
             }
