@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/signature"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/sign_up_tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="문의"
+        android:textSize="40dp"
+        tools:layout_editor_absoluteX="168dp"
+        tools:layout_editor_absoluteY="51dp" />
+
+    <TextView
+        android:id="@+id/sign_up_tv_title2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="답장받을 이메일 주소"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="243dp" />
+
+    <TextView
+        android:id="@+id/sign_up_tv_title3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="문의 내용"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="348dp" />
+
+    <TextView
+        android:id="@+id/sign_up_tv_title5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="문의 종류"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="138dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/sub_brown"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="116dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/sub_brown"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+
+    <Spinner
+        android:id="@+id/spinner_question"
+        android:layout_width="338dp"
+        android:layout_height="39dp"
+        android:layout_weight="1"
+        android:background="@drawable/stroke"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="183dp"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        app:srcCompat="@drawable/email_undo"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="236dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="54dp"
+        android:layout_height="48dp"
+        app:srcCompat="@drawable/talking"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="341dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="284dp">
+
+
+        <EditText
+            android:layout_width="338dp"
+            android:layout_height="39dp"
+            android:background="@drawable/stroke"
+            android:hint="이메일 주소를 입력해주세요."
+            tools:layout_editor_absoluteX="80dp"
+            tools:layout_editor_absoluteY="276dp" />
+    </LinearLayout>
+
+
+    <EditText
+        android:layout_width="338dp"
+        android:layout_height="40dp"
+        android:background="@drawable/stroke"
+        android:hint="제목을 입력해주세요."
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="396dp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="338dp"
+        android:layout_height="200dp"
+        android:background="@drawable/stroke"
+        android:hint="내용을 입력해주세요."
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="449dp" />
+
+
+    <Button
+
+        android:layout_width="142dp"
+        android:layout_height="56dp"
+        android:text="문의하기"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="659dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/signature"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/sign_up_tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="현재 버전"
+        android:textSize="40dp"
+        tools:layout_editor_absoluteX="131dp"
+        tools:layout_editor_absoluteY="49dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/sub_brown"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="116dp" />
+
+    <LinearLayout
+        android:layout_width="331dp"
+        android:layout_height="80dp"
+        android:background="@drawable/radius"
+        android:backgroundTint="@color/sub_blue"
+        android:orientation="vertical"
+
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="242dp">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text=" 현재 버전"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/radius"
+            android:backgroundTint="@color/white"
+            android:gravity="center_vertical|right"
+            android:text="1.0.0 "
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="79dp"
+        android:background="@drawable/radius"
+        android:backgroundTint="@color/sub_blue"
+        android:orientation="vertical"
+
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="140dp">
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text=" 최신 버전"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/radius"
+            android:backgroundTint="@color/white"
+            android:gravity="center_vertical|right"
+            android:text="1.0.0 "
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 버전 업데이트 내역"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="383dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:background="@color/sub_gray"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="417dp" />
+
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="79dp"
+        android:background="@drawable/radius"
+        android:backgroundTint="@color/sub_blue"
+        android:orientation="vertical"
+
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="436dp">
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text=" 0.1.0"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/radius"
+            android:backgroundTint="@color/white"
+            android:gravity="center_vertical|right"
+            android:text="게시글 및 테스트 "
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="79dp"
+        android:background="@drawable/radius"
+        android:backgroundTint="@color/sub_blue"
+        android:orientation="vertical"
+
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="542dp">
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text=" 0.2.0"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/radius"
+            android:backgroundTint="@color/white"
+            android:gravity="center_vertical|right"
+            android:text="앱 제작 완료 "
+            android:textSize="20dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
