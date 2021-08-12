@@ -19,18 +19,21 @@ public class MyInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_info) ;
 
-        TextView back = (TextView) findViewById(R.id.activity_my_info_cancel);
+        ArrayAdapter Adapter = new ArrayAdapter(MyInfoActivity.this, android.R.layout.simple_list_item_1, LIST_MENU) ;
 
+        ListView listview = (ListView) findViewById(R.id.listview1) ;
+        listview.setAdapter(Adapter);
+        // 프로필 설정으로(이전 페이지) 로 넘어간다.
+        backToProfileSetting();
+    }
+
+    private void backToProfileSetting() {
+        TextView back = (TextView) findViewById(R.id.activity_my_info_cancel);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
-        ArrayAdapter Adapter = new ArrayAdapter(MyInfoActivity.this, android.R.layout.simple_list_item_1, LIST_MENU) ;
-
-        ListView listview = (ListView) findViewById(R.id.listview1) ;
-        listview.setAdapter(Adapter) ;
     }
 }

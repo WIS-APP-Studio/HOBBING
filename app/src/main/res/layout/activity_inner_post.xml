@@ -81,7 +81,6 @@
                     android:layout_height="350dp"
                     android:layout_marginTop="9dp"
                     android:scrollbars="none"/>
-
             </LinearLayout>
 
             <TextView
@@ -93,7 +92,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-
                 android:hint="내용"/>
             <TextView
                 android:layout_margin="10dp"

@@ -20,7 +20,7 @@ public class IntroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_intro);
         this.activity = IntroActivity.this;
 
-        this.btnClick();
+        btnClick();
     }
 
     private void btnClick() {

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -60,6 +61,7 @@ public class InnerPostActivity extends AppCompatActivity {
     String userId;
     String postNumber;
 
+    RequestQueue queue;
     boolean isLike;
 
     @Override
@@ -67,193 +69,69 @@ public class InnerPostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inner_post);
 
-        Intent intent = getIntent();
-        String userId = intent.getStringExtra("user_id");
-        String postNumber = intent.getStringExtra("number");
+        userId = getIntent().getStringExtra("user_id");
+        postNumber = getIntent().getStringExtra("number");
 
-        this.userId = userId;
-        this.postNumber = postNumber;
+        queue = Volley.newRequestQueue(this);
 
-        ImageView userProfile = (ImageView) findViewById(R.id.list_inner_post_user_profile);
-        Glide.with(getApplicationContext())
-                .load(PROFILE_IMAGE_DIRECTORY +userId+".png") // 임시로 로드
-                .apply(new RequestOptions()
-                        .signature(new ObjectKey("signature string"))
-                        .skipMemoryCache(true)
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                )
-                .into(userProfile);
+        clickToLikeButton(); // 좋아요 버튼 클릭
+        clickToSendComment(); // 댓글 전송 버튼 클릭
+        loadCommentUserProfile(); // 댓글 프로필 로드
 
-        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(loadPostContent()); // 게시물 내용 로드
+        queue.add(loadPostImages()); // 게시물 이미지 로드
+        queue.add(loadPostNumberOfLikes()); // 게시물 좋아요 수 로드
 
+        queue.add(loadComments()); // 댓글 리스트 로드
+        queue.add(loadUserLikes()); // 사용자 게시물 좋아요 클릭 유무 로드
+    }
 
-        // 게시물 내용 로드
-        StringRequest strRequest = new StringRequest(Request.Method.POST, INNER_POST_READ_URL, new Response.Listener<String>() {
+    private void clickToSendComment() {
+        // 댓글 전송
+        ImageView sendComment = (ImageView) findViewById(R.id.activity_inner_post_send_comment);
+        sendComment.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    InitializeInnerPostData(jsonObject);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            public void onClick(View v) {
+                Intent intent = getIntent();
+                String userId = intent.getStringExtra("user_id");
+                String postNumber = intent.getStringExtra("number");
+
+                EditText et_comment = (EditText) findViewById(R.id.activity_inner_post_comment_description);
+                String commentDescription = et_comment.getText().toString();
+
+                if(commentDescription.length() == 0) {
+                    Toast.makeText(InnerPostActivity.this, "먼저 댓글을 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) { }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                String number = getIntent().getStringExtra("number");
-                params.put("number", number);
-                return params;
-            }
-        };
+                et_comment.setText("");
 
-        // 게시물 좋아요 로드
-        StringRequest postLikesRequest = new StringRequest(Request.Method.POST, INNER_POST_LIKES_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    InitializePostLikes(jsonObject);
-                } catch (JSONException e) { }
-            }
-            private void InitializePostLikes(JSONObject jsonObject) {
-                String TAG_JSON = "좋아요_수";
-
-                try {
-                    JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
-                    TextView likes = (TextView) findViewById(R.id.activity_inner_post_likes);
-                    likes.setText(String.valueOf(jsonArray.length()));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                String number = getIntent().getStringExtra("number");
-                params.put("number", number);
-                return params;
-            }
-        };
-        queue.add(postLikesRequest);
-
-        // 게시물 사진 로드
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, INNER_POST_IMAGE_READ_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    RecyclerView recyclerView = findViewById(R.id.activity_inner_post_image);
-
-                    InitializePostImage(jsonObject);
-                    InnerPostAdapter postAdapter = new InnerPostAdapter(innerPostDataList);
-
-                    recyclerView.setAdapter(postAdapter);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
-                } catch (JSONException e) { }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                String number = getIntent().getStringExtra("number");
-                params.put("number", number);
-                return params;
-            }
-        };
-
-        // 게시물 댓글 로드
-        StringRequest commentRequest = new StringRequest(Request.Method.POST, INNER_POST_COMMENT_READ_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    InitializeCommentData(jsonObject);
-                    ListView commentListView = (ListView) findViewById(R.id.activity_inner_post_comment);
-
-                    final CommentAdapter adapter = new CommentAdapter(getApplicationContext(), commentDataList);
-
-                    commentListView.setAdapter(adapter);
-                    setListViewHeightBasedOnChildren(commentListView);
-                    //
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                String number = getIntent().getStringExtra("number");
-                params.put("number", number);
-                return params;
-            }
-        };
-
-        // 게시물 좋아요 확인
-        StringRequest isLikePostRequest = new StringRequest(Request.Method.POST, INNER_POST_IS_LIKE_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    InitializePostLike(jsonObject);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            private void InitializePostLike(JSONObject jsonObject) {
-                String TAG_JSON = "좋아요";
-                String USER = "사용자";
-                String POST = "게시물";
-
-                try {
-                    JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
-                    JSONObject item = jsonArray.getJSONObject(0);
-                    String user = item.getString(USER);
-                    String post = item.getString(POST);
-
-                    if(userId.equals(user) && postNumber.equals(post)) {
-                        ImageView isLikeImage = findViewById(R.id.activity_inner_post_like);
-                        Button isLikeButton = findViewById(R.id.activity_inner_post_like_button);
-
-                        isLikeButton.setText("좋아요 취소");
-                        isLikeImage.setImageResource(R.drawable.like2);
-                        isLike = true;
+                StringRequest sendCommentRequest = new StringRequest(Request.Method.POST, INNER_POST_SEND_COMMENT_URL, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(InnerPostActivity.this, "댓글을 작성했습니다.", Toast.LENGTH_SHORT).show();
+                        queue.add(loadComments());
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(InnerPostActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("user_id", userId);
+                        params.put("post_number", postNumber);
+                        params.put("comment", commentDescription);
+                        return params;
+                    }
+                };
+                queue.add(sendCommentRequest);
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) { }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("user_id", getIntent().getStringExtra("user_id"));
-                params.put("number", getIntent().getStringExtra("number"));
-                return params;
-            }
-        };
+        });
+    }
+
+    private void clickToLikeButton() {
         // 게시물 좋아요 클릭
         Button likeButton = (Button) findViewById(R.id.activity_inner_post_like_button);
         likeButton.setOnClickListener(new View.OnClickListener() {
@@ -323,56 +201,198 @@ public class InnerPostActivity extends AppCompatActivity {
                 }
             }
         });
-
-        // 댓글 작성 및 전송
-        ImageView sendComment = (ImageView) findViewById(R.id.activity_inner_post_send_comment);
-        sendComment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = getIntent();
-                String userId = intent.getStringExtra("user_id");
-                String postNumber = intent.getStringExtra("number");
-
-                EditText writtenComment = (EditText) findViewById(R.id.activity_inner_post_comment_description);
-                String commentDescription = writtenComment.getText().toString();
-
-                if(commentDescription.length() == 0) {
-                    Toast.makeText(InnerPostActivity.this, "먼저 댓글을 입력해주세요!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                writtenComment.setText("");
-
-                StringRequest sendCommentRequest = new StringRequest(Request.Method.POST, INNER_POST_SEND_COMMENT_URL, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(InnerPostActivity.this, "댓글을 작성했습니다.", Toast.LENGTH_SHORT).show();
-                        queue.add(commentRequest);
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(InnerPostActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                        // 댓글 작성한 내용 전송 중 오류로 서비스가 되지 않은 경우를 보여줘야함 Exception Process
-                    }
-                }) {
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String, String> params = new HashMap<String, String>();
-                        params.put("user_id", userId);
-                        params.put("post_number", postNumber);
-                        params.put("comment", commentDescription);
-                        return params;
-                    }
-                };
-                queue.add(sendCommentRequest);
-            }
-        });
-
-        queue.add(isLikePostRequest);
-        queue.add(strRequest);
-        queue.add(stringRequest);
-        queue.add(commentRequest);
     }
+
+    private void loadCommentUserProfile() {
+        ImageView userProfile = (ImageView) findViewById(R.id.list_inner_post_user_profile);
+        Glide.with(getApplicationContext())
+                .load(PROFILE_IMAGE_DIRECTORY +userId+".png") // 임시로 로드
+                .apply(new RequestOptions()
+                        .signature(new ObjectKey("signature string"))
+                        .skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                )
+                .into(userProfile);
+    }
+
+    private StringRequest loadPostContent() {
+        // 게시물 내용 로드
+        StringRequest postContentRequest = new StringRequest(Request.Method.POST, INNER_POST_READ_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    InitializeInnerPostData(jsonObject);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) { }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                String number = getIntent().getStringExtra("number");
+                params.put("number", number);
+                return params;
+            }
+        };
+        return postContentRequest;
+    }
+
+    private StringRequest loadPostImages() {
+        StringRequest postImagesRequest = new StringRequest(Request.Method.POST, INNER_POST_IMAGE_READ_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    RecyclerView recyclerView = findViewById(R.id.activity_inner_post_image);
+
+                    InitializePostImage(jsonObject);
+                    InnerPostAdapter postAdapter = new InnerPostAdapter(innerPostDataList);
+
+                    recyclerView.setAdapter(postAdapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+                } catch (JSONException e) { }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                String number = getIntent().getStringExtra("number");
+                params.put("number", number);
+                return params;
+            }
+        };
+        return postImagesRequest;
+    }
+
+    private StringRequest loadPostNumberOfLikes() {
+        // 게시물 좋아요 로드
+        StringRequest postNumberOfLikesRequest = new StringRequest(Request.Method.POST, INNER_POST_LIKES_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    InitializePostLikes(jsonObject);
+                } catch (JSONException e) { }
+            }
+            private void InitializePostLikes(JSONObject jsonObject) {
+                String TAG_JSON = "좋아요_수";
+                try {
+                    JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                    TextView likes = (TextView) findViewById(R.id.activity_inner_post_likes);
+                    likes.setText(String.valueOf(jsonArray.length()));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                String number = getIntent().getStringExtra("number");
+                params.put("number", number);
+                return params;
+            }
+        };
+        return postNumberOfLikesRequest;
+    }
+
+
+    private StringRequest loadComments() {
+        StringRequest commentRequest = new StringRequest(Request.Method.POST, INNER_POST_COMMENT_READ_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    InitializeCommentData(jsonObject);
+                    ListView commentListView = (ListView) findViewById(R.id.activity_inner_post_comment);
+
+                    final CommentAdapter adapter = new CommentAdapter(getApplicationContext(), commentDataList);
+
+                    commentListView.setAdapter(adapter);
+                    setListViewHeightBasedOnChildren(commentListView);
+                    //
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                String number = getIntent().getStringExtra("number");
+                params.put("number", number);
+                return params;
+            }
+        };
+        return commentRequest;
+    }
+
+    private StringRequest loadUserLikes() {
+        // 게시물 좋아요 정보 로드
+        StringRequest isLikePostRequest = new StringRequest(Request.Method.POST, INNER_POST_IS_LIKE_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    InitializePostLike(jsonObject);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            private void InitializePostLike(JSONObject jsonObject) {
+                String TAG_JSON = "좋아요";
+                String USER = "사용자";
+                String POST = "게시물";
+                try {
+                    JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                    JSONObject item = jsonArray.getJSONObject(0);
+                    String user = item.getString(USER);
+                    String post = item.getString(POST);
+
+                    if(userId.equals(user) && postNumber.equals(post)) {
+                        ImageView isLikeImage = findViewById(R.id.activity_inner_post_like);
+                        Button isLikeButton = findViewById(R.id.activity_inner_post_like_button);
+
+                        isLikeButton.setText("좋아요 취소");
+                        isLikeImage.setImageResource(R.drawable.like2);
+                        isLike = true;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) { }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("user_id", getIntent().getStringExtra("user_id"));
+                params.put("number", getIntent().getStringExtra("number"));
+                return params;
+            }
+        };
+        return isLikePostRequest;
+    }
+
 
     public void InitializeInnerPostData(JSONObject jsonObject) {
         String TAG_JSON = "내부_게시물_정보";

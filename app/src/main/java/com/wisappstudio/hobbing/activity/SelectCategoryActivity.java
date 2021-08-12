@@ -57,7 +57,6 @@ public class SelectCategoryActivity extends AppCompatActivity {
         StringRequest selectCategory = new StringRequest(Request.Method.POST, PROFILE_SELECT_CATEGORY_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("RESPONSEVOLLEY", response);
                 Intent intent = new Intent(SelectCategoryActivity.this, WriteProfileActivity.class);
                 intent.putExtra("user_id", getIntent().getStringExtra("user_id"));
                 startActivity(intent);
@@ -65,9 +64,7 @@ public class SelectCategoryActivity extends AppCompatActivity {
             }
         }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("RESPONSEVOLLEY", error.getMessage());
-            }
+            public void onErrorResponse(VolleyError error) { }
         }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -80,10 +77,8 @@ public class SelectCategoryActivity extends AppCompatActivity {
                 CheckBox checkBox6 = (CheckBox) findViewById(R.id.checkbox6);
                 CheckBox[] categoryList = { checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6 };
                 int count = 0;
-                Log.d("RESPONSEVOLLEY", "getParams() ->");
                 for(int i=0; i < categoryList.length; i++) {
                     if(categoryList[i].isChecked()) {
-                        Log.d("RESPONSEVOLLEY", categoryList[i].getText().toString());
                         FrameLayout frameLayout = (FrameLayout) categoryList[i].getParent();
                         Button category = (Button) frameLayout.getChildAt(0);
                         params.put(("category_"+count++), category.getText().toString());

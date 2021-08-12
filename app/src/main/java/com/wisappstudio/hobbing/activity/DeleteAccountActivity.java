@@ -40,7 +40,6 @@ public class DeleteAccountActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(DeleteAccountActivity.this, "탈퇴 되었습니다.\r\n이용해 주셔서 감사합니다.", Toast.LENGTH_SHORT).show();
-                        Log.d("VOLLEYLOG", response);
                         MainActivity mainActivity = (MainActivity) MainActivity.activity;
                         mainActivity.finish();
                         finish();
@@ -48,14 +47,12 @@ public class DeleteAccountActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("VOLLEYLOG", error.toString());
                     }
                 }) {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> params = new HashMap<String, String>();
                         String USER_ID = getIntent().getStringExtra("user_id");
-                        Log.d("VOLLEYLOG", USER_ID);
                         params.put("user_id",USER_ID);
                         return params;
                     }

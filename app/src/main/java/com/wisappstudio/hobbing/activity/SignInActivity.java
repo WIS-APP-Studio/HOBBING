@@ -70,10 +70,6 @@ public class SignInActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                /*
-                    아이디 조건- 5~20자의 영문 소문자, 숫자 이용. (한글 및 특수문자 제외)
-                    비밀번호 조건-8~16자 영문 대 소문자, 숫자 이용. (한글 및 특수문자 제외)
-                 */
                 String idRegex = "^[a-z0-9_]{5,20}$";
                 String pwRegex = "^[a-zA-Z0-9_]{8,16}$";
 
@@ -87,7 +83,6 @@ public class SignInActivity extends AppCompatActivity {
                     Toast.makeText(SignInActivity.this, "아이디 및 비밀번호를 다시 입력하세요.", Toast.LENGTH_SHORT).show();
                 }
             }
-
         });
     }
 
@@ -122,6 +117,7 @@ public class SignInActivity extends AppCompatActivity {
                         IntroActivity introActivity = (IntroActivity) IntroActivity.activity;
                         startActivity(intent);
                         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+
                         if(autoLoginChecked==true) {
                             SharedPreferences.Editor autoLogin = auto.edit();
                             autoLogin.putString("id", user_id);
