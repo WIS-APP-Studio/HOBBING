@@ -18,15 +18,12 @@ public class LoadingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
-        ProgressDialog progressDialog = new ProgressDialog(this,R.style.AppCompatAlertDialogStyle);
-        progressDialog.setMessage("테스트");
-        progressDialog.show();
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                progressDialog.dismiss();
+
                 Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
                 startActivity(intent);
                 finish();
