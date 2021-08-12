@@ -192,7 +192,7 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
                 break;
             }
             case 1 : {
-                Intent intent = new Intent(this, SelectCategoryActivity.class);
+                Intent intent = new Intent(this, NotificationSettingActivity.class);
                 startActivity(intent);
                 break;
             }
@@ -222,6 +222,7 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
                 intent.putExtra("user_id", USER_ID);
                 startActivity(intent);
                 finish();
+                break;
             }
         }
     }

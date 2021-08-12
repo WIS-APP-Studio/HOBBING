@@ -20,7 +20,7 @@ public class ActionLogSettingActivity extends AppCompatActivity implements Adapt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_follower_notification_setting);
+        setContentView(R.layout.activity_action_log_setting);
 
         Switch logSwitch = (Switch) findViewById(R.id.activity_log_switch);
 

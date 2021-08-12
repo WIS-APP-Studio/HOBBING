@@ -1,7 +1,9 @@
 package com.wisappstudio.hobbing.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hobbing.R;
 
-public class NotificationSettingActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class NotificationSettingActivity extends Activity implements AdapterView.OnItemClickListener{
 
     static final String[] LIST_MENU = {"게시글 알림", "팔로잉 및 팔로워 알림", "활동기록 설정", "이메일 알림"} ;
 
@@ -39,10 +41,11 @@ public class NotificationSettingActivity extends AppCompatActivity implements Ad
             }
         });
 
-        ArrayAdapter Adapter = new ArrayAdapter(NotificationSettingActivity.this, android.R.layout.simple_list_item_1, LIST_MENU) ;
+        ArrayAdapter Adapter = new ArrayAdapter(NotificationSettingActivity.this, android.R.layout.simple_list_item_1, LIST_MENU);
 
         ListView listview = (ListView) findViewById(R.id.listview1) ;
-        listview.setAdapter(Adapter) ;
+        listview.setAdapter(Adapter);
+        listview.setOnItemClickListener(this);
     }
 
     @Override

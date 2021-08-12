@@ -35,5 +35,9 @@
         <activity android:name="com.wisappstudio.hobbing.activity.DeleteAccountActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.SelectCategoryActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.NotificationSettingActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.ActionLogSettingActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.FollowerNotificationSettingActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.PostNotificationSettingActivity"/>
     </application>
 </manifest>
