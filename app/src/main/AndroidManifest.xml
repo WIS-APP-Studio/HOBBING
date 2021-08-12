@@ -39,5 +39,9 @@
         <activity android:name="com.wisappstudio.hobbing.activity.ActionLogSettingActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.FollowerNotificationSettingActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.PostNotificationSettingActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.VersionActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.QuestionActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.NoticeActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.BackTermsOfServiceActivity"/>
     </application>
 </manifest>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="question_list">
+        <item>게시판 문의</item>
+        <item>오류 문의</item>
+        <item>사용자 정보 문의</item>
+        <item>계정 문의</item>
+        <item>악성유저 문의</item>
+        <item>기타 문의</item>
+    </string-array>
+
+</resources>
