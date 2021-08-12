@@ -7,10 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hobbing.R;
 
-public class VersionActivity extends AppCompatActivity {
+public class NoticeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_version);
+        setContentView(R.layout.activity_notice);
     }
 }

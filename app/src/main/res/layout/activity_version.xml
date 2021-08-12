@@ -1,39 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/signature"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="@color/signature">
 
     <TextView
         android:id="@+id/sign_up_tv_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:gravity="center"
         android:text="현재 버전"
         android:textSize="40dp"
-        tools:layout_editor_absoluteX="131dp"
-        tools:layout_editor_absoluteY="49dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout7"
         android:layout_width="match_parent"
         android:layout_height="3dp"
+        android:layout_marginTop="14dp"
         android:background="@color/sub_brown"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="116dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_tv_title" />
 
     <LinearLayout
+        android:id="@+id/linearLayout19"
         android:layout_width="331dp"
         android:layout_height="80dp"
+        android:layout_marginTop="23dp"
         android:background="@drawable/radius"
+
         android:backgroundTint="@color/sub_blue"
         android:orientation="vertical"
-
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="242dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout18">
 
         <TextView
             android:id="@+id/textView5"
@@ -56,14 +63,17 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout18"
         android:layout_width="330dp"
         android:layout_height="79dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/radius"
+
         android:backgroundTint="@color/sub_blue"
         android:orientation="vertical"
-
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="140dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
         <TextView
             android:id="@+id/textView7"
@@ -89,29 +99,41 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:text=" 버전 업데이트 내역"
         android:textSize="25dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="383dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout19" />
 
     <LinearLayout
         android:id="@+id/linearLayout8"
         android:layout_width="300dp"
         android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/sub_gray"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="417dp" />
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
+        android:id="@+id/linearLayout17"
         android:layout_width="330dp"
         android:layout_height="79dp"
+        android:layout_marginBottom="27dp"
         android:background="@drawable/radius"
+
         android:backgroundTint="@color/sub_blue"
         android:orientation="vertical"
-
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="436dp">
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/textView10"
@@ -134,14 +156,17 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout16"
         android:layout_width="330dp"
         android:layout_height="79dp"
+        android:layout_marginBottom="110dp"
         android:background="@drawable/radius"
+
         android:backgroundTint="@color/sub_blue"
         android:orientation="vertical"
-
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="542dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/textView12"

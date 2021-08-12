@@ -35,5 +35,9 @@
         <activity android:name="com.wisappstudio.hobbing.activity.DeleteAccountActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.SelectCategoryActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.VersionActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.QuestionActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.NoticeActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.BackTermsOfServiceActivity"/>
     </application>
 </manifest>

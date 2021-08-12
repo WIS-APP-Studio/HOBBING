@@ -10,63 +10,80 @@
         android:id="@+id/sign_up_tv_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="51dp"
         android:gravity="center"
         android:text="공지사항"
         android:textSize="40dp"
-        tools:layout_editor_absoluteX="131dp"
-        tools:layout_editor_absoluteY="51dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout7"
         android:layout_width="match_parent"
         android:layout_height="3dp"
+        android:layout_marginTop="12dp"
         android:background="@color/sub_brown"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="116dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_tv_title">
 
 
     </LinearLayout>
 
     <Button
+        android:id="@+id/button3"
         android:layout_width="120dp"
         android:layout_height="56dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="134dp"
+        android:backgroundTint="@color/sub_yellow"
         android:text="이벤트"
-        android:textSize="20dp"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="134dp"
         android:textColor="@color/black"
-        android:backgroundTint="@color/sub_yellow"/>
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/button2"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
 
     <Button
 
+        android:id="@+id/button"
         android:layout_width="120dp"
         android:layout_height="56dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="14dp"
         android:backgroundTint="@color/sub_blue"
         android:text="업데이트"
         android:textColor="@color/black"
         android:textSize="20dp"
-        tools:layout_editor_absoluteX="11dp"
-        tools:layout_editor_absoluteY="134dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
 
     <Button
+        android:id="@+id/button2"
         android:layout_width="120dp"
         android:layout_height="56dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="#cfcfdc"
         android:text="기타"
-        android:textSize="20dp"
-        tools:layout_editor_absoluteX="279dp"
-        tools:layout_editor_absoluteY="134dp"
         android:textColor="@color/black"
-        android:backgroundTint="#cfcfdc"/>
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="348dp"
         android:layout_height="83dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="34dp"
         android:background="@color/white"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="224dp">
-
+        app:layout_constraintStart_toEndOf="@+id/linearLayout9"
+        app:layout_constraintTop_toBottomOf="@+id/button3">
 
         <TextView
             android:id="@+id/textView14"
@@ -87,44 +104,39 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout8"
-        android:layout_width="16dp"
-        android:layout_height="84dp"
-        android:background="@drawable/radius"
-        android:backgroundTint="@color/sub_blue"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="224dp" />
-
-    <LinearLayout
         android:id="@+id/linearLayout9"
         android:layout_width="16dp"
         android:layout_height="84dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="34dp"
         android:background="@drawable/radius"
         android:backgroundTint="@color/sub_blue"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="224dp" >
-    </LinearLayout>
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3"></LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout10"
         android:layout_width="16dp"
         android:layout_height="84dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/radius"
         android:backgroundTint="@color/sub_yellow"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="324dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9" />
 
     <LinearLayout
+        android:id="@+id/linearLayout12"
         android:layout_width="348dp"
         android:layout_height="83dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="17dp"
         android:background="@color/white"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="324dp">
+        app:layout_constraintStart_toEndOf="@+id/linearLayout10"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
 
         <TextView
@@ -146,21 +158,27 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout11"
         android:layout_width="16dp"
         android:layout_height="84dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="14dp"
         android:background="@drawable/radius"
         android:backgroundTint="@color/sub_blue"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="422dp"></LinearLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout10"></LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout14"
         android:layout_width="348dp"
         android:layout_height="83dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="15dp"
         android:background="@color/white"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="422dp">
+        app:layout_constraintStart_toEndOf="@+id/linearLayout11"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout12">
 
 
         <TextView
@@ -180,21 +198,26 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout13"
         android:layout_width="16dp"
         android:layout_height="84dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="14dp"
         android:background="@drawable/radius"
         android:backgroundTint="@color/sub_blue"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="520dp"></LinearLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout11"></LinearLayout>
 
     <LinearLayout
         android:layout_width="348dp"
         android:layout_height="83dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="16dp"
         android:background="@color/white"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="521dp">
+        app:layout_constraintStart_toEndOf="@+id/linearLayout13"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout14">
 
 
         <TextView
@@ -210,9 +233,8 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="업데이트 상세내역업데이트 상세내역업데이트 상세내역업데이트 상세내역업데이트 상세내역업데이트 상세내역업데이트 상세내역"
-            android:textColor="@color/sub_gray"/>
+            android:textColor="@color/sub_gray" />
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

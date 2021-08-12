@@ -14,12 +14,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.hobbing.R;
+import com.wisappstudio.hobbing.activity.BackTermsOfServiceActivity;
 import com.wisappstudio.hobbing.activity.InfoChangeActivity;
 import com.wisappstudio.hobbing.activity.IntroActivity;
 import com.wisappstudio.hobbing.activity.MainActivity;
+import com.wisappstudio.hobbing.activity.NoticeActivity;
 import com.wisappstudio.hobbing.activity.ProfileSettingActivity;
+import com.wisappstudio.hobbing.activity.QuestionActivity;
 import com.wisappstudio.hobbing.activity.TermsOfServiceActivity;
 import com.wisappstudio.hobbing.activity.UserLogActivity;
+import com.wisappstudio.hobbing.activity.VersionActivity;
 
 public class ServicePageFragment extends Fragment implements AdapterView.OnItemClickListener {
     static final String[] LIST_MENU = {"도움말", "공지사항", "이용약관", "개인정보처리방침", "버전 정보", "문의"};
@@ -47,16 +51,30 @@ public class ServicePageFragment extends Fragment implements AdapterView.OnItemC
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
-            case 0 : {
+            case 0 : { // 도움말
                 break;
             }
-            case 2 : {
-                Intent intent = new Intent(view.getContext(), TermsOfServiceActivity.class);
-                intent.putExtra("where", "Service");
+            case 1 : { // 공지사항
+                Intent intent = new Intent(view.getContext(), NoticeActivity.class);
                 startActivity(intent);
                 break;
             }
-            case 3 : {
+            case 2 : { // 이용약관
+                Intent intent = new Intent(view.getContext(), BackTermsOfServiceActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case 3 : { // 개인정보처리방침
+            }
+            case 4 : { // 버전 정보
+                Intent intent = new Intent(view.getContext(), VersionActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case 5 : { // 문의
+                Intent intent = new Intent(view.getContext(), QuestionActivity.class);
+                startActivity(intent);
+                break;
             }
         }
     }
