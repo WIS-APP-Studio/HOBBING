@@ -66,11 +66,6 @@ public class MainPageFragment extends Fragment {
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, POST_READ_URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                ProgressDialog progressDialog = new ProgressDialog(view.getContext());
-                progressDialog.setMessage("ProgressDialog running...");
-                progressDialog.setCancelable(true);
-                progressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Horizontal);
-                progressDialog.show();
                 InitializePostData(response);
 
                 ListView listView = (ListView) view.findViewById(R.id.main_page_lv_post);
@@ -88,7 +83,6 @@ public class MainPageFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
-                progressDialog.dismiss();
             }
         }, new Response.ErrorListener() {
             @Override

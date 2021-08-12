@@ -69,7 +69,7 @@ public class LoadingActivity extends AppCompatActivity {
                         return;
                     }
                 } catch (JSONException e) {
-                    Toast.makeText(LoadingActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoadingActivity.this, "서버가 응답하지 않습니다.", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             }

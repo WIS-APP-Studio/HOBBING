@@ -116,7 +116,7 @@ public class SignInActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
                     String success = jsonObject.getString("success");
                     if (success != null && success.equals("1")) {
-                        Toast.makeText(getApplicationContext(),"로그인 성공!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"로그인 되었습니다.",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                         intent.putExtra("user_id",user_id);
                         IntroActivity introActivity = (IntroActivity) IntroActivity.activity;
@@ -132,7 +132,7 @@ public class SignInActivity extends AppCompatActivity {
                         introActivity.finish();
                         finish();
                     } else {
-                        Toast.makeText(getApplicationContext(),"로그인 실패!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"아이디 및 비밀번호를 다시 입력하세요.",Toast.LENGTH_SHORT).show();
                         return;
                     }
                 } catch (JSONException e) {
@@ -145,7 +145,7 @@ public class SignInActivity extends AppCompatActivity {
         Response.ErrorListener errorListener = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),"로그인 처리시 에러발생!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"서버가 응답하지 않습니다.",Toast.LENGTH_SHORT).show();
                 return;
             }
         };

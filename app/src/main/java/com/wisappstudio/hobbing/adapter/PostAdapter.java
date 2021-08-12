@@ -157,6 +157,7 @@ public class PostAdapter extends BaseAdapter {
 
                         Glide.with(mContext)
                                 .load(POST_IMAGE_DIRECTORY+sample.get(position).getNumber()+"/"+imageLink)
+                                .diskCacheStrategy(DiskCacheStrategy.ALL)
                                 .into(imageViews[i]);
                     }
                     for(int i = 0; i < 3; i++) {
