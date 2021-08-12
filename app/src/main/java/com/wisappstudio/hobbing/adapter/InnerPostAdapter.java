@@ -5,21 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.signature.ObjectKey;
 import com.example.hobbing.R;
 import com.wisappstudio.hobbing.data.InnerPostData;
 
 import java.util.ArrayList;
 
 import static com.wisappstudio.hobbing.data.ServerData.POST_IMAGE_DIRECTORY;
-import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
 /*
  어댑터의 onCreateViewHolder()와 onBindViewHolder()
  메서드를 통해 각각 생성 및 바인딩(데이터 표시)되어 화면에 표시

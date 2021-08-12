@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -33,6 +34,7 @@ import java.util.Map;
 
 import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_LIKES_URL;
 import static com.wisappstudio.hobbing.data.ServerData.POST_IMAGE_DIRECTORY;
+import static com.wisappstudio.hobbing.data.ServerData.POST_READ_IMAGE_URL;
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_READ_NICKNAME_URL;
 
@@ -76,9 +78,6 @@ public class PostAdapter extends BaseAdapter {
         TextView date = (TextView)view.findViewById(R.id.list_post_tv_date);
 
         ImageView profile_image = (ImageView)view.findViewById(R.id.list_post_profile);
-        ImageView image1 = (ImageView) view.findViewById(R.id.list_post_image1);
-        ImageView image2 = (ImageView) view.findViewById(R.id.list_post_image2);
-        ImageView image3 = (ImageView) view.findViewById(R.id.list_post_image3);
 
         RequestQueue queue = Volley.newRequestQueue(view.getContext());
         StringRequest nicknameRequest = new StringRequest(Request.Method.POST, PROFILE_READ_NICKNAME_URL, new Response.Listener<String>() {
@@ -117,7 +116,7 @@ public class PostAdapter extends BaseAdapter {
         description.setText(sample.get(position).getDescription());
         views.setText(sample.get(position).getViews());
         shares.setText(sample.get(position).getShares());
-        category.setText("@"+sample.get(position).getCategory());
+        category.setText(sample.get(position).getCategory());
         date.setText(sample.get(position).getDate());
 
         Glide.with(mContext)
@@ -134,32 +133,54 @@ public class PostAdapter extends BaseAdapter {
         shapeDrawable.setShape(new OvalShape());
         profile_image.setBackground(shapeDrawable);
 
-        Glide.with(mContext)
-                .load(POST_IMAGE_DIRECTORY+sample.get(position).getNumber()+"/1.jpeg")
-                .into(image1);
+        StringRequest imageRequest = new StringRequest(Request.Method.POST, POST_READ_IMAGE_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    InitializeImage(jsonObject);
+                } catch (JSONException e) { e.printStackTrace(); }
+            }
 
-        Glide.with(mContext)
-                .load(POST_IMAGE_DIRECTORY+sample.get(position).getNumber()+"/2.jpeg")
-                .into(image2);
+            private void InitializeImage(JSONObject jsonObject) {
+                String TAG_JSON = "게시물_사진";
+                ImageView image1 = (ImageView) view.findViewById(R.id.list_post_image1);
+                ImageView image2 = (ImageView) view.findViewById(R.id.list_post_image2);
+                ImageView image3 = (ImageView) view.findViewById(R.id.list_post_image3);
+                ImageView[] imageViews = {image1, image2, image3};
 
-        Glide.with(mContext)
-                .load(POST_IMAGE_DIRECTORY+sample.get(position).getNumber()+"/3.jpeg")
-                .into(image3);
+                try {
+                    JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                    for(int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject item = jsonArray.getJSONObject(i);
+                        String imageLink = item.get("사진").toString();
 
-        if(image1.getDrawable() == null) {
-            image1.getLayoutParams().width = 0;
-            image1.getLayoutParams().height = 0;
-        }
+                        Glide.with(mContext)
+                                .load(POST_IMAGE_DIRECTORY+sample.get(position).getNumber()+"/"+imageLink)
+                                .into(imageViews[i]);
+                    }
+                    for(int i = 0; i < 3; i++) {
+                        if(imageViews[i].getDrawable() == null) {
+                            imageViews[i].getLayoutParams().width = 0;
+                            imageViews[i].getLayoutParams().height = 0;
+                        }
+                    }
+                } catch (JSONException e) { e.printStackTrace(); }
 
-        if(image2.getDrawable() == null) {
-            image2.getLayoutParams().width = 0;
-            image2.getLayoutParams().height = 0;
-        }
-
-        if(image3.getDrawable() == null) {
-            image3.getLayoutParams().width = 0;
-            image3.getLayoutParams().height = 0;
-        }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("number", sample.get(position).getNumber());
+                return params;
+            }
+        };
+        queue.add(imageRequest);
 
         StringRequest postLikesRequest = new StringRequest(Request.Method.POST, INNER_POST_LIKES_URL, new Response.Listener<String>() {
             @Override

@@ -1,5 +1,6 @@
 package com.wisappstudio.hobbing.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +13,6 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -52,6 +52,7 @@ public class MainPageFragment extends Fragment {
         view = inflater.inflate(R.layout.activity_main_page, container, false);
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
 
+
         fab.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -65,12 +66,18 @@ public class MainPageFragment extends Fragment {
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, POST_READ_URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                ProgressDialog progressDialog = new ProgressDialog(view.getContext());
+                progressDialog.setMessage("ProgressDialog running...");
+                progressDialog.setCancelable(true);
+                progressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Horizontal);
+                progressDialog.show();
                 InitializePostData(response);
 
                 ListView listView = (ListView) view.findViewById(R.id.main_page_lv_post);
                 final PostAdapter postAdapter = new PostAdapter(view.getContext(), postDataList);
 
                 listView.setAdapter(postAdapter);
+
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                     @Override
                     public void onItemClick(AdapterView parent, View v, int position, long id){
@@ -81,6 +88,7 @@ public class MainPageFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
+                progressDialog.dismiss();
             }
         }, new Response.ErrorListener() {
             @Override

@@ -15,14 +15,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.hobbing.R;
 import com.wisappstudio.hobbing.activity.BackTermsOfServiceActivity;
-import com.wisappstudio.hobbing.activity.InfoChangeActivity;
-import com.wisappstudio.hobbing.activity.IntroActivity;
-import com.wisappstudio.hobbing.activity.MainActivity;
 import com.wisappstudio.hobbing.activity.NoticeActivity;
-import com.wisappstudio.hobbing.activity.ProfileSettingActivity;
 import com.wisappstudio.hobbing.activity.QuestionActivity;
-import com.wisappstudio.hobbing.activity.TermsOfServiceActivity;
-import com.wisappstudio.hobbing.activity.UserLogActivity;
 import com.wisappstudio.hobbing.activity.VersionActivity;
 
 public class ServicePageFragment extends Fragment implements AdapterView.OnItemClickListener {

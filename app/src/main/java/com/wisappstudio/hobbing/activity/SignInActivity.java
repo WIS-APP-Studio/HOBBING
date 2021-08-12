@@ -25,11 +25,6 @@ import org.json.JSONObject;
 
 import java.util.regex.Pattern;
 
-/*
-    아이디 조건- 5~20자의 영문 소문자, 숫자 이용. (한글 및 특수문자 제외)
-    비밀번호 조건-8~16자 영문 대 소문자, 숫자 이용. (한글 및 특수문자 제외)
- */
-
 public class SignInActivity extends AppCompatActivity {
     private EditText sign_in_et_id, sign_in_et_pw;
     private Button btn_login;

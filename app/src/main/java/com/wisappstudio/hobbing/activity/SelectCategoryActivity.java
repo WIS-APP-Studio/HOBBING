@@ -23,7 +23,6 @@ import com.example.hobbing.R;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_READ_URL;
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_SELECT_CATEGORY_URL;
 
 public class SelectCategoryActivity extends AppCompatActivity {

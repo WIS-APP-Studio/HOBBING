@@ -8,7 +8,6 @@ import com.wisappstudio.hobbing.data.ServerData;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class SignUpAdapter extends StringRequest {
     public static String URL = ServerData.SIGN_UP_URL;
 

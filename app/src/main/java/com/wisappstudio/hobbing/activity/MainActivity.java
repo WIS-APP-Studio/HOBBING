@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,8 +14,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.hobbing.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.wisappstudio.hobbing.fragment.MainPageFragment;
 import com.wisappstudio.hobbing.fragment.MyPageFragment;
 import com.wisappstudio.hobbing.fragment.ServicePageFragment;
