@@ -38,16 +38,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/activity_profile_setting_image"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:src="@drawable/profile_image"/>
 
-                <ImageView
-                    android:id="@+id/activity_profile_setting_image"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:src="@drawable/profile_image"/>
+                    <ImageView
+                        android:id="@+id/activity_profile_setting_change_image"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:padding="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:src="@drawable/upload"/>
 
+                </FrameLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -70,7 +83,38 @@
                             android:textStyle="bold" />
 
                         <ImageView
-                            android:id="@+id/activity_profile_setting_change_nickname"
+                            android:id="@+id/activity_profile_setting_change_profile"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:adjustViewBounds="false"
+                            android:cropToPadding="false"
+                            android:src="@drawable/edit" />
+                        <TextView
+                            android:id="@+id/activity_profile_setting_userid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="7dp"
+                            android:text="User id"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/activity_profile_setting_introduce"
+                            android:layout_width="270dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:textSize="15sp"
+                            android:text=""/>
+                        <ImageView
+                            android:id="@+id/activity_profile_setting_change_introduce"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="bottom"
@@ -80,15 +124,6 @@
                             android:cropToPadding="false"
                             android:src="@drawable/edit" />
                     </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/activity_profile_setting_userid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:text="User id"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

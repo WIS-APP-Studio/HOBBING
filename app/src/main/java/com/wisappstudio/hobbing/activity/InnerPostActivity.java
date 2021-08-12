@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
@@ -44,15 +46,22 @@ import java.util.Map;
 
 import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_COMMENT_READ_URL;
 import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_IMAGE_READ_URL;
+import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_IS_LIKE_URL;
+import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_LIKES_URL;
+import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_LIKE_URL;
+import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_NOT_LIKE_URL;
 import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_READ_URL;
 import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_SEND_COMMENT_URL;
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
+import static com.wisappstudio.hobbing.data.ServerData.PROFILE_READ_NICKNAME_URL;
 
 public class InnerPostActivity extends AppCompatActivity {
     ArrayList<InnerPostData> innerPostDataList;
     ArrayList<CommentData> commentDataList;
     String userId;
     String postNumber;
+
+    boolean isLike;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +71,7 @@ public class InnerPostActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String userId = intent.getStringExtra("user_id");
         String postNumber = intent.getStringExtra("number");
+
         this.userId = userId;
         this.postNumber = postNumber;
 
@@ -78,18 +88,16 @@ public class InnerPostActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
 
 
-        // 게시물 내부 내용 로드
+        // 게시물 내용 로드
         StringRequest strRequest = new StringRequest(Request.Method.POST, INNER_POST_READ_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     InitializeInnerPostData(jsonObject);
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -103,21 +111,23 @@ public class InnerPostActivity extends AppCompatActivity {
                 return params;
             }
         };
-        // 게시물 내부 사진 로드
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, INNER_POST_IMAGE_READ_URL, new Response.Listener<String>() {
+
+        // 게시물 좋아요 로드
+        StringRequest postLikesRequest = new StringRequest(Request.Method.POST, INNER_POST_LIKES_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
+                    InitializePostLikes(jsonObject);
+                } catch (JSONException e) { }
+            }
+            private void InitializePostLikes(JSONObject jsonObject) {
+                String TAG_JSON = "좋아요_수";
 
-                    RecyclerView recyclerView = findViewById(R.id.activity_inner_post_image);
-
-                    InitializePostImage(jsonObject);
-                    InnerPostAdapter postAdapter = new InnerPostAdapter(innerPostDataList);
-
-                    recyclerView.setAdapter(postAdapter);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
-
+                try {
+                    JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                    TextView likes = (TextView) findViewById(R.id.activity_inner_post_likes);
+                    likes.setText(String.valueOf(jsonArray.length()));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -135,6 +145,37 @@ public class InnerPostActivity extends AppCompatActivity {
                 return params;
             }
         };
+        queue.add(postLikesRequest);
+
+        // 게시물 사진 로드
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, INNER_POST_IMAGE_READ_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    RecyclerView recyclerView = findViewById(R.id.activity_inner_post_image);
+
+                    InitializePostImage(jsonObject);
+                    InnerPostAdapter postAdapter = new InnerPostAdapter(innerPostDataList);
+
+                    recyclerView.setAdapter(postAdapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+                } catch (JSONException e) { }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                String number = getIntent().getStringExtra("number");
+                params.put("number", number);
+                return params;
+            }
+        };
+
         // 게시물 댓글 로드
         StringRequest commentRequest = new StringRequest(Request.Method.POST, INNER_POST_COMMENT_READ_URL, new Response.Listener<String>() {
             @Override
@@ -167,9 +208,125 @@ public class InnerPostActivity extends AppCompatActivity {
             }
         };
 
+        // 게시물 좋아요 확인
+        StringRequest isLikePostRequest = new StringRequest(Request.Method.POST, INNER_POST_IS_LIKE_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    InitializePostLike(jsonObject);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            private void InitializePostLike(JSONObject jsonObject) {
+                String TAG_JSON = "좋아요";
+                String USER = "사용자";
+                String POST = "게시물";
+
+                try {
+                    JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                    JSONObject item = jsonArray.getJSONObject(0);
+                    String user = item.getString(USER);
+                    String post = item.getString(POST);
+
+                    if(userId.equals(user) && postNumber.equals(post)) {
+                        ImageView isLikeImage = findViewById(R.id.activity_inner_post_like);
+                        Button isLikeButton = findViewById(R.id.activity_inner_post_like_button);
+
+                        isLikeButton.setText("좋아요 취소");
+                        isLikeImage.setImageResource(R.drawable.like2);
+                        isLike = true;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) { }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("user_id", getIntent().getStringExtra("user_id"));
+                params.put("number", getIntent().getStringExtra("number"));
+                return params;
+            }
+        };
+        // 게시물 좋아요 클릭
+        Button likeButton = (Button) findViewById(R.id.activity_inner_post_like_button);
+        likeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isLike) {
+                    StringRequest isNotLikeRequest = new StringRequest(Request.Method.POST, INNER_POST_NOT_LIKE_URL, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Toast.makeText(InnerPostActivity.this, "좋아요를 취소했습니다.", Toast.LENGTH_SHORT).show();
+                            ImageView isLikeImage = findViewById(R.id.activity_inner_post_like);
+                            Button isLikeButton = findViewById(R.id.activity_inner_post_like_button);
+                            TextView likes = findViewById(R.id.activity_inner_post_likes);
+
+                            int temp = Integer.valueOf(likes.getText().toString());
+                            likes.setText(String.valueOf(--temp));
+
+                            isLikeButton.setText("좋아요");
+                            isLikeImage.setImageResource(R.drawable.like);
+                            isLike = false;
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                        }
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("user_id", getIntent().getStringExtra("user_id"));
+                            params.put("number", getIntent().getStringExtra("number"));
+                            return params;
+                        }
+                    };
+                    queue.add(isNotLikeRequest);
+                }
+                else {
+                    StringRequest isLikeRequest = new StringRequest(Request.Method.POST, INNER_POST_LIKE_URL, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            ImageView isLikeImage = findViewById(R.id.activity_inner_post_like);
+                            Button isLikeButton = findViewById(R.id.activity_inner_post_like_button);
+                            TextView likes = findViewById(R.id.activity_inner_post_likes);
+
+                            int temp = Integer.valueOf(likes.getText().toString());
+                            likes.setText(String.valueOf(++temp));
+
+                            isLikeButton.setText("좋아요 취소");
+
+                            isLikeImage.setImageResource(R.drawable.like2);
+                            isLike = true;
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                        }
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("user_id", getIntent().getStringExtra("user_id"));
+                            params.put("number", getIntent().getStringExtra("number"));
+                            return params;
+                        }
+                    };
+                    queue.add(isLikeRequest);
+                }
+            }
+        });
+
         // 댓글 작성 및 전송
         ImageView sendComment = (ImageView) findViewById(R.id.activity_inner_post_send_comment);
-
         sendComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -212,6 +369,7 @@ public class InnerPostActivity extends AppCompatActivity {
             }
         });
 
+        queue.add(isLikePostRequest);
         queue.add(strRequest);
         queue.add(stringRequest);
         queue.add(commentRequest);
@@ -289,7 +447,40 @@ public class InnerPostActivity extends AppCompatActivity {
                 });
             }
 
-            ownerView.setText(writer + "님의 게시물");
+
+            RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+            StringRequest nicknameRequest = new StringRequest(Request.Method.POST, PROFILE_READ_NICKNAME_URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        String TAG_JSON = "프로필";
+                        String NICKNAME = "닉네임";
+                        try {
+                            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                            JSONObject item = jsonArray.getJSONObject(0);
+                            String nickname = item.getString(NICKNAME);
+                            ownerView.setText(nickname+"님의 게시물");
+
+                        } catch (JSONException e) { }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String ,String>();
+                    params.put("id", writer);
+                    return params;
+                }
+            };
+            queue.add(nicknameRequest);
+
             descriptionView.setText(description);
             titleView.setText(title);
 

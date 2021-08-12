@@ -2,7 +2,6 @@ package com.wisappstudio.hobbing.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -70,7 +69,9 @@ public class SignUpActivity extends AppCompatActivity {
                     String success = jsonObject.getString("success");
                     if (success != null && success.equals("1")) {  // 회원가입 완료
                         Toast.makeText(getApplicationContext(), "회원가입 성공!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                        Intent intent = new Intent(SignUpActivity.this, SelectCategoryActivity.class);
+                        String ID = sign_up_et_id.getText().toString();
+                        intent.putExtra("user_id", ID);
                         IntroActivity introActivity = (IntroActivity) IntroActivity.activity;
                         startActivity(intent);
                         introActivity.finish();

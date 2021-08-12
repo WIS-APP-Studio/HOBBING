@@ -30,6 +30,18 @@
         <activity android:name="com.wisappstudio.hobbing.activity.UserLogActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.InfoChangeActivity"/>
         <activity android:name="com.wisappstudio.hobbing.activity.UpdatePostActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.TermsOfServiceActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.WriteProfileActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.DeleteAccountActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.SelectCategoryActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.NotificationSettingActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.ActionLogSettingActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.FollowerNotificationSettingActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.PostNotificationSettingActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.VersionActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.QuestionActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.NoticeActivity"/>
+        <activity android:name="com.wisappstudio.hobbing.activity.BackTermsOfServiceActivity"/>
     </application>
-
 </manifest>

@@ -1,10 +1,13 @@
 package com.wisappstudio.hobbing.activity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +34,8 @@ public class SignInActivity extends AppCompatActivity {
     private EditText sign_in_et_id, sign_in_et_pw;
     private Button btn_login;
 
+    boolean autoLoginChecked = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +48,23 @@ public class SignInActivity extends AppCompatActivity {
         gotoSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                Intent intent = new Intent(getApplicationContext(), TermsOfServiceActivity.class);
                 finish();
                 startActivity(intent);
+            }
+        });
+
+        ImageView autoLogin = (ImageView) findViewById(R.id.auto_login_check);
+        autoLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(autoLoginChecked==false) {
+                    autoLogin.setImageResource(R.drawable.check2);
+                    autoLoginChecked=true;
+                } else {
+                    autoLogin.setImageResource(R.drawable.check);
+                    autoLoginChecked=false;
+                }
             }
         });
 
@@ -57,7 +76,6 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 /*
-                    아이디 및 비밀번호 규약 알고리즘
                     아이디 조건- 5~20자의 영문 소문자, 숫자 이용. (한글 및 특수문자 제외)
                     비밀번호 조건-8~16자 영문 대 소문자, 숫자 이용. (한글 및 특수문자 제외)
                  */
@@ -108,6 +126,14 @@ public class SignInActivity extends AppCompatActivity {
                         intent.putExtra("user_id",user_id);
                         IntroActivity introActivity = (IntroActivity) IntroActivity.activity;
                         startActivity(intent);
+                        SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+                        if(autoLoginChecked==true) {
+                            SharedPreferences.Editor autoLogin = auto.edit();
+                            autoLogin.putString("id", user_id);
+                            autoLogin.putString("pw", user_pw);
+                            autoLogin.commit();
+                        }
+
                         introActivity.finish();
                         finish();
                     } else {

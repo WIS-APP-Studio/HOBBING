@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,12 +43,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.wisappstudio.hobbing.data.ServerData.IMAGE_DIRECTORY_URL;
 import static com.wisappstudio.hobbing.data.ServerData.MY_PAGE_POST_READ_URL;
+import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
+import static com.wisappstudio.hobbing.data.ServerData.PROFILE_READ_NICKNAME_URL;
 
 public class MyPageFragment extends Fragment {
     private String userId;
     private View view;
+    private String introduce;
     ArrayList<MyPagePostData> postDataList;
     private RequestQueue queue;
 
@@ -62,7 +65,8 @@ public class MyPageFragment extends Fragment {
         setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.activity_my_page, container, false);
 
-        TextView nickname = (TextView) view.findViewById(R.id.activity_my_page_nickname);
+        TextView tv_nickname = (TextView) view.findViewById(R.id.activity_my_page_nickname);
+        TextView tv_introduce = (TextView) view.findViewById(R.id.activity_my_page_introduce);
         TextView id = (TextView) view.findViewById(R.id.activity_my_page_id);
         ImageView profile_image = (ImageView) view.findViewById(R.id.activity_my_page_image);
         ImageView profile_setting = (ImageView) view.findViewById(R.id.activity_my_page_setting_profile);
@@ -72,13 +76,14 @@ public class MyPageFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(view.getContext(), ProfileSettingActivity.class);
                 intent.putExtra("user_id", userId);
+                intent.putExtra("introduce", introduce);
                 startActivity(intent);
             }
         });
 
         // 상단 마이 프로필 사진
         Glide.with(view.getContext())
-                .load(IMAGE_DIRECTORY_URL+userId+".png") // 임시로 로드
+                .load(PROFILE_IMAGE_DIRECTORY+userId+".png") // 임시로 로드
                 .apply(new RequestOptions()
                         .signature(new ObjectKey("signature string"))
                         .skipMemoryCache(true)
@@ -92,11 +97,45 @@ public class MyPageFragment extends Fragment {
         profile_image.setBackground(shapeDrawable);
         profile_image.setClipToOutline(true);
 
-        // 상단 아이디 및 닉네임 (닉네임은 추후 작업)
-        nickname.setText(userId);
         id.setText(userId);
 
         queue = Volley.newRequestQueue(view.getContext());
+        StringRequest nicknameRequest = new StringRequest(Request.Method.POST, PROFILE_READ_NICKNAME_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String TAG_JSON = "프로필";
+                    String NICKNAME = "닉네임";
+                    String INTRODUCE = "자기소개";
+                    String FOLLOWER = "팔로워";
+                    try {
+                        JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                            JSONObject item = jsonArray.getJSONObject(0);
+                            String nickname = item.getString(NICKNAME);
+                            introduce = item.getString(INTRODUCE);
+                            String follower = item.getString(FOLLOWER);
+
+                            tv_nickname.setText(nickname);
+                            tv_introduce.setText(introduce);
+                    } catch (JSONException e) { }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String ,String>();
+                params.put("id", userId);
+                return params;
+            }
+        };
+
 
         StringRequest strRequest = new StringRequest(Request.Method.POST, MY_PAGE_POST_READ_URL, new Response.Listener<String>() {
             @Override
@@ -135,6 +174,7 @@ public class MyPageFragment extends Fragment {
                 return params;
             }
         };
+        queue.add(nicknameRequest);
         queue.add(strRequest);
         return view;
     }

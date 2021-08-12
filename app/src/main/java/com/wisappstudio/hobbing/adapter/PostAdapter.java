@@ -10,6 +10,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
@@ -17,10 +23,18 @@ import com.bumptech.glide.signature.ObjectKey;
 import com.example.hobbing.R;
 import com.wisappstudio.hobbing.data.PostData;
 
-import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.wisappstudio.hobbing.data.ServerData.INNER_POST_LIKES_URL;
 import static com.wisappstudio.hobbing.data.ServerData.POST_IMAGE_DIRECTORY;
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
+import static com.wisappstudio.hobbing.data.ServerData.PROFILE_READ_NICKNAME_URL;
 
 public class PostAdapter extends BaseAdapter {
     Context mContext = null;
@@ -66,10 +80,41 @@ public class PostAdapter extends BaseAdapter {
         ImageView image2 = (ImageView) view.findViewById(R.id.list_post_image2);
         ImageView image3 = (ImageView) view.findViewById(R.id.list_post_image3);
 
-        writer.setText(sample.get(position).getWriter());
+        RequestQueue queue = Volley.newRequestQueue(view.getContext());
+        StringRequest nicknameRequest = new StringRequest(Request.Method.POST, PROFILE_READ_NICKNAME_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String TAG_JSON = "프로필";
+                    String NICKNAME = "닉네임";
+                    try {
+                        JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                        JSONObject item = jsonArray.getJSONObject(0);
+                        String nickname = item.getString(NICKNAME);
+                        writer.setText(nickname);
+
+                    } catch (JSONException e) { }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String ,String>();
+                params.put("id", sample.get(position).getWriter());
+                return params;
+            }
+        };
+        queue.add(nicknameRequest);
+
         title.setText(sample.get(position).getTitle());
         description.setText(sample.get(position).getDescription());
-        likes.setText(sample.get(position).getLikes());
         views.setText(sample.get(position).getViews());
         shares.setText(sample.get(position).getShares());
         category.setText("@"+sample.get(position).getCategory());
@@ -115,6 +160,39 @@ public class PostAdapter extends BaseAdapter {
             image3.getLayoutParams().width = 0;
             image3.getLayoutParams().height = 0;
         }
+
+        StringRequest postLikesRequest = new StringRequest(Request.Method.POST, INNER_POST_LIKES_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    InitializePostLikes(jsonObject);
+                } catch (JSONException e) { }
+            }
+            private void InitializePostLikes(JSONObject jsonObject) {
+                String TAG_JSON = "좋아요_수";
+
+                try {
+                    JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                    likes.setText(String.valueOf(jsonArray.length()));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                String number = sample.get(position).getNumber();
+                params.put("number", number);
+                return params;
+            }
+        };
+        queue.add(postLikesRequest);
 
         profile_image.setBackground(new ShapeDrawable(new OvalShape()));
         profile_image.setClipToOutline(true);

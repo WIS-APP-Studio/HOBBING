@@ -10,7 +10,8 @@
     <color name="signature">#bcdbef</color>
     <color name="sub_gray">#9E9E9E</color>
     <color name="sub_brown">#6B4F33</color>
-
-
+    <color name="sub_blue">#7A7FA3</color>
+    <color name="upload_image">#50000000</color>
+    <color name="sub_yellow">#FDE8A5</color>
 
 </resources>

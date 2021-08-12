@@ -1,6 +1,7 @@
 package com.wisappstudio.hobbing.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -8,15 +9,22 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.hobbing.R;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
+import com.wisappstudio.hobbing.dialog.InfoCustomDialog;
+
+import static com.wisappstudio.hobbing.data.ServerData.UPDATE_ACCOUNT_URL;
+
 
 public class InfoChangeActivity extends AppCompatActivity {
     private EditText change_in_pw, change_in_pw_2, change_in_mail;
@@ -61,44 +69,34 @@ public class InfoChangeActivity extends AppCompatActivity {
     }
 
     private void InfoChange() {
-        String change_pw = change_in_pw.getText().toString();
-        String change_mail = change_in_mail.getText().toString();
-
-        StringRequest stringRequest;
-
-        Response.Listener<String> responseListener = new Response.Listener<String>() {
+        StringRequest infoChangeRequest = new StringRequest(Request.Method.POST, UPDATE_ACCOUNT_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    String success = jsonObject.getString("success");
-                    if (success != null && success.equals("1")) {  // 회원정보 변경 완료
-                        Toast.makeText(getApplicationContext(), "회원정보 변경 성공!", Toast.LENGTH_SHORT).show();
-                        finish();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "회원정보 변경 실패!", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                Log.d("VOLLEYLOG", response);
+                Toast.makeText(getApplicationContext(), "회원정보를 변경했습니다.", Toast.LENGTH_SHORT).show();
+                finish();
             }
-        };
-
-        Response.ErrorListener errorListener = new Response.ErrorListener() {
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),"회원정보 변경 처리시 에러발생!",Toast.LENGTH_SHORT).show();
+                Log.d("VOLLEYLOG", error.toString());
+                Toast.makeText(getApplicationContext(), "회원정보 변경 도중 실패했습니다.", Toast.LENGTH_SHORT).show();
                 return;
             }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                String change_pw = change_in_pw.getText().toString();
+                String change_mail = change_in_mail.getText().toString();
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", getIntent().getStringExtra("user_id"));
+                params.put("pw", change_pw);
+                params.put("email", change_mail);
+                return params;
+            }
         };
-
-        // Volley 로 변경된 양식 웹전송 (인태님 ㅎㅎ ...)
-//        SignInAdapter adapter = new SignInAdapter(change_id,change_pw,change_mail,responseListener,errorListener);
-//        adapter.setShouldCache(false);
-
-//        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-//        queue.add(adapter);
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        queue.add(infoChangeRequest);
     }
 
 }

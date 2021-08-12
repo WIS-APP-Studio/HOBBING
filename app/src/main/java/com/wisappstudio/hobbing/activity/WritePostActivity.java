@@ -37,7 +37,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.wisappstudio.hobbing.data.ServerData.WRITE_POST_IMAGE_UPLOAD_URL;
+import static com.wisappstudio.hobbing.data.ServerData.POST_WRITE_IMAGE_UPLOAD_URL;
 
 public class WritePostActivity extends AppCompatActivity {
     final int CODE_GALLERY_REQUEST = 999;
@@ -108,7 +108,7 @@ public class WritePostActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // post image to server
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, WRITE_POST_IMAGE_UPLOAD_URL, new Response.Listener<String>() {
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, POST_WRITE_IMAGE_UPLOAD_URL, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d("WRITEPOST", response);

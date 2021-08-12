@@ -104,8 +104,74 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/activity_inner_post_like"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:textSize="6pt"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/like"/>
+
+                    <TextView
+                        android:id="@+id/activity_inner_post_likes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="5dp"
+                        android:text="0"/>
+
+                    <ImageView
+                        android:id="@+id/activity_inner_post_share"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:textSize="6pt"
+                        android:layout_marginLeft="5dp"
+                        android:src="@drawable/download"/>
+
+                    <TextView
+                        android:id="@+id/activity_inner_post_shares"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="5dp"
+                        android:text="0"/>
+
+                    <ImageView
+                        android:id="@+id/activity_inner_post_view"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:textSize="6pt"
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="right"
+                        android:src="@drawable/view"/>
+
+                    <TextView
+                        android:id="@+id/activity_inner_post_views"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="5dp"
+                        android:gravity="right"
+                        android:text="0"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="bottom|center">
                 <Button
+                    android:id="@+id/activity_inner_post_like_button"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#ffffff"

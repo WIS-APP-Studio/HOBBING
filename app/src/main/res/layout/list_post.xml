@@ -35,7 +35,7 @@
                 android:textSize="5pt"
                 android:padding="5dp"
                 android:gravity="center"
-                android:text="위즈앱 스튜디오"
+                tools:text="위즈앱 스튜디오"
                 android:textStyle="bold" />
 
             <TextView
@@ -151,7 +151,7 @@
                             android:layout_gravity="bottom"
                             android:layout_marginLeft="2dp"
                             android:layout_marginRight="5dp"
-                            android:text="100"/>
+                            android:text=""/>
 
                         <ImageView
                             android:id="@+id/imageView_shared"
