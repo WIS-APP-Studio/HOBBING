@@ -1,6 +1,10 @@
 package com.wisappstudio.hobbing.activity;
 
+<<<<<<< HEAD
+import android.app.ProgressDialog;
+=======
 import android.app.Activity;
+>>>>>>> 456fd76290b3c31f15956d44493fd4dab353b60c
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,15 +27,24 @@ public class LoadingActivity extends AppCompatActivity {
     private int LoadingTime = 3000; // 밀리세컨드 단위 ( 1000(milli second) = 1(second)
     String id, pw;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
+
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+<<<<<<< HEAD
+
+                Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
+                startActivity(intent);
+                finish();
+
+=======
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 id = auto.getString("id", null);
                 pw = auto.getString("pw", null);
@@ -43,9 +56,11 @@ public class LoadingActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
+>>>>>>> 456fd76290b3c31f15956d44493fd4dab353b60c
             }
         }, LoadingTime);
     }
+
 
     @Override
     protected void onPause() {
