@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -74,8 +73,8 @@ public class InnerPostActivity extends AppCompatActivity {
 
         queue = Volley.newRequestQueue(this);
 
-        clickToLikeButton(); // 좋아요 버튼 클릭
-        clickToSendComment(); // 댓글 전송 버튼 클릭
+        clickLikeButton(); // 좋아요 버튼 클릭
+        clickSendComment(); // 댓글 전송 버튼 클릭
         loadCommentUserProfile(); // 댓글 프로필 로드
 
         queue.add(loadPostContent()); // 게시물 내용 로드
@@ -86,7 +85,7 @@ public class InnerPostActivity extends AppCompatActivity {
         queue.add(loadUserLikes()); // 사용자 게시물 좋아요 클릭 유무 로드
     }
 
-    private void clickToSendComment() {
+    private void clickSendComment() {
         // 댓글 전송
         ImageView sendComment = (ImageView) findViewById(R.id.activity_inner_post_send_comment);
         sendComment.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +130,7 @@ public class InnerPostActivity extends AppCompatActivity {
         });
     }
 
-    private void clickToLikeButton() {
+    private void clickLikeButton() {
         // 게시물 좋아요 클릭
         Button likeButton = (Button) findViewById(R.id.activity_inner_post_like_button);
         likeButton.setOnClickListener(new View.OnClickListener() {
@@ -308,7 +307,6 @@ public class InnerPostActivity extends AppCompatActivity {
         };
         return postNumberOfLikesRequest;
     }
-
 
     private StringRequest loadComments() {
         StringRequest commentRequest = new StringRequest(Request.Method.POST, INNER_POST_COMMENT_READ_URL, new Response.Listener<String>() {
