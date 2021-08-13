@@ -39,7 +39,6 @@ public class SignInActivity extends AppCompatActivity {
         sign_in_et_id = findViewById(R.id.sign_in_et_id);
         sign_in_et_pw = findViewById(R.id.sign_in_et_pw);
 
-        adminBackDoor(); // 백도어
         clickSignUp(); // 회원가입 버튼 클릭
         switchAutoLogin(); // 자동 로그인 동작
         clickSignIn(); // 로그인 버튼 클릭
