@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.animation.AlphaAnimation;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +38,14 @@ public class LoadingActivity extends AppCompatActivity {
                 autoLogin();
             }
         }, LoadingTime);
+
+        AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
+        TextView logoShadow = (TextView) findViewById(R.id.logo_shadow);
+        logoShadow.startAnimation(fadeIn);
+
+        fadeIn.setDuration(2500);
+
+
     }
 
     @Override

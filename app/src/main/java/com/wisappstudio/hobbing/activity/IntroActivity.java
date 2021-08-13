@@ -7,11 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.hobbing.R;
 
 public class IntroActivity extends AppCompatActivity {
-    Button btn_sign_up, btn_sign_in;
+    TextView btn_sign_up, btn_sign_in;
     public static Activity activity;
 
     @Override

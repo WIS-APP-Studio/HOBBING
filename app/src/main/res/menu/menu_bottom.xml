@@ -5,19 +5,14 @@
         android:id="@+id/main"
         android:checked="true"
         android:enabled="true"
-        android:title="메인페이지 아이콘"
+        android:title="메인페이지"
+        android:icon="@drawable/home"
         app:showAsAction="always" />
-
     <item
         android:id="@+id/profile"
         android:enabled="true"
-        android:title="마이페이지 아이콘"
-        app:showAsAction="always" />
-
-    <item
-        android:id="@+id/setting"
-        android:enabled="true"
-        android:title="서비스 아이콘"
+        android:icon="@drawable/my_page"
+        android:title="마이페이지"
         app:showAsAction="always" />
 </menu>
 

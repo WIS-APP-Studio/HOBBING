@@ -7,41 +7,54 @@
     android:background="#bcdbef"
     tools:context="com.wisappstudio.hobbing.activity.IntroActivity">
 
-    <Button
-        android:id="@+id/btn_sign_up"
-        android:layout_width="89dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="25dp"
-        android:text="회원가입"
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="200dp"
+        android:text="PASTIME"
+        android:textColor="#fde8a5"
+        android:textSize="48sp"
         android:textStyle="bold"
-        app:layout_constraintRight_toRightOf="@id/textView2"
-        app:layout_constraintTop_toBottomOf="@id/textView2"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="278dp" />
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
         android:layout_marginTop="200dp"
-        android:text="HOBBING"
+        android:text="PASTIME"
+        android:textColor="#7b88a2"
         android:textSize="48sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/btn_sign_up"
-        app:layout_constraintStart_toStartOf="@+id/btn_sign_in"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteY="178dp" />
-
-    <Button
-        android:id="@+id/btn_sign_in"
-        android:layout_width="89dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="25dp"
-        android:text="로그인"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView2" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/btn_sign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="로그인"
+        android:backgroundTint="#7b88a2"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/btn_sign_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:text="회원가입"
+        android:textStyle="bold"
+        android:backgroundTint="#7b88a2"
+        app:layout_constraintStart_toEndOf="@+id/btn_sign_in"
+        app:layout_constraintTop_toTopOf="@+id/btn_sign_in" />
 
     <TextView
         android:id="@+id/textView5"

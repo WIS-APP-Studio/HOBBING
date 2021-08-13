@@ -55,7 +55,7 @@ import static com.wisappstudio.hobbing.data.ServerData.PROFILE_READ_NICKNAME_URL
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_UPLOAD_IMAGE_URL;
 
 public class ProfileSettingActivity extends Activity implements AdapterView.OnItemClickListener {
-    static final String[] LIST_MENU = {"계정 정보 수정", "알림 설정", "활동 기록", "로그아웃", "탈퇴"} ;
+    static final String[] LIST_MENU = {"계정 정보 수정", "알림 설정", "활동 기록", "서비스", "로그아웃", "탈퇴"} ;
     final int CODE_GALLERY_REQUEST = 999;
     ImageView image, uploadImage;
     TextView tv_username, tv_introduce;
@@ -263,6 +263,11 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
                 break;
             }
             case 3 : {
+                Intent intent = new Intent(this, ServiceActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case 4 : {
                 MainActivity mainActivity = (MainActivity) MainActivity.activity;
                 Intent intent = new Intent(this, IntroActivity.class);
                 startActivity(intent);
@@ -274,7 +279,7 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
                 mainActivity.finish();
                 break;
             }
-            case 4 : {
+            case 5 : {
                 Intent intent = new Intent(this, DeleteAccountActivity.class);
                 intent.putExtra("user_id", USER_ID);
                 startActivity(intent);

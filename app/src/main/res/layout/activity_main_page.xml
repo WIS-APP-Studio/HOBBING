@@ -21,7 +21,7 @@
                 android:id="@+id/main_page_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="HOBBING"
+                android:text="PASTIME"
                 android:layout_marginLeft="10dp"
                 android:textSize="10pt"/>
         </LinearLayout>

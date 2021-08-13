@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HOBBING</string>
+    <string name="app_name">PASTIME</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -15,7 +15,7 @@
         <h3>서비스이용약관</h3>&#160;
 
         <h3>제1조(목적)</h3>
-        HOBBING 서비스 이용약관은 회사가 서비스를 제공함에 있어, 회사와 이용자 간의 권리, 의무 및 책임 사항 등을 규정함을 목적으로 합니다.
+        PASTIME 서비스 이용약관은 회사가 서비스를 제공함에 있어, 회사와 이용자 간의 권리, 의무 및 책임 사항 등을 규정함을 목적으로 합니다.
 
         <h3>제2조(정의)</h3>
         1. 이 약관에서 사용하는 용어의 정의는 다음과 같습니다.
