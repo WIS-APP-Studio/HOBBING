@@ -6,6 +6,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import com.example.hobbing.R;
 
+
+    //셀렉트 박스 작업 손예빈
 public class QuestionActivity extends Activity {
 
     @Override
