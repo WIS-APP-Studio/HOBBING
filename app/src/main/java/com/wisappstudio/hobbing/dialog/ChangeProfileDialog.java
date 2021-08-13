@@ -22,6 +22,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.hobbing.R;
+import com.wisappstudio.hobbing.activity.ProfileSettingActivity;
+import com.wisappstudio.hobbing.fragment.MyPageFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,8 +49,6 @@ public class ChangeProfileDialog extends AppCompatActivity {
 
         final ImageView image = (ImageView) dlg.findViewById(R.id.dialog_profile_image);
         final TextView okButton = (TextView) dlg.findViewById(R.id.dialog_profile_OK_Button);
-        final TextView tv_nickname = (TextView) dlg.findViewById(R.id.dialog_profile_nickname);
-
 
         RequestQueue queue = Volley.newRequestQueue(dlg.getContext());
 
@@ -73,6 +73,10 @@ public class ChangeProfileDialog extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                             Toast.makeText(context,"닉네임을 변경했습니다.", Toast.LENGTH_SHORT).show();
+                            ProfileSettingActivity activity = (ProfileSettingActivity) ProfileSettingActivity.activity;
+                            activity.loadProfileDescription();
+                            MyPageFragment fragment = (MyPageFragment) MyPageFragment.fragment;
+                            fragment.loadProfileDescription();
                             dlg.dismiss();
                         }
                     }, new Response.ErrorListener() {

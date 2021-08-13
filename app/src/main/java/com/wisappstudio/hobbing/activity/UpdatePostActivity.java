@@ -130,7 +130,7 @@ public class UpdatePostActivity extends AppCompatActivity {
         queue.add(postRequest);
     }
 
-    public void InitializeInnerPostData(JSONObject jsonObject) {
+    private void InitializeInnerPostData(JSONObject jsonObject) {
         String TAG_JSON = "내부_게시물_정보";
 //        String WRITER = "작성자";
         String CATEGORY = "카테고리";

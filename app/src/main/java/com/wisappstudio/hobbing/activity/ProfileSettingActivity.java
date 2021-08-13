@@ -58,23 +58,31 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
     static final String[] LIST_MENU = {"계정 정보 수정", "알림 설정", "활동 기록", "로그아웃", "탈퇴"} ;
     final int CODE_GALLERY_REQUEST = 999;
     ImageView image, uploadImage;
+    TextView tv_username, tv_introduce;
     String USER_ID;
     Bitmap bitmapImage;
+    RequestQueue queue;
+    public static Activity activity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_setting);
 
+        activity = ProfileSettingActivity.this;
+
         ArrayAdapter Adapter = new ArrayAdapter(ProfileSettingActivity.this, android.R.layout.simple_list_item_1, LIST_MENU);
+
+        queue = Volley.newRequestQueue(getApplicationContext());
+        USER_ID = getIntent().getStringExtra("user_id");
+        image = (ImageView) findViewById(R.id.activity_profile_setting_image);
+        uploadImage = (ImageView) findViewById(R.id.activity_profile_setting_change_image);
+        tv_introduce = (TextView) findViewById(R.id.activity_profile_setting_introduce);
 
         ListView listview = (ListView) findViewById(R.id.listview1) ;
         listview.setAdapter(Adapter) ;
         listview.setOnItemClickListener(this);
 
-        USER_ID = getIntent().getStringExtra("user_id");
-        image = (ImageView) findViewById(R.id.activity_profile_setting_image);
-        uploadImage = (ImageView) findViewById(R.id.activity_profile_setting_change_image);
 
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
@@ -125,16 +133,53 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
         image.setClipToOutline(true);
     }
 
+     public void loadProfileDescription() {
+        StringRequest profileRequest = new StringRequest(Request.Method.POST, PROFILE_READ_NICKNAME_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String TAG_JSON = "프로필";
+                    String NICKNAME = "닉네임";
+                    String INTRODUCE = "자기소개";
+                    try {
+                        JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                        JSONObject item = jsonArray.getJSONObject(0);
+                        String nickname = item.getString(NICKNAME);
+                        String introduce = item.getString(INTRODUCE);
+
+                        tv_username.setText(nickname);
+                        tv_introduce.setText(introduce);
+                    } catch (JSONException e) { }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String ,String>();
+                params.put("id", USER_ID);
+                return params;
+            }
+        };
+        queue.add(profileRequest);
+    }
+
     private void clickChangeIntroduce() {
-        TextView introduce = (TextView) findViewById(R.id.activity_profile_setting_introduce);
         ImageView changeIntroduce = (ImageView) findViewById(R.id.activity_profile_setting_change_introduce);
+
+        tv_introduce.setText(getIntent().getStringExtra("introduce"));
 
         changeIntroduce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChangeProfileIntroduceDialog customDialog = new ChangeProfileIntroduceDialog(getApplicationContext(), USER_ID);
+                ChangeProfileIntroduceDialog customDialog = new ChangeProfileIntroduceDialog(ProfileSettingActivity.this, USER_ID);
                 customDialog.callFunction(null);
-                introduce.setText(getIntent().getStringExtra("introduce"));
             }
         });
     }
@@ -144,7 +189,7 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
         changeNickname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChangeProfileDialog customDialog = new ChangeProfileDialog(getApplicationContext(), USER_ID);
+                ChangeProfileDialog customDialog = new ChangeProfileDialog(ProfileSettingActivity.this, USER_ID);
                 customDialog.callFunction(null);
             }
         });
@@ -162,7 +207,7 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
 
     private StringRequest loadUserProfile() {
         TextView userId = (TextView) findViewById(R.id.activity_profile_setting_userid);
-        TextView userName = (TextView) findViewById(R.id.activity_profile_setting_username);
+        tv_username = (TextView) findViewById(R.id.activity_profile_setting_username);
 
         userId.setText(USER_ID);
         StringRequest nicknameRequest = new StringRequest(Request.Method.POST, PROFILE_READ_NICKNAME_URL, new Response.Listener<String>() {
@@ -177,7 +222,7 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
                         JSONObject item = jsonArray.getJSONObject(0);
                         String nickname = item.getString(NICKNAME);
 
-                        userName.setText(nickname);
+                        tv_username.setText(nickname);
                     } catch (JSONException e) { }
                 } catch (JSONException e) {
                     e.printStackTrace();

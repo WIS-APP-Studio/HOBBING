@@ -27,6 +27,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.hobbing.R;
 import com.wisappstudio.hobbing.data.MyPagePostData;
+import com.wisappstudio.hobbing.fragment.MainPageFragment;
+import com.wisappstudio.hobbing.fragment.MyPageFragment;
 
 
 import org.json.JSONArray;
@@ -98,6 +100,9 @@ public class MyPagePostAdapter extends BaseAdapter {
                                     @Override
                                     public void onResponse(String response) {
                                         Toast.makeText(mContext, "게시물을 삭제했습니다.", Toast.LENGTH_SHORT).show();
+                                        MyPageFragment fragment = (MyPageFragment) MyPageFragment.fragment;
+                                        fragment.loadPosts();
+
                                     }
                                 }, new Response.ErrorListener() {
                                     @Override

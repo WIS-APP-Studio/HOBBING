@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -30,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.hobbing.R;
+import com.wisappstudio.hobbing.fragment.MainPageFragment;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -54,10 +55,74 @@ public class WritePostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_post);
 
-        Intent intent = getIntent();
-        userId = intent.getStringExtra("user_id");
+        userId = getIntent().getStringExtra("user_id");
 
-        // 게시물 이미지 선택
+        clickImageSelect();
+        clickUpload();
+        clickCancel();
+    }
+
+    private void clickUpload() {
+        TextView upload = (TextView) findViewById(R.id.activity_write_post_upload);
+
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, POST_WRITE_IMAGE_UPLOAD_URL, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(WritePostActivity.this, "게시물 업로드 완료", Toast.LENGTH_SHORT).show();
+                        MainPageFragment fragment = (MainPageFragment) MainPageFragment.fragment;
+                        fragment.loadPosts();
+                        finish();
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) { }
+                }){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<>();
+                        EditText title = findViewById(R.id.activity_write_post_title);
+                        EditText description = findViewById(R.id.activity_write_post_description);
+                        EditText category = findViewById(R.id.activity_write_post_category);
+                        EditText hashtag = findViewById(R.id.activity_write_post_hashtag);
+
+                        params.put("writer", userId);
+                        params.put("title", String.valueOf(title.getText()));
+                        params.put("description", String.valueOf(description.getText()));
+                        params.put("category", String.valueOf(category.getText()));
+                        params.put("hashtag", String.valueOf(hashtag.getText()));
+
+                        if(selected_image1 == true) {
+                            params.put("image1", imageToString(bitmap1));
+                        }
+                        if(selected_image2 == true) {
+                            params.put("image2", imageToString(bitmap2));
+                        }
+                        if(selected_image3 == true) {
+                            params.put("image3", imageToString(bitmap3));
+                        }
+                        return params;
+                    }
+                };
+                RequestQueue requestQueue = Volley.newRequestQueue(WritePostActivity.this);
+                requestQueue.add(stringRequest);
+            }
+        });
+    }
+
+    private void clickCancel() {
+        TextView cancel = (TextView) findViewById(R.id.activity_write_post_cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+    }
+
+    private void clickImageSelect() {
         image1 = findViewById(R.id.activity_write_post_image1);
         image2 = findViewById(R.id.activity_write_post_image2);
         image3 = findViewById(R.id.activity_write_post_image3);
@@ -74,6 +139,7 @@ public class WritePostActivity extends AppCompatActivity {
                 selected_image1 = true;
             }
         });
+
         image2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +152,7 @@ public class WritePostActivity extends AppCompatActivity {
                 selected_image2 = true;
             }
         });
+
         image3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,72 +165,6 @@ public class WritePostActivity extends AppCompatActivity {
                 selected_image3 = true;
             }
         });
-        // 게시물 이미지 선택
-
-        // 게시물 작성 및 취소
-        TextView upload = (TextView) findViewById(R.id.activity_write_post_upload);
-        TextView cancel = (TextView) findViewById(R.id.activity_write_post_cancel);
-
-        upload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // post image to server
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, POST_WRITE_IMAGE_UPLOAD_URL, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("WRITEPOST", response);
-                        Toast.makeText(WritePostActivity.this, "게시물 업로드 완료", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("WRITEPOST", error.getMessage());
-                        Toast.makeText(getApplicationContext(), "ERROR : " + error.toString(), Toast.LENGTH_LONG).show();
-                    }
-                }){
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String, String> params = new HashMap<>();
-                        // 게시물 요소 변수
-                        EditText title = findViewById(R.id.activity_write_post_title);
-                        EditText description = findViewById(R.id.activity_write_post_description);
-                        EditText category = findViewById(R.id.activity_write_post_category);
-                        EditText hashtag = findViewById(R.id.activity_write_post_hashtag);
-
-                        params.put("writer", userId);
-                        params.put("title", String.valueOf(title.getText()));
-                        params.put("description", String.valueOf(description.getText()));
-                        params.put("category", String.valueOf(category.getText()));
-                        params.put("hashtag", String.valueOf(hashtag.getText()));
-                        // 게시물 요소 변수
-
-                        if(selected_image1 == true) {
-                            params.put("image1", imageToString(bitmap1));
-                        }
-                        if(selected_image2 == true) {
-                            params.put("image2", imageToString(bitmap2));
-                        }
-                        if(selected_image3 == true) {
-                            params.put("image3", imageToString(bitmap3));
-                        }
-
-                        return params;
-                    }
-                };
-                RequestQueue requestQueue = Volley.newRequestQueue(WritePostActivity.this);
-                requestQueue.add(stringRequest);
-
-            }
-        });
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-        // 게시물 작성 및 취소
     }
 
     @Override

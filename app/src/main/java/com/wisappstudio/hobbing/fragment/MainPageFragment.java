@@ -40,6 +40,7 @@ public class MainPageFragment extends Fragment {
     private View view;
     ArrayList<PostData> postDataList;
     private String userId;
+    public static Fragment fragment;
 
     public MainPageFragment(String userId) {
         this.userId = userId;
@@ -52,6 +53,7 @@ public class MainPageFragment extends Fragment {
         view = inflater.inflate(R.layout.activity_main_page, container, false);
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
 
+        fragment = MainPageFragment.this;
 
         fab.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -61,7 +63,15 @@ public class MainPageFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        this.loadPosts();
+        return view;
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
 
+    public void loadPosts() {
         queue = Volley.newRequestQueue(view.getContext());
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, POST_READ_URL, null, new Response.Listener<JSONObject>() {
             @Override
@@ -92,12 +102,6 @@ public class MainPageFragment extends Fragment {
         });
         jsonRequest.setTag("LoadERR");
         queue.add(jsonRequest);
-
-        return view;
-    }
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
     }
 
     public void InitializePostData(JSONObject jsonObject)

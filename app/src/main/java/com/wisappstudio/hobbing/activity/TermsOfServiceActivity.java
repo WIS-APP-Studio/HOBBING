@@ -19,20 +19,12 @@ public class TermsOfServiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terms_of_service);
 
-        Intent intent = getIntent();
-        String where = intent.getStringExtra("where");
+        clickAgree();
+        clickDisagree();
+    }
 
-        if(where != null) {
-            if(where.equals("Service")) {
-            LinearLayout layout = (LinearLayout) findViewById(R.id.activity_terms_of_service_confirm);
-            layout.setVisibility(View.INVISIBLE);
-            }
-        }
-
-
+    private void clickAgree() {
         agree = findViewById(R.id.agree);
-        disagree = findViewById(R.id.disagree);
-
         agree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +35,11 @@ public class TermsOfServiceActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void clickDisagree() {
+        disagree = findViewById(R.id.disagree);
+
         disagree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,4 +49,5 @@ public class TermsOfServiceActivity extends AppCompatActivity {
             }
         });
     }
+
 }

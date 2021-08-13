@@ -22,6 +22,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.example.hobbing.R;
+import com.wisappstudio.hobbing.activity.ProfileSettingActivity;
+import com.wisappstudio.hobbing.fragment.MyPageFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,15 +72,17 @@ public class ChangeProfileIntroduceDialog extends AppCompatActivity {
                     StringRequest changeNickname = new StringRequest(Request.Method.POST, PROFILE_UPDATE_INTRODUCE_URL, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Log.d("VOLLEYLOG", response);
                             Toast.makeText(context,"자기소개를 변경했습니다.", Toast.LENGTH_SHORT).show();
+                            ProfileSettingActivity activity = (ProfileSettingActivity) ProfileSettingActivity.activity;
+                            activity.loadProfileDescription();
+                            MyPageFragment fragment = (MyPageFragment) MyPageFragment.fragment;
+                            fragment.loadProfileDescription();
                             dlg.dismiss();
                         }
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
-                            Log.d("DialogERR", error.getMessage());
                         }
                     }) {
                         @Override
