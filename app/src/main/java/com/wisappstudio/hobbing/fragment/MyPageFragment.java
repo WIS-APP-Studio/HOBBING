@@ -91,6 +91,7 @@ public class MyPageFragment extends Fragment {
         shapeDrawable.getPaint().setColor(view.getContext().getColor(R.color.signature));
         shapeDrawable.setShape(new OvalShape());
 
+        profile_image.setScaleType(ImageView.ScaleType.CENTER_CROP);
         profile_image.setBackground(shapeDrawable);
         profile_image.setClipToOutline(true);
 

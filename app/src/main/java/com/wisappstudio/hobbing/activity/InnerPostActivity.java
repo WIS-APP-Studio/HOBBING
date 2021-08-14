@@ -213,6 +213,9 @@ public class InnerPostActivity extends AppCompatActivity {
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                 )
                 .into(userProfile);
+        userProfile.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        userProfile.setBackground(new ShapeDrawable(new OvalShape()));
+        userProfile.setClipToOutline(true);
     }
 
     private StringRequest loadPostContent() {
@@ -438,7 +441,7 @@ public class InnerPostActivity extends AppCompatActivity {
                             .diskCacheStrategy(DiskCacheStrategy.NONE)
                     )
                     .into(ownerProfile);
-
+            ownerProfile.setScaleType(ImageView.ScaleType.CENTER_CROP);
             ownerProfile.setBackground(new ShapeDrawable(new OvalShape()));
             ownerProfile.setClipToOutline(true);
 

@@ -1,15 +1,22 @@
 package com.wisappstudio.hobbing.activity;
 
 import android.Manifest;
+import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.content.SharedPreferences;
+import android.graphics.Matrix;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -45,7 +52,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -230,7 +239,6 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
         if (requestCode == CODE_GALLERY_REQUEST) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
@@ -248,10 +256,11 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(requestCode == CODE_GALLERY_REQUEST && resultCode == RESULT_OK && data != null) {
             Uri filePath = data.getData();
+            int degree = getExifOrientation(uriToPath(getApplicationContext(),filePath));
+            Log.d("IMAGEROTATE", degree+"도, " +uriToPath(getApplicationContext(),filePath));
             try {
                 InputStream inputStream = getContentResolver().openInputStream(filePath);
-
-                bitmapImage = BitmapFactory.decodeStream(inputStream);
+                bitmapImage = getRotatedBitmap(BitmapFactory.decodeStream(inputStream), degree);
                 image.setImageBitmap(bitmapImage);
 
                 StringRequest uploadImage = new StringRequest(Request.Method.POST, PROFILE_UPLOAD_IMAGE_URL, new Response.Listener<String>() {
@@ -291,5 +300,71 @@ public class ProfileSettingActivity extends Activity implements AdapterView.OnIt
 
         String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         return encodedImage;
+    }
+
+    private synchronized static int getExifOrientation(String filepath) {
+        int degree = 0;
+        ExifInterface exif = null;
+
+        try {
+            exif = new ExifInterface(filepath);
+        }
+        catch (IOException e) {
+            Log.d("Exif", "cannot exit");
+            e.printStackTrace();
+        }
+
+        if (exif != null) {
+            int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, -1);
+
+            if(orientation != -1) {
+                switch (orientation)
+                {
+                    case ExifInterface.ORIENTATION_ROTATE_90:
+                        degree = 90;
+                        break;
+                    case ExifInterface.ORIENTATION_ROTATE_180:
+                        degree = 180;
+                        break;
+                    case ExifInterface.ORIENTATION_ROTATE_270:
+                        degree = 270;
+                        break;
+                }
+            }
+        }
+
+        return degree;
+    }
+
+    public synchronized static Bitmap getRotatedBitmap(Bitmap bitmap, int degrees) {
+        if(degrees != 0 && bitmap != null)
+        {
+            Matrix m = new Matrix();
+            m.setRotate(degrees, (float) bitmap.getWidth() / 2, (float) bitmap.getHeight() / 2 );
+            try {
+                Bitmap b2 = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), m, true);
+                if(bitmap != b2)
+                {
+                    bitmap.recycle();
+                    bitmap = b2;
+                }
+            }
+            catch (OutOfMemoryError e) {
+
+            }
+        }
+        return bitmap;
+    }
+
+    private String uriToPath(Context context, Uri contentUri) {
+        String[] proj = { MediaStore.Images.Media.DATA };
+
+        Cursor cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
+        cursor.moveToNext();
+        String path = cursor.getString(cursor.getColumnIndex(MediaStore.MediaColumns.DATA));
+        Uri uri = Uri.fromFile(new File(path));
+
+        cursor.close();
+        return path;
     }
 }

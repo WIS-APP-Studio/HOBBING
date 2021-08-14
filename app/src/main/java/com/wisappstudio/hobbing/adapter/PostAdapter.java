@@ -131,6 +131,7 @@ public class PostAdapter extends BaseAdapter {
         ShapeDrawable shapeDrawable = new ShapeDrawable();
         shapeDrawable.getPaint().setColor(mContext.getColor(R.color.signature));
         shapeDrawable.setShape(new OvalShape());
+        profile_image.setScaleType(ImageView.ScaleType.CENTER_CROP);
         profile_image.setBackground(shapeDrawable);
 
         StringRequest imageRequest = new StringRequest(Request.Method.POST, POST_READ_IMAGE_URL, new Response.Listener<String>() {
