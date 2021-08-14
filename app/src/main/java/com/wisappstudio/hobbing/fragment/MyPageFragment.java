@@ -51,6 +51,7 @@ public class MyPageFragment extends Fragment {
     ArrayList<MyPagePostData> postDataList;
     private RequestQueue queue;
 
+    public static Fragment fragment;
 
     public MyPageFragment(String userId) {
         this.userId = userId;
@@ -62,8 +63,8 @@ public class MyPageFragment extends Fragment {
         setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.activity_my_page, container, false);
 
-        TextView tv_nickname = (TextView) view.findViewById(R.id.activity_my_page_nickname);
-        TextView tv_introduce = (TextView) view.findViewById(R.id.activity_my_page_introduce);
+        fragment = MyPageFragment.this;
+
         TextView id = (TextView) view.findViewById(R.id.activity_my_page_id);
         ImageView profile_image = (ImageView) view.findViewById(R.id.activity_my_page_image);
         ImageView profile_setting = (ImageView) view.findViewById(R.id.activity_my_page_setting_profile);
@@ -98,82 +99,9 @@ public class MyPageFragment extends Fragment {
         id.setText(userId);
 
         queue = Volley.newRequestQueue(view.getContext());
-        StringRequest nicknameRequest = new StringRequest(Request.Method.POST, PROFILE_READ_NICKNAME_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    String TAG_JSON = "프로필";
-                    String NICKNAME = "닉네임";
-                    String INTRODUCE = "자기소개";
-                    String FOLLOWER = "팔로워";
-                    try {
-                        JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
-                            JSONObject item = jsonArray.getJSONObject(0);
-                            String nickname = item.getString(NICKNAME);
-                            introduce = item.getString(INTRODUCE);
-                            String follower = item.getString(FOLLOWER);
 
-                            tv_nickname.setText(nickname);
-                            tv_introduce.setText(introduce);
-                    } catch (JSONException e) { }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String ,String>();
-                params.put("id", userId);
-                return params;
-            }
-        };
-
-
-        StringRequest strRequest = new StringRequest(Request.Method.POST, MY_PAGE_POST_READ_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    InitializePostData(jsonObject);
-
-                    ListView listView = (ListView) view.findViewById(R.id.my_page_lv_post);
-                    final MyPagePostAdapter postAdapter = new MyPagePostAdapter(view.getContext(), postDataList);
-
-                    listView.setAdapter(postAdapter);
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-                        @Override
-                        public void onItemClick(AdapterView parent, View v, int position, long id){
-                            Intent intent = new Intent(v.getContext(), InnerPostActivity.class);
-                            intent.putExtra("number", postAdapter.getItem(position).getNumber());
-                            intent.putExtra("owner", postAdapter.getItem(position).getWriter());
-                            intent.putExtra("user_id", userId);
-                            startActivity(intent);
-                        }
-                    });
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String ,String>();
-                params.put("writer", userId);
-                return params;
-            }
-        };
-        queue.add(nicknameRequest);
-        queue.add(strRequest);
+        loadProfileDescription();
+        loadPosts();
         return view;
     }
     @Override
@@ -215,5 +143,88 @@ public class MyPageFragment extends Fragment {
                 postDataList.add(new MyPagePostData(number, writer,title,description,likes, views, shares, category, date));
             }
         } catch (JSONException e) { }
+    }
+
+    public void loadPosts() {
+        StringRequest strRequest = new StringRequest(Request.Method.POST, MY_PAGE_POST_READ_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    InitializePostData(jsonObject);
+
+                    ListView listView = (ListView) view.findViewById(R.id.my_page_lv_post);
+                    final MyPagePostAdapter postAdapter = new MyPagePostAdapter(view.getContext(), postDataList);
+
+                    listView.setAdapter(postAdapter);
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                        @Override
+                        public void onItemClick(AdapterView parent, View v, int position, long id){
+                            Intent intent = new Intent(v.getContext(), InnerPostActivity.class);
+                            intent.putExtra("number", postAdapter.getItem(position).getNumber());
+                            intent.putExtra("owner", postAdapter.getItem(position).getWriter());
+                            intent.putExtra("user_id", userId);
+                            startActivity(intent);
+                        }
+                    });
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String ,String>();
+                params.put("writer", userId);
+                return params;
+            }
+        };
+        queue.add(strRequest);
+    }
+
+    public void loadProfileDescription() {
+        TextView tv_nickname = (TextView) view.findViewById(R.id.activity_my_page_nickname);
+        TextView tv_introduce = (TextView) view.findViewById(R.id.activity_my_page_introduce);
+
+        StringRequest nicknameRequest = new StringRequest(Request.Method.POST, PROFILE_READ_NICKNAME_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String TAG_JSON = "프로필";
+                    String NICKNAME = "닉네임";
+                    String INTRODUCE = "자기소개";
+                    String FOLLOWER = "팔로워";
+                    try {
+                        JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                        JSONObject item = jsonArray.getJSONObject(0);
+                        String nickname = item.getString(NICKNAME);
+                        introduce = item.getString(INTRODUCE);
+                        String follower = item.getString(FOLLOWER);
+
+                        tv_nickname.setText(nickname);
+                        tv_introduce.setText(introduce);
+                    } catch (JSONException e) { }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String ,String>();
+                params.put("id", userId);
+                return params;
+            }
+        };
+        queue.add(nicknameRequest);
     }
 }

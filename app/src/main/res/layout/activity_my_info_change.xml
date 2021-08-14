@@ -47,7 +47,7 @@
                 android:layout_marginTop="-50dp"
                 android:background="@android:color/white"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:hint=" 새 비밀번호" />
         </LinearLayout>
 
@@ -76,7 +76,7 @@
                 android:layout_marginTop="-50dp"
                 android:background="@android:color/white"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:hint=" 비밀번호 확인" />
 
         </LinearLayout>

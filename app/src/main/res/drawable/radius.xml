@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--손예빈 작업-->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:padding="10dp"
     android:shape="rectangle" >

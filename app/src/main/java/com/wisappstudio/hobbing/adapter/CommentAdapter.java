@@ -10,6 +10,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
@@ -17,9 +23,16 @@ import com.bumptech.glide.signature.ObjectKey;
 import com.example.hobbing.R;
 import com.wisappstudio.hobbing.data.CommentData;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.wisappstudio.hobbing.data.ServerData.PROFILE_IMAGE_DIRECTORY;
+import static com.wisappstudio.hobbing.data.ServerData.PROFILE_READ_NICKNAME_URL;
 
 public class CommentAdapter extends BaseAdapter {
     Context mContext = null;
@@ -55,7 +68,39 @@ public class CommentAdapter extends BaseAdapter {
         TextView description = (TextView) view.findViewById(R.id.list_comment_description);
         ImageView profile_image = (ImageView) view.findViewById(R.id.list_comment_profile_image);
 
-        writer.setText(sample.get(position).getWriter());
+        RequestQueue queue = Volley.newRequestQueue(view.getContext());
+        StringRequest nicknameRequest = new StringRequest(Request.Method.POST, PROFILE_READ_NICKNAME_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String TAG_JSON = "프로필";
+                    String NICKNAME = "닉네임";
+                    try {
+                        JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                        JSONObject item = jsonArray.getJSONObject(0);
+                        String nickname = item.getString(NICKNAME);
+                        writer.setText(nickname);
+
+                    } catch (JSONException e) { }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String ,String>();
+                params.put("id", sample.get(position).getWriter());
+                return params;
+            }
+        };
+        queue.add(nicknameRequest);
+
         description.setText(sample.get(position).getDescription());
 
         Glide.with(mContext)

@@ -30,30 +30,43 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        sign_up_et_id = findViewById(R.id.sign_up_et_id);
-        sign_up_et_pw = findViewById(R.id.sign_up_et_pw);
-        sign_up_et_email = findViewById(R.id.sign_up_et_email);
+        clickSignUp();
+    }
 
-
+    private void clickSignUp() {
         btn_sign_up = findViewById(R.id.sign_up_btn);
         btn_sign_up.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String idRegex = "^[a-z0-9_]{5,20}$";
-                String pwRegex = "^[a-zA-Z0-9_]{8,16}$";
-                String emailRegex = "\\w+@\\w+\\.\\w+(\\.\\w+)?";
-
-                boolean checkIdRegex = Pattern.matches(idRegex, sign_up_et_id.getText().toString());
-                boolean checkPwRegex = Pattern.matches(pwRegex, sign_up_et_pw.getText().toString());
-                boolean checkEmailRegex = Pattern.matches(emailRegex, sign_up_et_email.getText().toString());
-                if(checkIdRegex&&checkPwRegex&&checkEmailRegex) {
+                if(isValidInfo()) {
                     signUp();
                 }
                 else {
-                    Toast.makeText(SignUpActivity.this, "아이디 및 비밀번호를 다시 입력하세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "작성 조건에 알맞게 다시 입력하세요.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private boolean isValidInfo() {
+        sign_up_et_id = findViewById(R.id.sign_up_et_id);
+        sign_up_et_pw = findViewById(R.id.sign_up_et_pw);
+        sign_up_et_email = findViewById(R.id.sign_up_et_email);
+
+        String idRegex = "^[a-z0-9_]{5,20}$";
+        String pwRegex = "^[a-zA-Z0-9_]{8,16}$";
+        String emailRegex = "\\w+@\\w+\\.\\w+(\\.\\w+)?";
+
+        boolean checkIdRegex = Pattern.matches(idRegex, sign_up_et_id.getText().toString());
+        boolean checkPwRegex = Pattern.matches(pwRegex, sign_up_et_pw.getText().toString());
+        boolean checkEmailRegex = Pattern.matches(emailRegex, sign_up_et_email.getText().toString());
+
+        if (checkIdRegex&&checkPwRegex&&checkEmailRegex) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     private void signUp() {

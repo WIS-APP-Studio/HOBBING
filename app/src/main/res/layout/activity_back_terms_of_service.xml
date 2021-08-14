@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     android:background="@color/signature"
     android:orientation="vertical">
+    <!--레이아웃 손예빈 작업-->
+
 
     <TextView
         android:layout_width="match_parent"

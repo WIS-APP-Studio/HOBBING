@@ -25,7 +25,6 @@ public class InnerPostAdapter extends RecyclerView.Adapter<InnerPostAdapter.View
     ArrayList<InnerPostData> sample;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         ImageView imageView;
 
         ViewHolder(View itemView) {

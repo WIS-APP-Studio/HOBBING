@@ -36,52 +36,38 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        this.adminBackDoor();
+        sign_in_et_id = findViewById(R.id.sign_in_et_id);
+        sign_in_et_pw = findViewById(R.id.sign_in_et_pw);
 
-        TextView gotoSignUp = (TextView) findViewById(R.id.activity_sign_in_to_sign_up);
+        clickSignUp(); // 회원가입 버튼 클릭
+        switchAutoLogin(); // 자동 로그인 동작
+        clickSignIn(); // 로그인 버튼 클릭
+    }
 
-        gotoSignUp.setOnClickListener(new View.OnClickListener() {
+    private void clickSignIn() {
+        btn_login = findViewById(R.id.sign_in_btn);
+        btn_login.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if(isValidInfo()) {
+                    signIn();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "아이디 및 비밀번호를 다시 입력하세요.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void clickSignUp() {
+        TextView signUp = (TextView) findViewById(R.id.activity_sign_in_to_sign_up);
+
+        signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TermsOfServiceActivity.class);
                 finish();
                 startActivity(intent);
-            }
-        });
-
-        ImageView autoLogin = (ImageView) findViewById(R.id.auto_login_check);
-        autoLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(autoLoginChecked==false) {
-                    autoLogin.setImageResource(R.drawable.check2);
-                    autoLoginChecked=true;
-                } else {
-                    autoLogin.setImageResource(R.drawable.check);
-                    autoLoginChecked=false;
-                }
-            }
-        });
-
-        sign_in_et_id = findViewById(R.id.sign_in_et_id);
-        sign_in_et_pw = findViewById(R.id.sign_in_et_pw);
-
-        btn_login = findViewById(R.id.sign_in_btn);
-        btn_login.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                String idRegex = "^[a-z0-9_]{5,20}$";
-                String pwRegex = "^[a-zA-Z0-9_]{8,16}$";
-
-                boolean checkIdRegex = Pattern.matches(idRegex, sign_in_et_id.getText().toString());
-                boolean checkPwRegex = Pattern.matches(pwRegex, sign_in_et_pw.getText().toString());
-
-                if(checkIdRegex&&checkPwRegex) {
-                    signIn();
-                }
-                else {
-                    Toast.makeText(SignInActivity.this, "아이디 및 비밀번호를 다시 입력하세요.", Toast.LENGTH_SHORT).show();
-                }
             }
         });
     }
@@ -152,5 +138,30 @@ public class SignInActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(adapter);
+    }
+
+    private boolean isValidInfo() {
+        String idRegex = "^[a-z0-9_]{5,20}$";
+        String pwRegex = "^[a-zA-Z0-9_]{8,16}$";
+        boolean checkIdRegex = Pattern.matches(idRegex, sign_in_et_id.getText().toString());
+        boolean checkPwRegex = Pattern.matches(pwRegex, sign_in_et_pw.getText().toString());
+
+        return checkIdRegex&&checkPwRegex ? true : false;
+    }
+
+    private void switchAutoLogin() {
+        ImageView autoLogin = (ImageView) findViewById(R.id.auto_login_check);
+        autoLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(autoLoginChecked==false) {
+                    autoLogin.setImageResource(R.drawable.check2);
+                    autoLoginChecked=true;
+                } else {
+                    autoLogin.setImageResource(R.drawable.check);
+                    autoLoginChecked=false;
+                }
+            }
+        });
     }
 }
